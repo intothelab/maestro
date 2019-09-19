@@ -28,7 +28,7 @@ RUN echo $TZ > /etc/timezone \
 
 # Install extensions
 RUN docker-php-ext-install \
-    pdo_pgsql \
+    pdo_mysql \
     mbstring \
     bcmath
 
