@@ -39,7 +39,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 COPY composer.json ./
 COPY composer.lock ./
 
-RUN composer install --no-dev --no-interaction --no-scripts --no-autoloader
+RUN composer install --no-interaction --no-scripts --no-autoloader
 
 # Copy app source code
 COPY . .
@@ -57,6 +57,8 @@ RUN useradd -u 1000 -ms /bin/bash -g www www
 
 # Update permissions
 RUN chmod +x ./start
+
+RUN mkdir ./storage/logs
 RUN chmod -R 777 ./storage
 
 # Autoload
