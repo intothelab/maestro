@@ -15,7 +15,6 @@ class CreateVehiclesTable extends Migration
     {
         Schema::create('vehicles', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('company_id');
             $table->integer('transporter_id');
             $table->enum('type', ['water', 'cement', 'cargo', 'van', 'lowboy', 'container', 'chemical']);
             $table->string('name')->nullable();

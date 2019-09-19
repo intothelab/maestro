@@ -15,19 +15,22 @@ class CreateCustomersTable extends Migration
     {
         Schema::create('customers', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('company_id');
-            $table->integer('city_id');
-            $table->integer('state_id');
             $table->string('code');
             $table->string('name');
-            $table->string('document_number');
             $table->enum('document_type', ['cpf', 'cnpj']);
+            $table->string('document_number');
             $table->string('phone')->nullable();
             $table->string('email')->nullable();
-            $table->string('zipcode')->nullable();
+            $table->string('zip');
             $table->string('address');
+            $table->integer('city')->nullable();
+            $table->integer('state')->nullable();
             $table->point('location')->nullable();
+            $table->double('extra_tax')->nullable();
+            $table->set('receiving_days', ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'])->nullable();
+            $table->time('receiving_hours')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

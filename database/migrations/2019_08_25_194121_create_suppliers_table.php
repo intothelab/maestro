@@ -23,7 +23,7 @@ class CreateSuppliersTable extends Migration
             $table->string('contact_phone', 30)->nullable();
             $table->text('description')->nullable();
             $table->point('location')->nullable();
-            $table->text('zipcode');
+            $table->text('zip');
             $table->text('address');
             $table->timestamps();
         });

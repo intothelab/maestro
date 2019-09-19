@@ -15,7 +15,6 @@ class CreateRoutesTable extends Migration
     {
         Schema::create('routes', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('company_id');
             $table->text('code');
             $table->enum('mode', ['rail', 'sea', 'road', 'air', 'other']);
             $table->enum('group', ['inbound', 'outbound'])->default('outbound');
