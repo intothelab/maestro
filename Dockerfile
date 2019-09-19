@@ -39,11 +39,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 COPY composer.json ./
 COPY composer.lock ./
 
-RUN composer install \
-    --no-dev \
-    --no-interaction \
-    --no-scripts \
-    --no-autoloader
+RUN composer install --no-dev --no-interaction --no-scripts --no-autoloader
 
 # Copy app source code
 COPY . .

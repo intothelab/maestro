@@ -6,7 +6,14 @@
     "repositories": [
         {
             "type": "vcs",
-            "url": "https://github.com/pedro-santiago/nova.git"
+            "url": "https://github.com/pedro-santiago/nova.git",
+            "options":  {
+                "http": {
+                    "header": [
+                        "API-TOKEN: 2421aa66bdce92f6ed89d6cb4394506c542a8812"
+                    ]
+                }
+            }
         }
     ],
     "require": {
@@ -52,6 +59,7 @@
             "Tests\\": "tests/"
         }
     },
+
     "minimum-stability": "dev",
     "prefer-stable": true,
     "scripts": {
