@@ -57,8 +57,6 @@ RUN useradd -u 1000 -ms /bin/bash -g www www
 
 # Update permissions
 RUN chmod +x ./start
-
-RUN mkdir ./storage/logs
 RUN chmod -R 777 ./storage
 
 # Autoload
