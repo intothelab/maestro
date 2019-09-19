@@ -29,7 +29,8 @@ RUN echo $TZ > /etc/timezone \
 # Install extensions
 RUN docker-php-ext-install \
     pdo_pgsql \
-    mbstring
+    mbstring \
+    bcmath
 
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
