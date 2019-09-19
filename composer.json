@@ -5,7 +5,7 @@
     "license": "proprietary",
     "repositories": [
         {
-            "type": "vcs",
+            "type": "composer",
             "url": "https://github.com/pedro-santiago/nova.git",
             "options":  {
                 "http": {
