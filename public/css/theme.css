@@ -1,0 +1,56 @@
+/* Generated using nova-theme-generator.com */
+
+:root {
+    --transparent: transparent;
+    --black: #565656;
+    --white: white;
+    --white-50: rgba(255, 255, 255, 0.5);
+    --danger: #e74444;
+    --success: #21b978;
+    --warning: #ffeb3b;
+    --info: #03a9f4;
+    --primary: #654798;
+    --primary-dark: rgba(85, 46, 150, 1);
+    --primary-70: rgba(85, 46, 150, 0.7);
+    --primary-50: rgba(85, 46, 150, 0.5);
+    --primary-30: rgba(85, 46, 150, 0.3);
+    --primary-10: rgba(85, 46, 150, 0.1);
+    --logo: #25263E;
+    --sidebar-icon: #D4D4D4;
+    --20: rgb(255, 255, 255);
+    --30: rgb(255, 255, 255);
+    --40: rgb(239, 239, 239);
+    --50: rgb(213, 213, 213);
+    --60: rgb(210, 210, 199);
+    --70: rgb(162, 162, 162);
+    --80: rgb(137, 137, 137);
+    --90: rgb(111, 111, 111);
+    --90-half: rgba(40, 54, 61, 0.5);
+}
+
+.bg-logo svg {
+
+}
+
+.bg-grad-sidebar {
+  background:#3B3D56;
+}
+
+input, button, select, .form-file-btn, textarea, a.btn {
+	border-radius: 5px !important;
+	transition: all 0.3s !important;
+}
+
+input:focus, textarea:focus, select:focus {
+  border-color: var(--primary);
+  border-right-width: 1px !important;
+  outline-offset: -2px !important;
+    outline:0 !important;
+  -webkit-box-shadow: 0 0 0 2px var(--primary-10) !important;
+  box-shadow: 0 0 0 2px var(--primary-10)  !important;
+ 
+}
+
+input:hover, textarea:hover, select:hover {
+   border:1px solid var(--primary);
+}
