@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use Faker\Provider\Text;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Http\Requests\NovaRequest;
@@ -40,7 +41,7 @@ class Transporter extends Resource
     public function fields(Request $request)
     {
         return [
-            ID::make()->sortable(),
+            ID::make()->sortable()
         ];
     }
 

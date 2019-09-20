@@ -12,7 +12,7 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{ mix('app.css', 'vendor/nova') }}">
-    <link rel="stylesheet" href="{{ secure_asset('css/theme.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/theme.css') }}">
 </head>
 <body class="bg-40 text-black h-full">
     <div class="h-full">
