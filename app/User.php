@@ -13,6 +13,11 @@ class User extends Authenticatable
     const ROLE_ADMIN = 'admin';
     const ROLE_USER = 'user';
 
+    const USER_ROLES = [
+        self::ROLE_ADMIN => 'Admin',
+        self::ROLE_USER => 'Usuário'
+    ];
+
     use HasApiTokens, Notifiable;
 
     /**

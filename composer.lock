@@ -4,8 +4,49 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5776a5c57db5e392253be98c31a656fa",
+    "content-hash": "6378920d1a879aac6c0e91b7a53bd5e7",
     "packages": [
+        {
+            "name": "anaseqal/nova-sidebar-icons",
+            "version": "0.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/anaseqal/nova-sidebar-icons.git",
+                "reference": "ceb18c4943c36aa1eeebb6bd60c4f2daa24c2b00"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/anaseqal/nova-sidebar-icons/zipball/ceb18c4943c36aa1eeebb6bd60c4f2daa24c2b00",
+                "reference": "ceb18c4943c36aa1eeebb6bd60c4f2daa24c2b00",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Anaseqal\\NovaSidebarIcons\\ToolServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Anaseqal\\NovaSidebarIcons\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A Laravel Nova tool.",
+            "keywords": [
+                "laravel",
+                "nova"
+            ],
+            "time": "2019-08-29T18:49:20+00:00"
+        },
         {
             "name": "cakephp/chronos",
             "version": "1.2.8",
@@ -1240,16 +1281,16 @@
         },
         {
             "name": "laravel/nova",
-            "version": "2.1.1",
+            "version": "2.3.3",
             "source": {
                 "type": "git",
                 "url": "git@github.com:pedro-santiago/nova.git",
-                "reference": "7264bb3fefc0f6f8d862cf638dc9278c0424f16b"
+                "reference": "fd8fc2b84596fa577c7a81523e0c1d7fd3b4eec7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pedro-santiago/nova/zipball/7264bb3fefc0f6f8d862cf638dc9278c0424f16b",
-                "reference": "7264bb3fefc0f6f8d862cf638dc9278c0424f16b",
+                "url": "https://api.github.com/repos/pedro-santiago/nova/zipball/fd8fc2b84596fa577c7a81523e0c1d7fd3b4eec7",
+                "reference": "fd8fc2b84596fa577c7a81523e0c1d7fd3b4eec7",
                 "shasum": ""
             },
             "require": {
@@ -1307,10 +1348,10 @@
                 "laravel"
             ],
             "support": {
-                "source": "https://github.com/pedro-santiago/nova/tree/2.1.1",
+                "source": "https://github.com/pedro-santiago/nova/tree/2.3.3",
                 "issues": "https://github.com/pedro-santiago/nova/issues"
             },
-            "time": "2019-09-06T12:32:55+00:00"
+            "time": "2019-09-20T20:42:22+00:00"
         },
         {
             "name": "laravel/passport",
@@ -2020,6 +2061,57 @@
                 "serialize"
             ],
             "time": "2019-09-02T21:07:33+00:00"
+        },
+        {
+            "name": "outhebox/nova-hidden-field",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/MohmmedAshraf/nova-hidden-field.git",
+                "reference": "7880e5377b27db92a641149959443b5062486797"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/MohmmedAshraf/nova-hidden-field/zipball/7880e5377b27db92a641149959443b5062486797",
+                "reference": "7880e5377b27db92a641149959443b5062486797",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Outhebox\\NovaHiddenField\\FieldServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Outhebox\\NovaHiddenField\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mohamed Ashraf",
+                    "email": "cupo.ashraf@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A Laravel Nova Hidden field.",
+            "keywords": [
+                "field",
+                "laravel",
+                "nova",
+                "nova default value",
+                "nova hidden field"
+            ],
+            "time": "2018-11-14T08:40:31+00:00"
         },
         {
             "name": "paragonie/random_compat",
