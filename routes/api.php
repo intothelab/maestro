@@ -14,7 +14,12 @@ use Illuminate\Http\Request;
 */
 
 Route::middleware('auth:api')->group(function(){
-
+    Route::resource('/supplier', 'SupplierController');
+    Route::resource('/company', 'CompanyController');
+    Route::resource('/customer', 'CustomerController');
+    Route::resource('/event', 'EventController');
+    Route::resource('/document', 'DocumentController');
+    Route::resource('/transporter', 'TransporterController');
 });
 
 

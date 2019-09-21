@@ -5,9 +5,7 @@ namespace App\Nova;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Place;
-use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Http\Requests\NovaRequest;
 use Outhebox\NovaHiddenField\HiddenField;
 use Wemersonrv\InputMask\InputMask;
 
@@ -54,13 +52,14 @@ class Company extends Resource
     public function fields(Request $request)
     {
         return [
-            ID::make()->sortable(),
+            ID::make()->sortable()->onlyOnForms(),
             Text::make('Nome', 'name')
                 ->sortable()
                 ->size('w-2/3')
                 ->rules('required'),
             InputMask::make('CNPJ', 'cnpj')
                 ->mask('##.###.###/####-##')
+                ->raw()
                 ->size('w-1/3')
                 ->rules('required'),
             Text::make('E-mail', 'email')
@@ -69,10 +68,10 @@ class Company extends Resource
                 ->size('w-1/3'),
             InputMask::make('Telefone', 'phone')
                 ->size('w-1/3'),
-            Place::make('Endereço')
+            Place::make('Endereço', 'address')
                 ->size('w-2/3')
                 ->countries(['BR']),
-            Text::make('Número')
+            Text::make('Número', 'number')
                 ->size('w-1/3'),
             Text::make('CEP', 'postal_code')
                 ->size('w-1/3'),
