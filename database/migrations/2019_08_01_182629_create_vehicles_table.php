@@ -18,6 +18,7 @@ class CreateVehiclesTable extends Migration
             $table->integer('transporter_id');
             $table->enum('type', ['water', 'cement', 'cargo', 'van', 'lowboy', 'container', 'chemical']);
             $table->string('model')->nullable();
+            $table->string('renavam')->nullable();
             $table->string('plate');
             $table->float('capacity');
             $table->float('length');

@@ -35,7 +35,7 @@ class Supplier extends Resource
      * @var array
      */
     public static $search = [
-        'id',
+        'cnpj', 'name'
     ];
 
     public static function label()

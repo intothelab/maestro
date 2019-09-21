@@ -33,7 +33,7 @@ class Order extends Resource
      * @var array
      */
     public static $search = [
-        'code',
+        'code'
     ];
 
     public static function icon()

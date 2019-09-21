@@ -2,15 +2,13 @@
 
 namespace App\Nova;
 
-use Illuminate\Mail\Markdown;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\Markdown;
 use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Fields\Trix;
-use Laravel\Nova\Http\Requests\NovaRequest;
 
 class Vehicle extends Resource
 {
@@ -26,7 +24,7 @@ class Vehicle extends Resource
      *
      * @var string
      */
-    public static $title = 'id';
+    public static $title = 'model';
 
     /**
      * The columns that should be searched.
@@ -34,7 +32,7 @@ class Vehicle extends Resource
      * @var array
      */
     public static $search = [
-        'id',
+        'plate', 'model'
     ];
 
     public static function label()
@@ -54,7 +52,9 @@ class Vehicle extends Resource
     {
         return [
             ID::make()->sortable()->onlyOnForms(),
-            BelongsTo::make('Transportadora', 'transporter', Transporter::class),
+            BelongsTo::make('Transportadora', 'transporter', Transporter::class)
+                ->searchable()
+                ->size('w-1/4'),
             Select::make('Tipo')
                 ->options([
                     'water' => 'Água',
@@ -64,14 +64,15 @@ class Vehicle extends Resource
                     'lowboy' => 'Lowboy',
                     'container' => 'Container',
                     'chemical' => 'Químico'
-                ]),
-            Text::make('Modelo', 'model'),
-            Text::make('Placa', 'plate'),
-            Number::make('Capacidade', 'capacity'),
-            Number::make('Tamanho', 'length'),
-            Number::make('Eixos', 'axles'),
-            Text::make('Num. Frota', 'fleet_number'),
-            \Laravel\Nova\Fields\Markdown::make('Notas', 'notes')
+                ])->size('w-1/4'),
+            Text::make('Modelo', 'model')->size('w-2/4'),
+            Text::make('Placa', 'plate')->size('w-1/3'),
+            Number::make('Capacidade', 'capacity')->size('w-1/3'),
+            Number::make('Tamanho', 'length')->size('w-1/3'),
+            Number::make('Eixos', 'axles')->size('w-1/5'),
+            Text::make('Num. Frota', 'fleet_number')->size('w-2/5'),
+            Text::make('Renavam','renavam')->size('w-1/5'),
+            Markdown::make('Notas', 'notes')->size('w-full')
         ];
     }
 

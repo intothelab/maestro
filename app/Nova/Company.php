@@ -33,7 +33,7 @@ class Company extends Resource
      * @var array
      */
     public static $search = [
-        'name',
+        'name', 'cnpj'
     ];
 
     public static function label()

@@ -83,7 +83,7 @@ class Transporter extends Resource
                 ->size('w-1/3'),
             HiddenField::make('latitude')->withMeta(['type' => 'hidden'])->onlyOnForms(),
             HiddenField::make('longitude')->withMeta(['type' => 'hidden'])->onlyOnForms(),
-            HasMany::make('Vehicle')
+            HasMany::make('Veículos', 'vehicle', Vehicle::class)
         ];
     }
 

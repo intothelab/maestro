@@ -34,7 +34,7 @@ class Shipment extends Resource
      * @var array
      */
     public static $search = [
-        'id',
+        'code',
     ];
 
     public static function label()

@@ -31,7 +31,7 @@ class Document extends Resource
      * @var array
      */
     public static $search = [
-        'id',
+        'number'
     ];
 
     public static function label()
