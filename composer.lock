@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6378920d1a879aac6c0e91b7a53bd5e7",
+    "content-hash": "b6e1a89d4cf2e98f18ff88382caf0463",
     "packages": [
         {
             "name": "anaseqal/nova-sidebar-icons",
@@ -4419,6 +4419,58 @@
                 "nova"
             ],
             "time": "2019-05-16T17:15:26+00:00"
+        },
+        {
+            "name": "whitecube/nova-flexible-content",
+            "version": "v0.1.12",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/whitecube/nova-flexible-content.git",
+                "reference": "cfd8719e15aa9add68d89427a7aab73beee6c955"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/whitecube/nova-flexible-content/zipball/cfd8719e15aa9add68d89427a7aab73beee6c955",
+                "reference": "cfd8719e15aa9add68d89427a7aab73beee6c955",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Whitecube\\NovaFlexibleContent\\FieldServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Whitecube\\NovaFlexibleContent\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Toon Van den Bos",
+                    "email": "toon@whitecube.be"
+                }
+            ],
+            "description": "Flexible Content & Repeater Fields for Laravel Nova.",
+            "keywords": [
+                "Flexible",
+                "field",
+                "group",
+                "laravel",
+                "layout",
+                "nova",
+                "repeat"
+            ],
+            "time": "2019-08-29T12:05:20+00:00"
         },
         {
             "name": "zendframework/zend-diactoros",

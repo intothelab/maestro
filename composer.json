@@ -27,7 +27,8 @@
         "laravel/tinker": "^1.0",
         "outhebox/nova-hidden-field": "^1.0",
         "stonkeep/cpf-cnpj": "^0.0.1",
-        "wemersonrv/input-mask": "^0.1.2"
+        "wemersonrv/input-mask": "^0.1.2",
+        "whitecube/nova-flexible-content": "^0.1.12"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

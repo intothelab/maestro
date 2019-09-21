@@ -8,6 +8,7 @@ use Laravel\Nova\Fields\Place;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Outhebox\NovaHiddenField\HiddenField;
 use Wemersonrv\InputMask\InputMask;
 
 class Customer extends Resource
@@ -50,27 +51,33 @@ class Customer extends Resource
     {
         return [
             ID::make()->sortable(),
-            Text::make('Name', 'name')
-                ->rules('required')
-                ->size('w-2/5'),
+            Text::make('Nome', 'name')
+                ->sortable()
+                ->size('w-2/3')
+                ->rules('required'),
+            InputMask::make('CNPJ', 'cnpj')
+                ->mask('##.###.###/####-##')
+                ->size('w-1/3')
+                ->rules('required'),
             Text::make('E-mail', 'email')
-                ->rules('required','email')
-                ->size('w-3/5'),
-            Select::make('Tipo Documento', 'document_type')
-                ->options([
-                    'CPF',
-                    'CNPJ'
-                ])
-                ->rules('required')
-                ->size('w-1/5'),
-            InputMask::make('Número Documento', 'document_number')
-                ->rules('required')
-                ->size('w-2/5'),
-            InputMask::make('Zipcode', 'zipcode')
-                ->mask('#####-###'),
-            Place::make('Endereço', 'address')
-                ->rules('required')
-                ->size('w-1/2')
+                ->sortable()
+                ->rules('required', 'email')
+                ->size('w-1/3'),
+            InputMask::make('Telefone', 'phone')
+                ->size('w-1/3'),
+            Place::make('Endereço')
+                ->size('w-2/3')
+                ->countries(['BR']),
+            Text::make('Número')
+                ->size('w-1/3'),
+            Text::make('CEP', 'postal_code')
+                ->size('w-1/3'),
+            Text::make('Estado', 'state')
+                ->size('w-1/3'),
+            Text::make('Cidade', 'city')
+                ->size('w-1/3'),
+            HiddenField::make('latitude')->withMeta(['type' => 'hidden'])->onlyOnForms(),
+            HiddenField::make('longitude')->withMeta(['type' => 'hidden'])->onlyOnForms(),
         ];
     }
 

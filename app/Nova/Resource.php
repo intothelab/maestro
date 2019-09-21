@@ -7,6 +7,15 @@ use Laravel\Nova\Http\Requests\NovaRequest;
 
 abstract class Resource extends NovaResource
 {
+
+
+    public static function getIcon($icon)
+    {
+        // Assuming you have a blade file containing an image
+        // in resources/views/vendor/nova/svg/icon-user.blade.php
+        return '<svg class="sidebar-icon" fill="var(--sidebar-icon)" style="overflow: visible;margin-top:-5px;margin-left:-2px;margin-right:14px;">'.file_get_contents(asset('icon/icon-'.$icon.'.svg')).'</svg>';
+    }
+
     /**
      * Build an "index" query for the given resource.
      *
