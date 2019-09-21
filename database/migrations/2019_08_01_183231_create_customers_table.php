@@ -17,8 +17,7 @@ class CreateCustomersTable extends Migration
             $table->bigIncrements('id');
             $table->string('code');
             $table->string('name');
-            $table->enum('document_type', ['cpf', 'cnpj']);
-            $table->string('document_number');
+            $table->string('cnpj');
             $table->string('phone')->nullable();
             $table->string('email')->nullable();
             $table->string('zip');

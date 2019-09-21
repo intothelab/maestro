@@ -37,7 +37,7 @@ class Transporter extends Resource
      * @var array
      */
     public static $search = [
-        'id',
+        'name', 'code', 'cnpj'
     ];
 
     public static function icon()

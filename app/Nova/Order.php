@@ -61,7 +61,8 @@ class Order extends Resource
             BelongsTo::make('Empresa', 'company', Company::class),
             Currency::make('Valor', 'value'),
             Number::make('Peso', 'weight'),
-            BelongsToMany::make('Remessas', 'shipment', Shipment::class)
+            BelongsToMany::make('Remessas', 'shipment', Shipment::class),
+            BelongsToMany::make('Notas Fiscais', 'document', Document::class)
         ];
     }
 

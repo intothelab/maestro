@@ -13,7 +13,7 @@ class Shipment extends Model
     }
 
     public function transporter(){
-        return $this->hasOne(Transporter::class);
+        return $this->hasOne(Transporter::class, 'cnpj', 'transporter_cnpj');
     }
 
 }

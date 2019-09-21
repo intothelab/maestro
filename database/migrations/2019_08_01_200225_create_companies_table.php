@@ -15,10 +15,18 @@ class CreateCompaniesTable extends Migration
     {
         Schema::create('companies', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('code')->nullable();
             $table->string('name');
-            $table->string('cnpj');
+            $table->string('email');
+            $table->string('phone');
+            $table->string('cnpj')->index()->unique();
             $table->string('address');
-            $table->string('zip');
+            $table->string('number');
+            $table->string('postal_code');
+            $table->string('state');
+            $table->string('city');
+            $table->string('latitude');
+            $table->string('longitude');
             $table->timestamps();
         });
     }

@@ -19,7 +19,7 @@ class CreateTransportersTable extends Migration
             $table->string('name');
             $table->string('email');
             $table->string('phone');
-            $table->string('cnpj');
+            $table->string('cnpj')->index()->unique();
             $table->string('address');
             $table->string('number');
             $table->string('postal_code');
