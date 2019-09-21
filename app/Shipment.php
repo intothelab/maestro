@@ -6,7 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Shipment extends Model
 {
-    use \CompanyScoped;
-
     protected $table = 'shipments';
+
+    public function orders(){
+        return $this->belongsToMany(Order::class, 'shipments_orders');
+    }
+
+    public function transporter(){
+        return $this->hasOne(Transporter::class);
+    }
+
 }

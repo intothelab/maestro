@@ -15,13 +15,18 @@ class CreateTransportersTable extends Migration
     {
         Schema::create('transporters', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('code');
+            $table->string('code')->nullable();
             $table->string('name');
             $table->string('email');
             $table->string('phone');
-            $table->string('description');
-            $table->enum('document_type', ['cpf', 'cnpj']);
-            $table->string('document_number');
+            $table->string('cnpj');
+            $table->string('address');
+            $table->string('number');
+            $table->string('postal_code');
+            $table->string('state');
+            $table->string('city');
+            $table->string('latitude');
+            $table->string('longitude');
             $table->timestamps();
             $table->softDeletes();
         });

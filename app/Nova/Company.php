@@ -41,6 +41,10 @@ class Company extends Resource
         return __('Empresas');
     }
 
+    public static function icon(){
+        return self::getIcon('map-pin');
+    }
+
     /**
      * Get the fields displayed by the resource.
      *

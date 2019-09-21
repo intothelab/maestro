@@ -37,7 +37,7 @@ class User extends Resource
 
     public static function icon()
     {
-        return parent::getIcon('user');
+        return parent::getIcon('users');
     }
 
     public static function label()

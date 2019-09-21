@@ -6,7 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Vehicle extends Model
 {
-    use \CompanyScoped;
-
     protected $table = 'vehicles';
+
+    public function transporter()
+    {
+        return $this->belongsTo(Transporter::class);
+    }
+
 }

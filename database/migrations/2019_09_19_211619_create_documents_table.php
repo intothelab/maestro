@@ -18,6 +18,7 @@ class CreateDocumentsTable extends Migration
             $table->integer('transporter_id');
             $table->integer('company_id');
             $table->integer('customer_id');
+            $table->integer('order_id')->nullable();
             $table->string('number', 30);
             $table->dateTime('collected_at')->nullable();
             $table->dateTime('delivered_at')->nullable();

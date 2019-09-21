@@ -7,7 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Transporter extends Model
 {
-    use CompanyScoped;
-
     protected $table = 'transporters';
 }
