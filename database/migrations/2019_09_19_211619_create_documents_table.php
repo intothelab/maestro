@@ -16,9 +16,10 @@ class CreateDocumentsTable extends Migration
         Schema::create('documents', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('number')->unique()->index();
-            $table->integer('transporter_cnpj')->index();
-            $table->integer('company_cnpj')->index();
-            $table->integer('customer_cnpj')->index();
+            $table->integer('series');
+            $table->string('transporter_cnpj', 14)->nullable();
+            $table->string('company_cnpj', 14)->nullable();
+            $table->string('customer_cnpj', 14)->nullable();
             $table->integer('order_id')->nullable();
             $table->dateTime('collected_at')->nullable();
             $table->dateTime('delivered_at')->nullable();

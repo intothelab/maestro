@@ -15,15 +15,12 @@ use Illuminate\Support\Facades\Auth as Auth;
 */
 
 
-Route::get('/', function(){
-    return response()->json([
-        'version' => '1',
-        'auth' =>  Auth::guest() ? Auth::user() : null,
-        'message' => \Illuminate\Foundation\Inspiring::quote(),
-    ]);
-});
+Route::get('/', 'MainController@index');
 
 Route::middleware(['client', 'api'])->group(function(){
+
+    Route::post('/edi', 'MainController@edi');
+
     Route::resource('/suppliers', 'SupplierController');
     Route::resource('/companies', 'CompanyController');
     Route::resource('/customers', 'CustomerController');
