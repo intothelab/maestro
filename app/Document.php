@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Document extends Model
 {
+
+    protected $fillable = ['transporter_cnpj', 'company_cnpj', 'order_id', 'collected_at', 'delivered_at'];
+
     public function transporter(){
         return $this->hasOne(Transporter::class, 'cnpj', 'transporter_cnpj');
     }

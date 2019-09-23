@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Transporter;
 use Geocoder\Laravel\Facades\Geocoder;
+use Geocoder\Provider\Here\Model\HereAddress;
 use Illuminate\Http\Request;
 
 class TransporterController extends Controller
@@ -30,7 +31,7 @@ class TransporterController extends Controller
             'name' => 'required',
             'email' => 'required|email',
             'phone' => 'required',
-            'cnpj' => 'required|unique:transporters',
+            'cnpj' => 'required|unique:transporters|cnpj',
             'address' => 'required',
             'number' => 'required',
             'postal_code' => 'required',
@@ -40,6 +41,7 @@ class TransporterController extends Controller
         $transporter->email = strtolower($request->email);
         $transporter->phone = $request->phone;
         $transporter->cnpj = $request->cnpj;
+        $transporter->code = $request->code;
 
         //Geocoding Address
         $geocodedString = implode(', ', $request->only([
@@ -48,16 +50,22 @@ class TransporterController extends Controller
             'postal_code'
         ]));
 
-        $geocoded = Geocoder::geocode($geocodedString)->first();
-        $transporter->latitude = $geocoded->coordinates->latitude;
-        $transporter->longitude = $geocoded->coordinates->longitude;
-        $transporter->number = $geocoded->streetNumber;
-        $transporter->address = $geocoded->streetName;
-        $transporter->postal_code = $geocoded->postalCode;
-        $transporter->city = $geocoded->locality;
-        $transporter->state = $geocoded->additionalData['StateName'];
+        /** @var HereAddress $geocoded */
+        $geocoded = Geocoder::geocode($geocodedString)
+            ->get()
+            ->first();
 
-        return response($transporter->save(), 201)->send();
+
+        $transporter->latitude = $geocoded->getCoordinates()->getLatitude();
+        $transporter->longitude = $geocoded->getCoordinates()->getLongitude();
+        $transporter->number = $geocoded->getStreetNumber();
+        $transporter->address = $geocoded->getStreetName();
+        $transporter->postal_code = $geocoded->getPostalCode();
+        $transporter->city = $geocoded->getLocality();
+        $transporter->state = $geocoded->getAdditionalData()['StateName'];
+        $transporter->save();
+
+        return response($transporter, 201)->send();
     }
 
     /**
@@ -66,9 +74,9 @@ class TransporterController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Transporter $transporter)
     {
-        return response()->json(Transporter::findOrFail($id));
+        return response()->json($transporter);
     }
 
     /**
@@ -78,8 +86,28 @@ class TransporterController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Transporter $transporter)
     {
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required|email',
+            'phone' => 'required',
+            'address' => 'required',
+            'number' => 'required',
+            'postal_code' => 'required',
+        ]);
+
+        $transporter->update([
+            'code' => $request->code,
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'address' => $request->address,
+            'number' => $request->number,
+            'postal_code' => $request->postal_code
+        ]);
+
+        return response()->json($transporter);
     }
 
     /**
@@ -88,8 +116,9 @@ class TransporterController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Transporter $transporter)
     {
-        //
+        $transporter->delete();
+        return response()->json($transporter);
     }
 }

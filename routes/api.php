@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth as Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,13 +14,32 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->group(function(){
-    Route::resource('/supplier', 'SupplierController');
-    Route::resource('/company', 'CompanyController');
-    Route::resource('/customer', 'CustomerController');
-    Route::resource('/event', 'EventController');
-    Route::resource('/document', 'DocumentController');
-    Route::resource('/transporter', 'TransporterController');
+
+Route::get('/', function(){
+    return response()->json([
+        'version' => '1',
+        'auth' =>  Auth::guest() ? Auth::user() : null,
+        'message' => \Illuminate\Foundation\Inspiring::quote(),
+    ]);
 });
+
+Route::middleware(['client', 'api'])->group(function(){
+    Route::resource('/suppliers', 'SupplierController');
+    Route::resource('/companies', 'CompanyController');
+    Route::resource('/customers', 'CustomerController');
+    Route::resource('/events', 'EventController');
+    Route::resource('/documents', 'DocumentController');
+    Route::resource('/transporters', 'TransporterController');
+});
+
+
+Route::fallback(function () {
+    return response()->json([
+        'error' => '404 Not Found',
+        'message' => 'We apparently could not find what you are looking for.'
+    ], 404);
+});
+
+
 
 

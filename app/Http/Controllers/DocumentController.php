@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Document;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class DocumentController extends Controller
@@ -16,59 +18,47 @@ class DocumentController extends Controller
         return response()->json(Document::all());
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function store(Request $request, Document $document)
     {
-        //
+        $this->validate($request, [
+            'number' => 'required|unique:documents,number',
+            'transporter_cnpj' => 'exists:transporters,cnpj|cnpj',
+            'company_cnpj' => 'required|exists:companies,cnpj|cnpj',
+            'order_id' => 'required|exists:orders,id',
+            'collected_at' => 'date|before:delivered_at',
+            'delivered_at' => 'date|after:collected_at'
+        ]);
+
+        $document->number = $request->number;
+        $document->transporter_cnpj = $request->transporter_cnpj;
+        $document->company_cnpj = $request->company_cnpj;
+        $document->order_id = $request->order_id;
+        $document->collected_at = $request->collected_at;
+        $document->delivered_at = $request->delivered_at;
+        $document->save();
+
+        return response()->json($document, 201);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function show(Document $document)
     {
-
+        return response()->json($document);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function update(Request $request, Document $document)
     {
-        //
-    }
+        $this->validate($request, [
+            'transporter_cnpj' => 'exists:transporters,cnpj|cnpj',
+            'company_cnpj' => 'required|exists:companies,cnpj|cnpj',
+            'order_id' => 'required|exists:orders,id',
+            'collected_at' => 'date|before:delivered_at',
+            'delivered_at' => 'date|after:collected_at'
+        ]);
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
+        $document->update($request->all());
+
+        return response()->json($document);
     }
 
     /**
@@ -77,8 +67,8 @@ class DocumentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Document $document)
     {
-        //
+        return response()->json($document);
     }
 }

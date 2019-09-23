@@ -9,7 +9,14 @@ class EventController extends Controller
 {
     public function store(Request $request)
     {
-        $event = Event::create($request->all());
-        return response()->json($event, 201);
+
+        $this->validate($request, [
+            'data' => 'required'
+        ]);
+
+        die();
+
+//        $event = Event::create($request->all());
+//        return response()->json($event, 201);
     }
 }

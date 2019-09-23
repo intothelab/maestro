@@ -4,24 +4,29 @@ namespace App\Http\Controllers;
 
 use App\Customer;
 use Geocoder\Laravel\Facades\Geocoder;
+use Geocoder\Provider\Here\Model\HereAddress;
 use Illuminate\Http\Request;
 
+/**
+ * Class CustomerController
+ * @package App\Http\Controllers
+ */
 class CustomerController extends Controller
 {
+
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse An array of customers
      */
     public function index()
     {
         return response()->json(Customer::all());
     }
+
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  Request  $request
+     * @param  Customer  $customer
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
+     * @throws \Illuminate\Validation\ValidationException
      */
     public function store(Request $request, Customer $customer)
     {
@@ -29,7 +34,7 @@ class CustomerController extends Controller
             'name' => 'required',
             'email' => 'required|email',
             'phone' => 'required',
-            'cnpj' => 'required|unique:customers',
+            'cnpj' => 'required|unique:customers|cnpj',
             'address' => 'required',
             'number' => 'required',
             'postal_code' => 'required',
@@ -39,6 +44,7 @@ class CustomerController extends Controller
         $customer->email = strtolower($request->email);
         $customer->phone = $request->phone;
         $customer->cnpj = $request->cnpj;
+        $customer->code = $request->code;
 
         //Geocoding Address
         $geocodedString = implode(', ', $request->only([
@@ -47,60 +53,71 @@ class CustomerController extends Controller
             'postal_code'
         ]));
 
-        $geocoded = Geocoder::geocode($geocodedString)->first();
-        $customer->latitude = $geocoded->coordinates->latitude;
-        $customer->longitude = $geocoded->coordinates->longitude;
-        $customer->number = $geocoded->streetNumber;
-        $customer->address = $geocoded->streetName;
-        $customer->postal_code = $geocoded->postalCode;
-        $customer->city = $geocoded->locality;
-        $customer->state = $geocoded->additionalData['StateName'];
+        /** @var HereAddress $geocoded */
+        $geocoded = Geocoder::geocode($geocodedString)
+            ->get()
+            ->first();
 
-        return response($customer->save(), 201)->send();
+
+        $customer->latitude = $geocoded->getCoordinates()->getLatitude();
+        $customer->longitude = $geocoded->getCoordinates()->getLongitude();
+        $customer->number = $geocoded->getStreetNumber();
+        $customer->address = $geocoded->getStreetName();
+        $customer->postal_code = $geocoded->getPostalCode();
+        $customer->city = $geocoded->getLocality();
+        $customer->state = $geocoded->getAdditionalData()['StateName'];
+        $customer->save();
+
+        return response($customer, 201)->send();
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  Customer  $customer
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function show($id)
+    public function show(Customer $customer)
     {
-        //
+        return response()->json($customer);
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  Request  $request
+     * @param  Customer  $customer
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Illuminate\Validation\ValidationException
      */
-    public function edit($id)
+    public function update(Request $request, Customer $customer)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required|email',
+            'phone' => 'required',
+            'address' => 'required',
+            'number' => 'required',
+            'postal_code' => 'required',
+        ]);
+
+        $customer->update([
+            'code' => $request->code,
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'address' => $request->address,
+            'number' => $request->number,
+            'postal_code' => $request->postal_code
+        ]);
+
+        return response()->json($customer);
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  Customer  $customer
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Exception
      */
-    public function update(Request $request, $id)
+    public function destroy(Customer $customer)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        $customer->delete();
+        return response()->json($customer);
     }
 }

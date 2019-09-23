@@ -27,7 +27,10 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        Passport::routes();
+        \Illuminate\Support\Facades\Route::group(['prefix' => 'api', 'middleware' => 'json'], function() {
+            Passport::routes();
+        });
+
         Passport::tokensExpireIn(Carbon::now()->addYears(20));
     }
 }

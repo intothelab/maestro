@@ -14,7 +14,8 @@ class ShipmentController extends Controller
      */
     public function index()
     {
-        return response()->json(Shipment::all());
+        $shipments = Shipment::all();
+        return response()->json($shipments);
     }
 
     /**
@@ -23,9 +24,23 @@ class ShipmentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Shipment $shipment)
     {
-        //
+        $this->validate($request, [
+            'transporter_cnpj' => 'required|cnpj|exists:transporters,cnpj',
+            'code' => 'unique:shipments',
+            'weight' => 'required|number',
+            'value' => 'required|double',
+        ]);
+
+        $shipment->transporter_cnpj = $request->transporter_cnpj;
+        $shipment->code = $request->code;
+        $shipment->invoice = $request->invoice;
+        $shipment->weight = $request->weight;
+        $shipment->value = $request->value;
+        $shipment->description = $request->description;
+
+        return response()->json($shipment);
     }
 
     /**
@@ -34,9 +49,9 @@ class ShipmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Shipment $shipment)
     {
-        //
+        return response()->json($shipment);
     }
 
     /**
@@ -46,9 +61,24 @@ class ShipmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Shipment $shipment)
     {
-        //
+        $this->validate($request, [
+            'transporter_cnpj' => 'required|cnpj|exists:transporters,cnpj',
+            'code' => 'unique:shipments',
+            'weight' => 'required|number',
+            'value' => 'required|double',
+        ]);
+
+        $shipment->transporter_cnpj = $request->transporter_cnpj;
+        $shipment->code = $request->code;
+        $shipment->invoice = $request->invoice;
+        $shipment->weight = $request->weight;
+        $shipment->value = $request->value;
+        $shipment->description = $request->description;
+        $shipment->save();
+
+        return response()->json($shipment);
     }
 
     /**
@@ -57,8 +87,10 @@ class ShipmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Shipment $shipment)
     {
-        //
+        $shipment->delete();
+
+        return response()->json($shipment);
     }
 }

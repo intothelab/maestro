@@ -31,7 +31,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'https://v-labs.co'),
+    'url' => env('APP_URL', '/'),
 
     /*
     |--------------------------------------------------------------------------
@@ -44,7 +44,7 @@ return [
     |
     */
 
-    'path' => '/',
+    'path' => '/s',
 
     /*
     |--------------------------------------------------------------------------
@@ -57,7 +57,7 @@ return [
     |
     */
 
-    'guard' => env('NOVA_GUARD'),
+    'guard' => env('NOVA_GUARD', null),
 
     /*
     |--------------------------------------------------------------------------
@@ -72,7 +72,6 @@ return [
 
     'middleware' => [
         'web',
-        'auth:api',
         Authenticate::class,
         DispatchServingNovaEvent::class,
         BootTools::class,
