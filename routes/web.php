@@ -11,6 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+use Geocoder\Laravel\Facades\Geocoder;
+
+Route::get('/test', function () {
+    $address = Geocoder::geocode('Rua Oscar Trompowsky, 844, 30441-123');
+    dd($address->get()->first());
+
 });

@@ -18,7 +18,7 @@ return [
     |
     */
 
-    'default' => env('CACHE_DRIVER', 'file'),
+    'default' => env('CACHE_DRIVER', 'redis'),
 
     /*
     |--------------------------------------------------------------------------
@@ -32,6 +32,11 @@ return [
     */
 
     'stores' => [
+
+        'geocode' => [
+            'driver' => 'redis',
+            'connection' => 'geocode-cache',
+        ],
 
         'apc' => [
             'driver' => 'apc',

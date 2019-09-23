@@ -25,8 +25,8 @@ class CreateCompaniesTable extends Migration
             $table->string('postal_code');
             $table->string('state');
             $table->string('city');
-            $table->string('latitude');
-            $table->string('longitude');
+            $table->string('latitude')->nullable();
+            $table->string('longitude')->nullable();
             $table->timestamps();
         });
     }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Transporter;
+use Geocoder\Laravel\Facades\Geocoder;
 use Illuminate\Http\Request;
 
 class TransporterController extends Controller
@@ -23,9 +24,40 @@ class TransporterController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Transporter $transporter)
     {
-        // @todo
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required|email',
+            'phone' => 'required',
+            'cnpj' => 'required|unique:transporters',
+            'address' => 'required',
+            'number' => 'required',
+            'postal_code' => 'required',
+        ]);
+
+        $transporter->name = $request->name;
+        $transporter->email = strtolower($request->email);
+        $transporter->phone = $request->phone;
+        $transporter->cnpj = $request->cnpj;
+
+        //Geocoding Address
+        $geocodedString = implode(', ', $request->only([
+            'address',
+            'number',
+            'postal_code'
+        ]));
+
+        $geocoded = Geocoder::geocode($geocodedString)->first();
+        $transporter->latitude = $geocoded->coordinates->latitude;
+        $transporter->longitude = $geocoded->coordinates->longitude;
+        $transporter->number = $geocoded->streetNumber;
+        $transporter->address = $geocoded->streetName;
+        $transporter->postal_code = $geocoded->postalCode;
+        $transporter->city = $geocoded->locality;
+        $transporter->state = $geocoded->additionalData['StateName'];
+
+        return response($transporter->save(), 201)->send();
     }
 
     /**
