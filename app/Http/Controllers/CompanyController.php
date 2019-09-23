@@ -15,7 +15,7 @@ class CompanyController extends Controller
 {
 
     /**
-     * @return \Illuminate\Http\JsonResponse An array of companys
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index()
     {

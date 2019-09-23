@@ -9,15 +9,19 @@ use Illuminate\Http\Request;
 class DocumentController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index()
     {
         return response()->json(Document::all());
     }
 
+    /**
+     * @param  Request  $request
+     * @param  Document  $document
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Illuminate\Validation\ValidationException
+     */
     public function store(Request $request, Document $document)
     {
         $this->validate($request, [
@@ -40,12 +44,22 @@ class DocumentController extends Controller
         return response()->json($document, 201);
     }
 
+    /**
+     * @param  Document  $document
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function show(Document $document)
     {
         return response()->json($document);
     }
 
 
+    /**
+     * @param  Request  $request
+     * @param  Document  $document
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Illuminate\Validation\ValidationException
+     */
     public function update(Request $request, Document $document)
     {
         $this->validate($request, [
@@ -62,10 +76,8 @@ class DocumentController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  Document  $document
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy(Document $document)
     {

@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\Auth;
 
 class MainController extends Controller
 {
+    /**
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function index()
     {
         return response()->json([
@@ -18,6 +21,11 @@ class MainController extends Controller
         ]);
     }
 
+    /**
+     * @param  Request  $request
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Illuminate\Validation\ValidationException
+     */
     function edi(Request $request)
     {
         $this->validate($request, [

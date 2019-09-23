@@ -8,10 +8,14 @@ use Uhin\X12Parser\Parser\X12Parser;
 
 class EventController extends Controller
 {
+    /**
+     * @param  Request  $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function store(Request $request)
     {
-
-//        $event = Event::create($request->all());
-//        return response()->json($event, 201);
+        return response()->json([
+            'error' => 'method yet not defined'
+        ], 400);
     }
 }

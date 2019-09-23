@@ -8,12 +8,15 @@ use Geocoder\Laravel\Facades\Geocoder;
 use Geocoder\Provider\Here\Model\HereAddress;
 use Illuminate\Http\Request;
 
+/**
+ * Class SupplierController
+ * @package App\Http\Controllers
+ */
 class SupplierController extends Controller
 {
+
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index()
     {
@@ -21,10 +24,10 @@ class SupplierController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  Request  $request
+     * @param  Supplier  $supplier
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
+     * @throws \Illuminate\Validation\ValidationException
      */
     public function store(Request $request, Supplier $supplier)
     {
@@ -70,10 +73,8 @@ class SupplierController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  Supplier  $supplier
+     * @return \Illuminate\Http\JsonResponse
      */
     public function show(Supplier $supplier)
     {
@@ -81,11 +82,10 @@ class SupplierController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  Request  $request
+     * @param  Supplier  $supplier
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Illuminate\Validation\ValidationException
      */
     public function update(Request $request, Supplier $supplier)
     {
@@ -112,10 +112,9 @@ class SupplierController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  Supplier  $supplier
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Exception
      */
     public function destroy(Supplier $supplier)
     {

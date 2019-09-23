@@ -5,13 +5,26 @@ namespace App\Http\Controllers;
 use App\Order;
 use Illuminate\Http\Request;
 
+/**
+ * Class OrderController
+ * @package App\Http\Controllers
+ */
 class OrderController extends Controller
 {
+    /**
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function index()
     {
         return response()->json(Order::all());
     }
 
+    /**
+     * @param  Request  $request
+     * @param  Order  $order
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Illuminate\Validation\ValidationException
+     */
     public function store(Request $request, Order $order){
 
         $this->validate($request, [
@@ -32,18 +45,32 @@ class OrderController extends Controller
         return response()->json($order, 201);
     }
 
+    /**
+     * @param  Order  $order
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function show(Order $order)
     {
         return response()->json($order);
     }
 
 
+    /**
+     * @param  Request  $request
+     * @param  Order  $order
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function update(Request $request, Order $order)
     {
         $order->update($request->all());
         return response()->json($order);
     }
 
+    /**
+     * @param  Order  $order
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Exception
+     */
     public function destroy(Order $order)
     {
         $order->delete();

@@ -15,7 +15,7 @@ class CustomerController extends Controller
 {
 
     /**
-     * @return \Illuminate\Http\JsonResponse An array of customers
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index()
     {

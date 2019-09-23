@@ -4421,7 +4421,7 @@ module.exports = {
     for (var i = 0, len = elements.length; i < len; i++) {
       var _ret = _loop(i, len);
 
-      if (_ret === "continue") continue;
+      if (_ret === "continue")
     }
 
     return createdDocument.body.innerHTML;
@@ -8991,8 +8991,8 @@ function nodeName( elem, name ) {
 
   return elem.nodeName && elem.nodeName.toLowerCase() === name.toLowerCase();
 
-};
-var rsingleTag = ( /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i );
+}
+    var rsingleTag = ( /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i );
 
 
 
@@ -16772,17 +16772,9 @@ return jQuery;
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(global, module) {var __WEBPACK_AMD_DEFINE_RESULT__;/**
- * @license
- * Lodash <https://lodash.com/>
- * Copyright OpenJS Foundation and other contributors <https://openjsf.org/>
- * Released under MIT license <https://lodash.com/license>
- * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>
- * Copyright Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
- */
-;(function() {
-
-  /** Used as a safe reference for `undefined` in pre-ES5 environments. */
+/* WEBPACK VAR INJECTION */(function(global, module) {var __WEBPACK_AMD_DEFINE_RESULT__;
+            (function () {
+                /** Used as a safe reference for `undefined` in pre-ES5 environments. */
   var undefined;
 
   /** Used as the semantic version number. */
@@ -33918,7 +33910,7 @@ function shouldUseNative() {
 		// Detect buggy property enumeration order in older V8 versions.
 
 		// https://bugs.chromium.org/p/v8/issues/detail?id=4118
-		var test1 = new String('abc');  // eslint-disable-line no-new-wrappers
+		var test1 = String('abc');  // eslint-disable-line no-new-wrappers
 		test1[5] = 'de';
 		if (Object.getOwnPropertyNames(test1)[0] === '5') {
 			return false;
@@ -36644,7 +36636,7 @@ function defaultClearTimeout () {
     } catch (e) {
         cachedClearTimeout = defaultClearTimeout;
     }
-} ())
+} ());
 function runTimeout(fun) {
     if (cachedSetTimeout === setTimeout) {
         //normal enviroments in sane situations
@@ -36781,7 +36773,7 @@ process.emit = noop;
 process.prependListener = noop;
 process.prependOnceListener = noop;
 
-process.listeners = function (name) { return [] }
+process.listeners = function (name) { return [] };
 
 process.binding = function (name) {
     throw new Error('process.binding is not supported');
@@ -36903,7 +36895,7 @@ checkPropTypes.resetWarningCache = function() {
   if (true) {
     loggedTypeFailures = {};
   }
-}
+};
 
 module.exports = checkPropTypes;
 
@@ -47884,7 +47876,7 @@ function getUnmaskedContext(workInProgress, Component, didPushOwnContextIfProvid
 
 function cacheContext(workInProgress, unmaskedContext, maskedContext) {
   if (disableLegacyContext) {
-    return;
+
   } else {
     var instance = workInProgress.stateNode;
     instance.__reactInternalMemoizedUnmaskedChildContext = unmaskedContext;
@@ -47949,7 +47941,7 @@ function isContextProvider(type) {
 
 function popContext(fiber) {
   if (disableLegacyContext) {
-    return;
+
   } else {
     pop(didPerformWorkStackCursor, fiber);
     pop(contextStackCursor, fiber);
@@ -47958,7 +47950,7 @@ function popContext(fiber) {
 
 function popTopLevelContextObject(fiber) {
   if (disableLegacyContext) {
-    return;
+
   } else {
     pop(didPerformWorkStackCursor, fiber);
     pop(contextStackCursor, fiber);
@@ -47967,7 +47959,7 @@ function popTopLevelContextObject(fiber) {
 
 function pushTopLevelContextObject(fiber, context, didChange) {
   if (disableLegacyContext) {
-    return;
+
   } else {
     (function () {
       if (!(contextStackCursor.current === emptyContextObject)) {
@@ -48059,7 +48051,7 @@ function pushContextProvider(workInProgress) {
 
 function invalidateContextProvider(workInProgress, type, didChange) {
   if (disableLegacyContext) {
-    return;
+
   } else {
     var instance = workInProgress.stateNode;
     (function () {
@@ -55641,7 +55633,7 @@ if (supportsMutation) {
     var node = workInProgress.child;
     while (node !== null) {
       // eslint-disable-next-line no-labels
-      branches: if (node.tag === HostComponent) {
+      if (node.tag === HostComponent) {
         var instance = node.stateNode;
         if (needsVisibilityToggle && isHidden) {
           // This child is inside a timed out tree. Hide it.
@@ -55725,7 +55717,7 @@ if (supportsMutation) {
     var node = workInProgress.child;
     while (node !== null) {
       // eslint-disable-next-line no-labels
-      branches: if (node.tag === HostComponent) {
+      if (node.tag === HostComponent) {
         var instance = node.stateNode;
         if (needsVisibilityToggle && isHidden) {
           // This child is inside a timed out tree. Hide it.
