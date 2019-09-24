@@ -1,33 +1,52 @@
-version: '3'
+version: '2'
+volumes:
+  # MySQL Data
+  maestro-mysql-data:
+    driver: local
+  # Redis Data
+  maestro-redis-data:
+    driver: local
 services:
   web:
-    build: .
-    restart: always
-    ports:
-      - 8000:80
+    #image: ambientum/php:7.0-caddy
+    image: ambientum/php:7.3-nginx
+    #image: ambientum/php:7.0-apache
+    container_name: maestro-web
     volumes:
-      - .:/var/www
-    depends_on:
-      - psql
+      - .:/var/www/app
+    ports:
+      - "80:8080"
+    links:
+      - mysql
       - redis
-  psql:
-    image: postgres:10.4
-    restart: always
+  mysql:
+    image: mysql:5.7
+    container_name: maestro-mysql
+    volumes:
+      - maestro-mysql-data:/var/lib/mysql
+    ports:
+      - "3306:3306"
     environment:
-      - POSTGRES_DB=idez
-      - POSTGRES_USER=idez
-      - POSTGRES_PASSWORD=idez
-    ports:
-      - 5432:5432
-    volumes:
-      - psql-data:/var/lib/postgresql/data
+      - MYSQL_ROOT_PASSWORD=maestrodb
+      - MYSQL_DATABASE=maestrodb
+      - MYSQL_USER=maestrodb
+      - MYSQL_PASSWORD=maestrodb
+  # Redis
   redis:
-    image: redis
-    restart: always
-    ports:
-      - 6379:6379
+    container_name: maestro-redis
+    image: 'redis:4-alpine'
+    command: redis-server --requirepass maestrodb
     volumes:
-    - redis-data:/data
-volumes:
-  psql-data:
-  redis-data:
+      - maestro-redis-data:/data
+    ports:
+      - "6370:6379"
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: maestro-phpmyadmin
+    ports:
+        - 8080:80
+    links:
+        - mysql
+    environment:
+        PMA_HOST: mysql
