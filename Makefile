@@ -1,14 +1,17 @@
 up:
 	docker-compose up -d
-	docker-compose run --rm web composer install
-	docker-compose run --rm web php artisan config:clear
-	docker-compose run --rm web php artisan migrate
-	docker-compose run --rm web php artisan cache:clear
-	docker-compose run --rm web php artisan view:clear
+	docker-compose exec web composer install
+	docker-compose exec web php artisan config:clear
+	docker-compose exec web php artisan migrate
+	docker-compose exec web php artisan cache:clear
+	docker-compose exec web php artisan view:clear
 	$(MAKE) passport
 
 down:
 	docker-compose stop
+
+migrate:
+	docker-compose exec web php artisan migrate
 
 clean:
 	$(MAKE) down
@@ -36,7 +39,7 @@ logs:
 	docker-compose logs -f
 
 refresh:
-	docker-compose run artisan migrate:refresh --force --seed -v
+	docker-compose run web php artisan migrate:refresh --force --seed -v
 
 reset:
 	docker-compose run --rm web php artisan cache:clear

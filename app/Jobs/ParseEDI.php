@@ -18,6 +18,7 @@ class ParseEDI implements ShouldQueue
 
     private $edi;
     private $unprocessedCodes;
+    private $id;
 
     private const DELIVERY_CODES = ['001', '002'];
 
@@ -174,9 +175,10 @@ class ParseEDI implements ShouldQueue
      *
      * @return void
      */
-    public function __construct($rawEDI)
+    public function __construct($rawEDI, $edi_id)
     {
         $this->edi = $rawEDI;
+        $this->id = $edi_id;
     }
 
     /**
@@ -210,15 +212,10 @@ class ParseEDI implements ShouldQueue
                 'series' => $event['document_series']
             ], $documentData);
 
-//            if($document->collected_at === null || (
-//                $document->collected_at !== null && $eventDate->isBefore($document->collected_at)
-//            )){
-//                $document->collected_at = $eventDate;
-//                $document->save();
-//            }
 
             $data[] = [
                 'document_id' => $document->id,
+                'edi_id' => $this->id,
                 'code' => $event['code'],
                 'executed_at' =>  $eventDate,
                 'received_at' => Carbon::now()

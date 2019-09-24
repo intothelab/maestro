@@ -15,6 +15,7 @@ class CreateDocumentsTable extends Migration
     {
         Schema::create('documents', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('nfe_id')->nullable();
             $table->integer('number')->unique()->index();
             $table->integer('series');
             $table->string('transporter_cnpj', 14)->nullable();

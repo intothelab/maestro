@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 volumes:
   maestro-mysql-data:
     driver: local
@@ -17,9 +17,6 @@ services:
       - .:/var/www/app
     ports:
       - "80:8080"
-    links:
-      - mysql
-      - redis
   mysql:
     image: mysql:5.7
     container_name: maestro-mysql
@@ -28,14 +25,14 @@ services:
     ports:
       - "3306:3306"
     environment:
-      - MYSQL_ROOT_PASSWORD=maestrodb
-      - MYSQL_DATABASE=maestrodb
-      - MYSQL_USER=maestrodb
-      - MYSQL_PASSWORD=maestrodb
+      - MYSQL_ROOT_PASSWORD=maestro
+      - MYSQL_DATABASE=maestro
+      - MYSQL_USER=maestro
+      - MYSQL_PASSWORD=maestro
   redis:
     container_name: maestro-redis
     image: 'redis:4-alpine'
-    command: redis-server --requirepass maestrodb
+    command: redis-server --requirepass maestro
     volumes:
       - maestro-redis-data:/data
     ports:
@@ -47,14 +44,19 @@ services:
     environment:
       - MONGO_INITDB_ROOT_USERNAME=maestro
       - MONGO_INITDB_ROOT_PASSWORD=maestro
+      - MONGO_INITDB_DATABASE=maestro
+    volumes:
+      - maestro-mongo-data:/data/db
     ports:
       - "27017:27017"
   phpmyadmin:
-    image: phpmyadmin/phpmyadmin
+    image: phpmyadmin/phpmyadmin:latest
+    restart: always
     container_name: maestro-phpmyadmin
+    depends_on:
+      - mysql
     ports:
-        - 8080:80
-    links:
-        - mysql
+      - 8080:80
     environment:
-        PMA_HOST: mysql
+      - PMA_HOST=mysql
+      - MYSQL_ROOT_PASSWORD=maestro

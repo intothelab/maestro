@@ -43,14 +43,26 @@ return [
             'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
         ],
 
+        'mongodb' => [
+            'driver'   => 'mongodb',
+            'host'     => env('MONGO_HOST', 'mongo'),
+            'port'     => env('MONGO_PORT', 27017),
+            'database' => env('MONGO_DB', 'maestro'),
+            'username' => env('MONGO_USER', 'maestro'),
+            'password' => env('DB_PASSWORD', 'maestro'),
+            'options'  => [
+                'database' => 'admin'
+            ]
+        ],
+
         'mysql' => [
             'driver' => 'mysql',
             'url' => env('DATABASE_URL'),
-            'host' => env('DB_HOST', '127.0.0.1'),
+            'host' => env('DB_HOST', 'mysql'),
             'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE', 'forge'),
-            'username' => env('DB_USERNAME', 'forge'),
-            'password' => env('DB_PASSWORD', ''),
+            'database' => env('DB_DATABASE', 'maestro'),
+            'username' => env('DB_USERNAME', 'maestro'),
+            'password' => env('DB_PASSWORD', 'maestro'),
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
