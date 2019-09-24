@@ -7,13 +7,17 @@
         {
             "type": "vcs",
             "url": "https://github.com/pedro-santiago/nova.git",
-            "options":  {
+            "options": {
                 "http": {
                     "header": [
                         "API-TOKEN: 2421aa66bdce92f6ed89d6cb4394506c542a8812"
                     ]
                 }
             }
+        },
+        {
+            "type": "path",
+            "url": "./nova-components/Dashboard"
         }
     ],
     "require": {
@@ -32,7 +36,8 @@
         "stonkeep/cpf-cnpj": "^0.0.1",
         "toin0u/geocoder-laravel": "^4.2",
         "wemersonrv/input-mask": "^0.1.2",
-        "whitecube/nova-flexible-content": "^0.1.12"
+        "whitecube/nova-flexible-content": "^0.1.12",
+        "maestro/dashboard": "*"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.6",
@@ -70,7 +75,6 @@
             "Tests\\": "tests/"
         }
     },
-
     "minimum-stability": "dev",
     "prefer-stable": true,
     "scripts": {
@@ -85,5 +89,4 @@
             "@php artisan key:generate --ansi"
         ]
     }
-
 }

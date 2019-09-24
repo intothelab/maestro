@@ -9,6 +9,7 @@ use Laravel\Nova\Cards\Help;
 use Illuminate\Support\Facades\Gate;
 use Laravel\Nova\NovaApplicationServiceProvider;
 use Laravel\Passport\Passport;
+use Maestro\Dashboard\Dashboard;
 
 class NovaServiceProvider extends NovaApplicationServiceProvider
 {
@@ -69,6 +70,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     public function tools()
     {
         return [
+            new Dashboard,
             new NovaGrid,
             new NovaSidebarIcons,
         ];

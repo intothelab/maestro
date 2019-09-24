@@ -17,6 +17,8 @@ class CreateEventsTable extends Migration
             $table->bigIncrements('id');
             $table->integer('document_id');
             $table->string('code', 3);
+            $table->dateTime('created_at');
+            $table->dateTime('updated_at');
             $table->dateTime('executed_at');
             $table->dateTime('received_at');
         });
