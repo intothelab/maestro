@@ -12,9 +12,8 @@ abstract class Resource extends NovaResource
 
     public static function getIcon($icon)
     {
-        // Assuming you have a blade file containing an image
-        // in resources/views/vendor/nova/svg/icon-user.blade.php
-        return '<svg class="sidebar-icon" fill="var(--sidebar-icon)" viewBox="0 0 20 20" style="color:var(--sidebar-icon);width:18px;height:18px;overflow: visible;margin-top:-5px;margin-left:-2px;margin-right:14px;">'.file_get_contents(asset('icon/'.$icon.'.svg')).'</svg>';
+        $icon = file_get_contents(resource_path('/icon/'.$icon.'.svg'));
+        return sprintf('<svg class="sidebar-icon" fill="var(--sidebar-icon)" viewBox="0 0 20 20">%s</svg>', $icon);
     }
 
     /**

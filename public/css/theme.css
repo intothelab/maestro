@@ -33,23 +33,32 @@
 }
 
 .bg-grad-sidebar {
-  background:#3B3D56;
+    background: #3B3D56;
 }
 
 input, button, select, .form-file-btn, textarea, a.btn, .form-input {
-	border-radius: 5px !important;
-	transition: all 0.3s !important;
+    border-radius: 5px !important;
+    transition: all 0.3s !important;
 }
 
 input:focus, textarea:focus, select:focus, .form-input:focus, .form-input:active {
-  border-color: var(--primary);
-  border-right-width: 1px !important;
-  outline-offset: -2px !important;
-    outline:0 !important;
-  -webkit-box-shadow: 0 0 0 2px var(--primary-10) !important;
-  box-shadow: 0 0 0 2px var(--primary-10)  !important;
+    border-color: var(--primary);
+    border-right-width: 1px !important;
+    outline-offset: -2px !important;
+    outline: 0 !important;
+    -webkit-box-shadow: 0 0 0 2px var(--primary-10) !important;
+    box-shadow: 0 0 0 2px var(--primary-10) !important;
 }
 
 input:hover, textarea:hover, select:hover {
-   border:1px solid var(--primary);
+    border: 1px solid var(--primary);
+}
+
+.sidebar-icon {
+    color: var(--sidebar-icon);
+    width: 18px !important;
+    height: 18px !important;
+    overflow: visible !important;
+    margin-top: -5px !important;
+    margin-right: 14px !important;
 }
