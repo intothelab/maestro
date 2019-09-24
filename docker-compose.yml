@@ -1,16 +1,17 @@
 version: '2'
 volumes:
-  # MySQL Data
   maestro-mysql-data:
     driver: local
-  # Redis Data
+
   maestro-redis-data:
     driver: local
+
+  maestro-mongo-data:
+    driver: local
+
 services:
   web:
-    #image: ambientum/php:7.0-caddy
     image: ambientum/php:7.3-nginx
-    #image: ambientum/php:7.0-apache
     container_name: maestro-web
     volumes:
       - .:/var/www/app
@@ -31,7 +32,6 @@ services:
       - MYSQL_DATABASE=maestrodb
       - MYSQL_USER=maestrodb
       - MYSQL_PASSWORD=maestrodb
-  # Redis
   redis:
     container_name: maestro-redis
     image: 'redis:4-alpine'
@@ -40,7 +40,15 @@ services:
       - maestro-redis-data:/data
     ports:
       - "6379:6379"
-
+  mongo:
+    container_name: maestro-mongo
+    image: mongo
+    restart: always
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=maestro
+      - MONGO_INITDB_ROOT_PASSWORD=maestro
+    ports:
+      - "27017:27017"
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     container_name: maestro-phpmyadmin
