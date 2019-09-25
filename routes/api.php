@@ -14,12 +14,12 @@ use Illuminate\Support\Facades\Auth as Auth;
 |
 */
 
-
+Route::post('/auth', 'MainController@auth');
 Route::get('/', 'MainController@index');
 
 Route::middleware(['client', 'api'])->group(function(){
-
     Route::post('/edi', 'MainController@edi');
+    Route::post('/nfe', 'MainController@nfe');
 
     Route::resource('/suppliers', 'SupplierController');
     Route::resource('/companies', 'CompanyController');

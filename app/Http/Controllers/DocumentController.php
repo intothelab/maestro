@@ -6,9 +6,14 @@ use App\Document;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
+/**
+ * @group Documents
+ * @package App\Http\Controllers
+ */
 class DocumentController extends Controller
 {
     /**
+
      * @return \Illuminate\Http\JsonResponse
      */
     public function index()

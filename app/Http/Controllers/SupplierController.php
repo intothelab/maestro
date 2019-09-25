@@ -9,7 +9,7 @@ use Geocoder\Provider\Here\Model\HereAddress;
 use Illuminate\Http\Request;
 
 /**
- * Class SupplierController
+ * @group Suppliers
  * @package App\Http\Controllers
  */
 class SupplierController extends Controller
