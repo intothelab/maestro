@@ -1,5 +1,5 @@
 up:
-	docker-compose up -d
+	docker-compose up -d && sleep 2
 	docker-compose exec web composer install
 	docker-compose exec web php artisan config:clear
 	docker-compose exec web php artisan migrate
@@ -50,5 +50,5 @@ composer:
 	docker-compose run web composer $(filter-out $@,$(MAKECMDGOALS))
 
 bash:
-	docker-compose exec -it web bash
+	docker-compose exec web bash
 
