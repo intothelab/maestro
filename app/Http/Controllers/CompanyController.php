@@ -8,13 +8,16 @@ use Geocoder\Provider\Here\Model\HereAddress;
 use Illuminate\Http\Request;
 
 /**
- * Class CompanyController
+ * @group Companies
  * @package App\Http\Controllers
  */
 class CompanyController extends Controller
 {
 
     /**
+     * List all Companies
+     *
+     * @authenticated
      * @return \Illuminate\Http\JsonResponse
      */
     public function index()
@@ -23,6 +26,9 @@ class CompanyController extends Controller
     }
 
     /**
+     * Creates a Company
+     *
+     * @authenticated
      * @param  Request  $request
      * @param  Company  $company
      * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
@@ -72,6 +78,9 @@ class CompanyController extends Controller
     }
 
     /**
+     * Show a specified Company
+     *
+     * @authenticated
      * @param  Company  $company
      * @return \Illuminate\Http\JsonResponse
      */
@@ -81,8 +90,12 @@ class CompanyController extends Controller
     }
 
     /**
+     * Updates a specified Company
+     *
      * @param  Request  $request
      * @param  Company  $company
+     *
+     * @authenticated
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Validation\ValidationException
      */

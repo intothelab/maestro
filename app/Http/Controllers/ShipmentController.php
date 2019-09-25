@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use App\Shipment;
 use Illuminate\Http\Request;
 
+/**
+ * @group Shipments
+ * @package App\Http\Controllers
+ */
 class ShipmentController extends Controller
 {
 

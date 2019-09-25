@@ -8,7 +8,7 @@ use Geocoder\Provider\Here\Model\HereAddress;
 use Illuminate\Http\Request;
 
 /**
- * Class TransporterController
+ * @group Transporters
  * @package App\Http\Controllers
  */
 class TransporterController extends Controller

@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Event;
 use Illuminate\Http\Request;
-use Uhin\X12Parser\Parser\X12Parser;
 
+/**
+ * @group Events
+ * @package App\Http\Controllers
+ */
 class EventController extends Controller
 {
     /**

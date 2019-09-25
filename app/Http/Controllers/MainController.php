@@ -7,7 +7,15 @@ use App\Jobs\ParseEDI;
 use Illuminate\Foundation\Inspiring;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 
+/**
+ *
+ * @group General
+ * @package App\Http\Controllers
+ *
+ * # Level 1 Header
+ */
 class MainController extends Controller
 {
     /**
@@ -23,6 +31,37 @@ class MainController extends Controller
     }
 
     /**
+     * Issue an Access Token
+     *
+     *
+     * @bodyParam grant_tupe string required
+     * The oAuth2 Grant Type. Should be always `client_credentials`. Example: client_credentials
+     *
+     * @bodyParam client_id number required
+     * Provided Client ID. Example: 1
+     *
+     * @bodyParam client_secret string required
+     * Provided Secret. Example: S29T3R3AiH8vcINAFrRtW3wpUEwjLoa87zVV8ZNp
+     *
+     * @response {"token_type":"Bearer","expires_in":631152000,"access_token":"eyJ0eXAiO..."}
+     *
+     *
+     * @group Authentication
+     * @param  Request  $request
+     * @return mixed
+     *
+     */
+    public function auth(Request $request){
+        return \App::call('\Laravel\Passport\Http\Controllers\AccessTokenController@issueToken');
+    }
+
+    /**
+     * Inserts a new NF-E
+     *
+     * @bodyParam data string required
+     * NF-e XML. Example: <?xml version="1.0" encoding="UTF-8"?><nfeProc versao="4.00" xmlns="http://www.portalfiscal.inf.br/nfe"> ...
+     *
+     * @authenticated
      * @param  Request  $request
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Validation\ValidationException
@@ -50,6 +89,11 @@ class MainController extends Controller
     }
 
     /**
+     * Inserts a new EDI File
+     *
+     * @bodyParam data string required
+     * EDI file contents. Example: 000CD SUL                             CD SUL                             2406191201OCO502406001 ...
+     *
      * @param  Request  $request
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Validation\ValidationException
