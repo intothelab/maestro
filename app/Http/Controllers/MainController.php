@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\EDI;
 use App\Jobs\ParseEDI;
+use App\Transporter;
 use Illuminate\Foundation\Inspiring;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -23,6 +24,9 @@ class MainController extends Controller
      */
     public function index()
     {
+
+        dd(factory(Transporter::class)->make());
+
         return response()->json([
             'version' => '1',
             'auth' =>  Auth::guest() ? Auth::user() : null,
