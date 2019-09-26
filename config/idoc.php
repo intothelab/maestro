@@ -113,7 +113,7 @@ return [
 
     'servers' => [
         [
-            'url' => config('app.url'),
+            'url' => 'http://staging-maestro.v-labs.co',
             'description' => 'Maestro Staging',
         ],
         [
