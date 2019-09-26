@@ -30,8 +30,14 @@ RUN echo $TZ > /etc/timezone \
 RUN docker-php-ext-install \
     pdo_mysql \
     mbstring \
-    bcmath \
-    mongodb
+    bcmath
+
+
+# Mongo
+RUN pecl install mongodb \
+    && docker-php-ext-enable mongodb
+
+
 
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
