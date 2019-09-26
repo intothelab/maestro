@@ -16,6 +16,7 @@ class SupplierController extends Controller
 {
 
     /**
+     * List Suppliers
      * @return \Illuminate\Http\JsonResponse
      */
     public function index()
@@ -24,6 +25,7 @@ class SupplierController extends Controller
     }
 
     /**
+     * Create a Supplier
      * @param  Request  $request
      * @param  Supplier  $supplier
      * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
@@ -73,6 +75,7 @@ class SupplierController extends Controller
     }
 
     /**
+     * Show one Supplier
      * @param  Supplier  $supplier
      * @return \Illuminate\Http\JsonResponse
      */
@@ -82,6 +85,7 @@ class SupplierController extends Controller
     }
 
     /**
+     * Update a Supplier
      * @param  Request  $request
      * @param  Supplier  $supplier
      * @return \Illuminate\Http\JsonResponse
@@ -112,6 +116,7 @@ class SupplierController extends Controller
     }
 
     /**
+     * Delete a Suplier
      * @param  Supplier  $supplier
      * @return \Illuminate\Http\JsonResponse
      * @throws \Exception

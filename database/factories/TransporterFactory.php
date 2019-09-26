@@ -12,11 +12,11 @@ $factory->define(Transporter::class, function (Faker $faker) {
         "name" => $faker->company,
         "email" => $faker->email,
         "phone" => Str::random(10),
-        "cnpj" =>$faker->name,
+        "cnpj" =>$faker->cnpj,
         "address" => $faker->name,
         "number" => $faker->name,
         "postal_code" => $faker->name,
-        "state" => $faker->address->regionAbbr,
+        "state" => $faker->address,
         "city" => $faker->city,
         "latitude" => $faker->latitude,
         "longitude" => $faker->longitude

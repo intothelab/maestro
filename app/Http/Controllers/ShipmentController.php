@@ -13,6 +13,9 @@ class ShipmentController extends Controller
 {
 
     /**
+     * List all Shipments
+     *
+     * @authenticated
      * @return \Illuminate\Http\JsonResponse
      */
     public function index()
@@ -22,6 +25,9 @@ class ShipmentController extends Controller
     }
 
     /**
+     * Creates a Shipment
+     *
+     * @authenticated
      * @param  Request  $request
      * @param  Shipment  $shipment
      * @return \Illuminate\Http\JsonResponse
@@ -47,6 +53,9 @@ class ShipmentController extends Controller
     }
 
     /**
+     * Show a Shipment
+     *
+     * @authenticated
      * @param  Shipment  $shipment
      * @return \Illuminate\Http\JsonResponse
      */
@@ -56,6 +65,9 @@ class ShipmentController extends Controller
     }
 
     /**
+     * Updates a Shipment
+     *
+     * @authenticated
      * @param  Request  $request
      * @param  Shipment  $shipment
      * @return \Illuminate\Http\JsonResponse
@@ -82,6 +94,9 @@ class ShipmentController extends Controller
     }
 
     /**
+     * Deletes a Shipment
+     *
+     * @authenticated
      * @param  Shipment  $shipment
      * @return \Illuminate\Http\JsonResponse
      * @throws \Exception

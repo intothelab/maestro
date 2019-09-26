@@ -23,6 +23,30 @@ class CustomerController extends Controller
     }
 
     /**
+     * Creates a Customer
+     *
+     * @bodyParam name string required
+     * Name of the Customer. Example: dCasa Ferragens LTDA
+     *
+     * @bodyParam email string
+     * Business E-mail, not required. Example: comercial@dcasa.com.br
+     *
+     * @bodyParam phone string required
+     * Landline for specified company. Example: (51) 3214-4321
+     *
+     * @bodyParam cnpj string required
+     * CNPJ of the company (without formatting). Example: 04256826000177
+     *
+     * @bodyParam address string required
+     * Street address. Example: Av. Plínio Kroeff
+     *
+     * @bodyParam number string required
+     * Number and Extra, if applied. Example: 1715, Loja B
+     *
+     * @bodyParam postal_code string required
+     * Zip (CEP). Must be a valid number (without formatting). Example: 30441123
+     *
+     * @authenticated
      * @param  Request  $request
      * @param  Customer  $customer
      * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
@@ -81,6 +105,29 @@ class CustomerController extends Controller
     }
 
     /**
+     * Updates a Customer
+     *
+     * @bodyParam name string required
+     * Name of the Customer. Example: dCasa Ferragens LTDA
+     *
+     * @bodyParam email string
+     * Business E-mail, not required. Example: comercial@dcasa.com.br
+     *
+     * @bodyParam phone string required
+     * Landline for specified company. Example: (51) 3214-4321
+     *
+     * @bodyParam cnpj string required
+     * CNPJ of the company (without formatting). Example: 04256826000177
+     *
+     * @bodyParam address string required
+     * Street address. Example: Av. Plínio Kroeff
+     *
+     * @bodyParam number string required
+     * Number and Extra, if applied. Example: 1715, Loja B
+     *
+     * @bodyParam postal_code string required
+     * Zip (CEP). Must be a valid number (without formatting). Example: 30441123
+     *
      * @param  Request  $request
      * @param  Customer  $customer
      * @return \Illuminate\Http\JsonResponse

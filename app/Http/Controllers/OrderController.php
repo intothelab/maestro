@@ -20,6 +20,26 @@ class OrderController extends Controller
     }
 
     /**
+     * Creates an Order.
+     *
+     * Orders are, in most scenarios a sell invoice. One order might have several shipments (n:n relation).
+     *
+     * @bodyParam customer_cnpj string required
+     * CNPJ of the customer (without formatting). Example: 04256826000177
+     *
+     * @bodyParam company_cnpj string required
+     * CNPJ of the company (without formatting). Example: 04256826000177
+     *
+     * @bodyParam code string required
+     * Internal code of the order (E.g: IDs from Totvs or SAP). Example: #ABC-1234-XWL
+     *
+     * @bodyParam value number required
+     * Total amount of the order, with taxes (in BRL). Example: 150000.45
+     *
+     * @bodyParam weight number
+     * Total weight of the order (in KG). Example: 75.30
+     *
+     * @authenticated
      * @param  Request  $request
      * @param  Order  $order
      * @return \Illuminate\Http\JsonResponse
@@ -56,6 +76,23 @@ class OrderController extends Controller
 
 
     /**
+     * Creates an Order.
+     *
+     * Orders are, in most scenarios a sell invoice. One order might have several shipments (n:n relation).
+     *
+     * @bodyParam customer_cnpj string required
+     * CNPJ of the customer (without formatting). Example: 04256826000177
+     *
+     * @bodyParam company_cnpj string required
+     * CNPJ of the company (without formatting). Example: 04256826000177
+     *
+     * @bodyParam value number required
+     * Total amount of the order, with taxes (in BRL). Example: 150000.45
+     *
+     * @bodyParam weight number
+     * Total weight of the order (in KG). Example: 75.30
+     *
+     * @authenticated
      * @param  Request  $request
      * @param  Order  $order
      * @return \Illuminate\Http\JsonResponse

@@ -28,6 +28,27 @@ class CompanyController extends Controller
     /**
      * Creates a Company
      *
+     * @bodyParam name string required
+     * Name of the Factory/Company (origin of the shipments). Example: Soprano
+     *
+     * @bodyParam email string
+     * Business E-mail, not required. Example: outbound@soprano.com.br
+     *
+     * @bodyParam phone string required
+     * Landline for specified company. Example: (51) 3214-4321
+     *
+     * @bodyParam cnpj string required
+     * CNPJ of the company (without formatting). Example: 04256826000177
+     *
+     * @bodyParam address string required
+     * Street address. Example: Av. Plínio Kroeff
+     *
+     * @bodyParam number string required
+     * Number and Extra, if applied. Example: 1715, Loja B
+     *
+     * @bodyParam postal_code string required
+     * Zip (CEP). Must be a valid number (without formatting). Example: 30441123
+     *
      * @authenticated
      * @param  Request  $request
      * @param  Company  $company
@@ -38,7 +59,7 @@ class CompanyController extends Controller
     {
         $this->validate($request, [
             'name' => 'required',
-            'email' => 'required|email',
+            'email' => 'email',
             'phone' => 'required',
             'cnpj' => 'required|unique:companies|cnpj',
             'address' => 'required',
@@ -80,6 +101,8 @@ class CompanyController extends Controller
     /**
      * Show a specified Company
      *
+     *
+     *
      * @authenticated
      * @param  Company  $company
      * @return \Illuminate\Http\JsonResponse
@@ -92,6 +115,25 @@ class CompanyController extends Controller
     /**
      * Updates a specified Company
      *
+     * @bodyParam name string required
+     * Name of the Factory/Company (origin of the shipments). Example: Soprano
+     *
+     * @bodyParam email string
+     * Business E-mail, not required. Example: outbound@soprano.com.br
+     *
+     * @bodyParam phone string required
+     * Landline for specified company. Example: (51) 3214-4321
+     *
+     * @bodyParam address string required
+     * Street address. Example: Av. Plínio Kroeff
+     *
+     * @bodyParam number string required
+     * Number and Extra, if applied. Example: 1715, Loja B
+     *
+     * @bodyParam postal_code string required
+     * Zip (CEP). Must be a valid number (without formatting). Example: 30441123
+     *
+     * @authenticated
      * @param  Request  $request
      * @param  Company  $company
      *
