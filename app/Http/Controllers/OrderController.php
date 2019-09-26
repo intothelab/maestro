@@ -12,6 +12,9 @@ use Illuminate\Http\Request;
 class OrderController extends Controller
 {
     /**
+     * Lists all Orders
+     *
+     * @responseFactory App\Order collection
      * @return \Illuminate\Http\JsonResponse
      */
     public function index()
@@ -39,7 +42,11 @@ class OrderController extends Controller
      * @bodyParam weight number
      * Total weight of the order (in KG). Example: 75.30
      *
+     * @returnFactory App\Order
+     *
      * @authenticated
+     * @responseFactory App\Order
+     *
      * @param  Request  $request
      * @param  Order  $order
      * @return \Illuminate\Http\JsonResponse
@@ -72,6 +79,8 @@ class OrderController extends Controller
      * The id of the order.
      *
      * @authenticated
+     * @responseFactory App\Order
+     *
      * @param  Order  $order
      * @return \Illuminate\Http\JsonResponse
      */
@@ -99,6 +108,8 @@ class OrderController extends Controller
      * Total weight of the order (in KG). Example: 75.30
      *
      * @authenticated
+     * @responseFactory App\Order
+     *
      * @param  Request  $request
      * @param  Order  $order
      * @return \Illuminate\Http\JsonResponse
@@ -115,6 +126,7 @@ class OrderController extends Controller
      * The id of the document.
      *
      * @authenticated
+     * @responseFactory App\Order
      * @param  Order  $order
      * @return \Illuminate\Http\JsonResponse
      * @throws \Exception

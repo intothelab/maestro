@@ -17,6 +17,8 @@ class CompanyController extends Controller
     /**
      * List all Companies
      *
+     * @responseFactory App\Company collection
+     *
      * @authenticated
      * @return \Illuminate\Http\JsonResponse
      */
@@ -49,6 +51,7 @@ class CompanyController extends Controller
      * @bodyParam postal_code string required
      * Zip (CEP). Must be a valid number (without formatting). Example: 30441123
      *
+     * @responseFactory App\Company
      * @authenticated
      * @param  Request  $request
      * @param  Company  $company
@@ -105,6 +108,8 @@ class CompanyController extends Controller
      * The id of the company. Example: 1
      *
      * @authenticated
+     * @responseFactory App\Company
+     *
      * @param  Company  $company
      * @return \Illuminate\Http\JsonResponse
      */
@@ -138,6 +143,8 @@ class CompanyController extends Controller
      * Zip (CEP). Must be a valid number (without formatting). Example: 30441123
      *
      * @authenticated
+     * @responseFactory App\Company
+     *
      * @param  Request  $request
      * @param  Company  $company
      *
@@ -175,6 +182,7 @@ class CompanyController extends Controller
      * @queryParam id integer required
      * The id of the company.
      *
+     * @responseFactory App\Company
      * @authenticated
      * @param  Company  $company
      * @return \Illuminate\Http\JsonResponse

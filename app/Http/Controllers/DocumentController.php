@@ -15,7 +15,7 @@ use Illuminate\Http\Request;
 class DocumentController extends Controller
 {
     /**
-
+     * Lists all Documents
      * @return \Illuminate\Http\JsonResponse
      */
     public function index()

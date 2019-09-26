@@ -254,7 +254,7 @@ return [
                     'headers' => [
                         'Content-Type' => 'application/json',
                         'Accept' => 'application/json',
-                        // 'key' => 'value',
+                        'Authorization' => 'Bearer: {token}',
                     ],
 
                     /*

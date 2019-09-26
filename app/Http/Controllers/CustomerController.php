@@ -16,6 +16,8 @@ class CustomerController extends Controller
 
     /**
      * Lists all Customers
+     *
+     * @responseFactory App\Customer collection
      * @return \Illuminate\Http\JsonResponse
      */
     public function index()
@@ -46,6 +48,8 @@ class CustomerController extends Controller
      *
      * @bodyParam postal_code string required
      * Zip (CEP). Must be a valid number (without formatting). Example: 30441123
+     *
+     * @responseFactory App\Customer
      *
      * @authenticated
      * @param  Request  $request
@@ -101,6 +105,8 @@ class CustomerController extends Controller
      *
      * @queryParam id integer required The id of the customer.
      *
+     * @responseFactory App\Customer
+     *
      * @authenticated
      * @param  Customer  $customer
      * @return \Illuminate\Http\JsonResponse
@@ -137,6 +143,7 @@ class CustomerController extends Controller
      * @bodyParam postal_code string required
      * Zip (CEP). Must be a valid number (without formatting). Example: 30441123
      *
+     * @responseFactory App\Customer
      * @authenticated
      * @param  Request  $request
      * @param  Customer  $customer
@@ -172,6 +179,8 @@ class CustomerController extends Controller
      *
      * @queryParam id integer required
      * The id of the customer.
+     *
+     * @responseFactory App\Customer
      *
      * @authenticated
      * @param  Customer  $customer

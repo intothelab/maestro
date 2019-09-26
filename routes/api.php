@@ -21,6 +21,7 @@ Route::middleware(['client', 'api'])->group(function(){
     Route::resource('/suppliers', 'SupplierController');
     Route::resource('/companies', 'CompanyController');
     Route::resource('/customers', 'CustomerController');
+    Route::resource('/orders','OrderController');
 
     Route::post('/documents/edi', 'MainController@edi');
     Route::post('/documents/nfe', 'MainController@nfe');
