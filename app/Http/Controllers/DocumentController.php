@@ -28,7 +28,7 @@ class DocumentController extends Controller
      *
      * Documents must be attached to an order. Therefore it's mandatory to inform the correct `order_id`.
      *
-     * @bodyParam order_id number required
+     * @bodyParam order_id integer required
      * Refered order ID, created previously. Example: 1
      *
      * @bodyParam transporter_cnpj string
@@ -136,6 +136,11 @@ class DocumentController extends Controller
     }
 
     /**
+     * Shows a Document
+     *
+     * @queryParam id integer required
+     * The id of the document.
+     *
      * @param  Document  $document
      * @return \Illuminate\Http\JsonResponse
      */
@@ -149,6 +154,9 @@ class DocumentController extends Controller
      * Updates a Document.
      *
      * Documents must be attached to an order. Therefore it's mandatory to inform the correct `order_id`.
+     *
+     * @queryParam id integer required
+     * The id of the document.
      *
      * @bodyParam transporter_cnpj string
      * CNPJ of the designated transporter (without formatting). Not Mandatory. Example: 04256826000177
@@ -182,15 +190,6 @@ class DocumentController extends Controller
 
         $document->update($request->all());
 
-        return response()->json($document);
-    }
-
-    /**
-     * @param  Document  $document
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function destroy(Document $document)
-    {
         return response()->json($document);
     }
 }

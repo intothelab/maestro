@@ -15,6 +15,7 @@ class CustomerController extends Controller
 {
 
     /**
+     * Lists all Customers
      * @return \Illuminate\Http\JsonResponse
      */
     public function index()
@@ -96,6 +97,11 @@ class CustomerController extends Controller
     }
 
     /**
+     * Shows a Customer
+     *
+     * @queryParam id integer required The id of the customer.
+     *
+     * @authenticated
      * @param  Customer  $customer
      * @return \Illuminate\Http\JsonResponse
      */
@@ -106,6 +112,9 @@ class CustomerController extends Controller
 
     /**
      * Updates a Customer
+     *
+     * @queryParam id integer required
+     * The id of the customer.
      *
      * @bodyParam name string required
      * Name of the Customer. Example: dCasa Ferragens LTDA
@@ -158,6 +167,11 @@ class CustomerController extends Controller
     }
 
     /**
+     * Deletes a Customer
+     *
+     * @queryParam id integer required
+     * The id of the customer.
+     *
      * @param  Customer  $customer
      * @return \Illuminate\Http\JsonResponse
      * @throws \Exception

@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 class TransporterController extends Controller
 {
     /**
+     * Lists all Transporters
      * @return \Illuminate\Http\JsonResponse
      */
     public function index()
@@ -22,6 +23,7 @@ class TransporterController extends Controller
     }
 
     /**
+     * Creates a Transporter
      * @param  Request  $request
      * @param  Transporter  $transporter
      * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
@@ -71,6 +73,7 @@ class TransporterController extends Controller
     }
 
     /**
+     * Shows a Transporter
      * @param  Transporter  $transporter
      * @return \Illuminate\Http\JsonResponse
      */
@@ -80,6 +83,7 @@ class TransporterController extends Controller
     }
 
     /**
+     * Updates a Transporter
      * @param  Request  $request
      * @param  Transporter  $transporter
      * @return \Illuminate\Http\JsonResponse
@@ -110,6 +114,7 @@ class TransporterController extends Controller
     }
 
     /**
+     * Deletes a Transporter
      * @param  Transporter  $transporter
      * @return \Illuminate\Http\JsonResponse
      * @throws \Exception

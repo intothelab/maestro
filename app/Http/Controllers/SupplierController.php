@@ -25,7 +25,7 @@ class SupplierController extends Controller
     }
 
     /**
-     * Create a Supplier
+     * Creates a Supplier
      * @param  Request  $request
      * @param  Supplier  $supplier
      * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
@@ -76,6 +76,10 @@ class SupplierController extends Controller
 
     /**
      * Show one Supplier
+     *
+     * @queryParam id integer required
+     * The id of the supplier.
+     *
      * @param  Supplier  $supplier
      * @return \Illuminate\Http\JsonResponse
      */
@@ -85,7 +89,11 @@ class SupplierController extends Controller
     }
 
     /**
-     * Update a Supplier
+     * Updates a Supplier
+     *
+     * @queryParam id integer required
+     * The id of the supplier.
+     *
      * @param  Request  $request
      * @param  Supplier  $supplier
      * @return \Illuminate\Http\JsonResponse
@@ -116,7 +124,11 @@ class SupplierController extends Controller
     }
 
     /**
-     * Delete a Suplier
+     * Deletes a Suplier
+     *
+     * @queryParam id integer required
+     * The id of the supplier.
+     *
      * @param  Supplier  $supplier
      * @return \Illuminate\Http\JsonResponse
      * @throws \Exception

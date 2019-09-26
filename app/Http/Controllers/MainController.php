@@ -7,21 +7,20 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 /**
- *
- * @group Access Token
+ * @group Other
  * @package App\Http\Controllers
  *
  */
 class MainController extends Controller
 {
     /**
+     * Shows an Inspiring Note
      * @return \Illuminate\Http\JsonResponse
      */
     public function index()
     {
         return response()->json([
             'version' => '1',
-            'auth' =>  Auth::guest() ? Auth::user() : null,
             'message' => Inspiring::quote(),
         ]);
     }
@@ -33,7 +32,7 @@ class MainController extends Controller
      * @bodyParam grant_tupe string required
      * The oAuth2 Grant Type. Should be always `client_credentials`. Example: client_credentials
      *
-     * @bodyParam client_id number required
+     * @bodyParam client_id integer required
      * Provided Client ID. Example: 1
      *
      * @bodyParam client_secret string required

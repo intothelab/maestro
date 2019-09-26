@@ -99,9 +99,10 @@ class CompanyController extends Controller
     }
 
     /**
-     * Show a specified Company
+     * Shows a specified Company
      *
-     *
+     * @queryParam id integer required
+     * The id of the company. Example: 1
      *
      * @authenticated
      * @param  Company  $company
@@ -113,7 +114,10 @@ class CompanyController extends Controller
     }
 
     /**
-     * Updates a specified Company
+     * Updates a Company
+     *
+     * @queryParam id integer required
+     * The id of the company. Example: 1
      *
      * @bodyParam name string required
      * Name of the Factory/Company (origin of the shipments). Example: Soprano
@@ -166,6 +170,11 @@ class CompanyController extends Controller
     }
 
     /**
+     * Deletes a Company
+     *
+     * @queryParam id integer required
+     * The id of the company.
+     *
      * @param  Company  $company
      * @return \Illuminate\Http\JsonResponse
      * @throws \Exception
