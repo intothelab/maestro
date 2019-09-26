@@ -34,7 +34,6 @@
         "laravel/nova": "2.3.3",
         "laravel/passport": "^7.4",
         "laravel/tinker": "^1.0",
-        "maestro/dashboard": "*",
         "outhebox/nova-hidden-field": "^1.0",
         "predis/predis": "^1.1",
         "stonkeep/cpf-cnpj": "^0.0.1",
