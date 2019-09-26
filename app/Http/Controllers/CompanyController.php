@@ -175,6 +175,7 @@ class CompanyController extends Controller
      * @queryParam id integer required
      * The id of the company.
      *
+     * @authenticated
      * @param  Company  $company
      * @return \Illuminate\Http\JsonResponse
      * @throws \Exception

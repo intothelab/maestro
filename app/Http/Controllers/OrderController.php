@@ -66,6 +66,12 @@ class OrderController extends Controller
     }
 
     /**
+     * Shows an Order
+     *
+     * @queryParam id integer required
+     * The id of the order.
+     *
+     * @authenticated
      * @param  Order  $order
      * @return \Illuminate\Http\JsonResponse
      */
@@ -104,6 +110,11 @@ class OrderController extends Controller
     }
 
     /**
+     * Deletes an Order
+     * @queryParam id integer required
+     * The id of the document.
+     *
+     * @authenticated
      * @param  Order  $order
      * @return \Illuminate\Http\JsonResponse
      * @throws \Exception

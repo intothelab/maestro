@@ -137,6 +137,7 @@ class CustomerController extends Controller
      * @bodyParam postal_code string required
      * Zip (CEP). Must be a valid number (without formatting). Example: 30441123
      *
+     * @authenticated
      * @param  Request  $request
      * @param  Customer  $customer
      * @return \Illuminate\Http\JsonResponse
@@ -172,6 +173,7 @@ class CustomerController extends Controller
      * @queryParam id integer required
      * The id of the customer.
      *
+     * @authenticated
      * @param  Customer  $customer
      * @return \Illuminate\Http\JsonResponse
      * @throws \Exception

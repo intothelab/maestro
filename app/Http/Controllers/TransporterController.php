@@ -15,6 +15,8 @@ class TransporterController extends Controller
 {
     /**
      * Lists all Transporters
+     *
+     * @authenticated
      * @return \Illuminate\Http\JsonResponse
      */
     public function index()
@@ -24,6 +26,8 @@ class TransporterController extends Controller
 
     /**
      * Creates a Transporter
+     *
+     * @authenticated
      * @param  Request  $request
      * @param  Transporter  $transporter
      * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
@@ -74,6 +78,8 @@ class TransporterController extends Controller
 
     /**
      * Shows a Transporter
+     *
+     * @authenticated
      * @param  Transporter  $transporter
      * @return \Illuminate\Http\JsonResponse
      */
@@ -84,6 +90,8 @@ class TransporterController extends Controller
 
     /**
      * Updates a Transporter
+     *
+     * @authenticated
      * @param  Request  $request
      * @param  Transporter  $transporter
      * @return \Illuminate\Http\JsonResponse
@@ -115,6 +123,8 @@ class TransporterController extends Controller
 
     /**
      * Deletes a Transporter
+     *
+     * @authenticated
      * @param  Transporter  $transporter
      * @return \Illuminate\Http\JsonResponse
      * @throws \Exception
