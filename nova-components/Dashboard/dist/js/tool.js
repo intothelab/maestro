@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 130);
+/******/ 	return __webpack_require__(__webpack_require__.s = 129);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -1919,7 +1919,7 @@
             try {
                 oldLocale = globalLocale._abbr;
                 var aliasedRequire = require;
-                __webpack_require__(143)("./" + name);
+                __webpack_require__(142)("./" + name);
                 getSetGlobalLocale(oldLocale);
             } catch (e) {}
         }
@@ -4670,92 +4670,10 @@
 
 })));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(142)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(141)(module)))
 
 /***/ }),
 /* 1 */
-/***/ (function(module, exports) {
-
-/*
-	MIT License http://www.opensource.org/licenses/mit-license.php
-	Author Tobias Koppers @sokra
-*/
-// css base code, injected by the css-loader
-module.exports = function(useSourceMap) {
-	var list = [];
-
-	// return the list of modules as css string
-	list.toString = function toString() {
-		return this.map(function (item) {
-			var content = cssWithMappingToString(item, useSourceMap);
-			if(item[2]) {
-				return "@media " + item[2] + "{" + content + "}";
-			} else {
-				return content;
-			}
-		}).join("");
-	};
-
-	// import a list of modules into the list
-	list.i = function(modules, mediaQuery) {
-		if(typeof modules === "string")
-			modules = [[null, modules, ""]];
-		var alreadyImportedModules = {};
-		for(var i = 0; i < this.length; i++) {
-			var id = this[i][0];
-			if(typeof id === "number")
-				alreadyImportedModules[id] = true;
-		}
-		for(i = 0; i < modules.length; i++) {
-			var item = modules[i];
-			// skip already imported module
-			// this implementation is not 100% perfect for weird media query combinations
-			//  when a module is imported multiple times with different media queries.
-			//  I hope this will never occur (Hey this way we have smaller bundles)
-			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
-				if(mediaQuery && !item[2]) {
-					item[2] = mediaQuery;
-				} else if(mediaQuery) {
-					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
-				}
-				list.push(item);
-			}
-		}
-	};
-	return list;
-};
-
-function cssWithMappingToString(item, useSourceMap) {
-	var content = item[1] || '';
-	var cssMapping = item[3];
-	if (!cssMapping) {
-		return content;
-	}
-
-	if (useSourceMap && typeof btoa === 'function') {
-		var sourceMapping = toComment(cssMapping);
-		var sourceURLs = cssMapping.sources.map(function (source) {
-			return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */'
-		});
-
-		return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
-	}
-
-	return [content].join('\n');
-}
-
-// Adapted from convert-source-map (MIT)
-function toComment(sourceMap) {
-	// eslint-disable-next-line no-undef
-	var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
-	var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
-
-	return '/*# ' + data + ' */';
-}
-
-
-/***/ }),
-/* 2 */
 /***/ (function(module, exports) {
 
 /* globals __VUE_SSR_CONTEXT__ */
@@ -4864,7 +4782,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 3 */
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -4941,7 +4859,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 4 */
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -5080,7 +4998,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 5 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -5143,7 +5061,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 6 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -5206,7 +5124,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 7 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -5332,7 +5250,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 8 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -5395,7 +5313,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 9 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -5503,7 +5421,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 10 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -5566,7 +5484,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 11 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -5675,7 +5593,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 12 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -5811,7 +5729,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 13 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -5905,7 +5823,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 14 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -5967,7 +5885,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 15 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -6090,7 +6008,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 16 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -6213,7 +6131,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 17 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -6325,7 +6243,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 18 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -6480,7 +6398,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 19 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -6572,7 +6490,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 20 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -6748,7 +6666,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 21 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -6815,7 +6733,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 22 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -6899,7 +6817,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 23 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -6963,7 +6881,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 24 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -7043,7 +6961,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 25 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -7123,7 +7041,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 26 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -7203,7 +7121,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 27 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -7306,7 +7224,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 28 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -7410,7 +7328,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 29 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -7481,7 +7399,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 30 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -7552,7 +7470,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 31 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -7619,7 +7537,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 32 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -7690,7 +7608,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 33 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -7761,7 +7679,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 34 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -7827,7 +7745,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 35 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -7898,7 +7816,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 36 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -7973,7 +7891,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 37 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -8069,7 +7987,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 38 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -8165,7 +8083,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 39 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -8261,7 +8179,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 40 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -8345,7 +8263,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 41 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -8415,7 +8333,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 42 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -8525,7 +8443,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 43 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -8638,7 +8556,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 44 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -8702,7 +8620,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 45 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -8789,7 +8707,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 46 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -8867,7 +8785,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 47 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -8949,7 +8867,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 48 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -9028,7 +8946,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 49 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -9109,7 +9027,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 50 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -9189,7 +9107,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 51 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -9270,7 +9188,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 52 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -9397,7 +9315,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 53 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -9525,7 +9443,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 54 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -9626,7 +9544,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 55 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -9754,7 +9672,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 56 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -9912,7 +9830,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 57 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -10026,7 +9944,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 58 */
+/* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -10125,7 +10043,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 59 */
+/* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -10211,7 +10129,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 60 */
+/* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -10347,7 +10265,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 61 */
+/* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -10420,7 +10338,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 62 */
+/* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -10493,7 +10411,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 63 */
+/* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -10589,7 +10507,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 64 */
+/* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -10675,7 +10593,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 65 */
+/* 64 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -10768,7 +10686,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 66 */
+/* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -10859,7 +10777,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 67 */
+/* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -10973,7 +10891,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 68 */
+/* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -11103,7 +11021,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 69 */
+/* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -11188,7 +11106,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 70 */
+/* 69 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -11311,7 +11229,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 71 */
+/* 70 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -11402,7 +11320,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 72 */
+/* 71 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -11542,7 +11460,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 73 */
+/* 72 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -11616,7 +11534,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 74 */
+/* 73 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -11738,7 +11656,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 75 */
+/* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -11839,7 +11757,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 76 */
+/* 75 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -11955,7 +11873,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 77 */
+/* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -12023,7 +11941,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 78 */
+/* 77 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -12117,7 +12035,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 79 */
+/* 78 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -12202,7 +12120,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 80 */
+/* 79 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -12310,7 +12228,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 81 */
+/* 80 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -12474,7 +12392,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 82 */
+/* 81 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -12560,7 +12478,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 83 */
+/* 82 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -12646,7 +12564,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 84 */
+/* 83 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -12710,7 +12628,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 85 */
+/* 84 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -12807,7 +12725,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 86 */
+/* 85 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -12873,7 +12791,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 87 */
+/* 86 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -13000,7 +12918,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 88 */
+/* 87 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -13091,7 +13009,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 89 */
+/* 88 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -13182,7 +13100,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 90 */
+/* 89 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -13246,7 +13164,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 91 */
+/* 90 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -13374,7 +13292,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 92 */
+/* 91 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -13504,7 +13422,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 93 */
+/* 92 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -13573,7 +13491,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 94 */
+/* 93 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -13638,7 +13556,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 95 */
+/* 94 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -13717,7 +13635,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 96 */
+/* 95 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -13903,7 +13821,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 97 */
+/* 96 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -14005,7 +13923,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 98 */
+/* 97 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -14069,7 +13987,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 99 */
+/* 98 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -14144,7 +14062,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 100 */
+/* 99 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -14304,7 +14222,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 101 */
+/* 100 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -14481,7 +14399,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 102 */
+/* 101 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -14553,7 +14471,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 103 */
+/* 102 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -14668,7 +14586,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 104 */
+/* 103 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -14783,7 +14701,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 105 */
+/* 104 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -14875,7 +14793,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 106 */
+/* 105 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -14948,7 +14866,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 107 */
+/* 106 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -15011,7 +14929,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 108 */
+/* 107 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -15144,7 +15062,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 109 */
+/* 108 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -15237,7 +15155,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 110 */
+/* 109 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -15308,7 +15226,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 111 */
+/* 110 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -15428,7 +15346,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 112 */
+/* 111 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -15499,7 +15417,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 113 */
+/* 112 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -15565,7 +15483,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 114 */
+/* 113 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -15691,7 +15609,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 115 */
+/* 114 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -15789,7 +15707,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 116 */
+/* 115 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -15884,7 +15802,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 117 */
+/* 116 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -15946,7 +15864,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 118 */
+/* 117 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -16008,7 +15926,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 119 */
+/* 118 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js language configuration
@@ -16131,7 +16049,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 120 */
+/* 119 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -16289,7 +16207,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 121 */
+/* 120 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -16391,7 +16309,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 122 */
+/* 121 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -16453,7 +16371,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 123 */
+/* 122 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -16515,7 +16433,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 124 */
+/* 123 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -16598,7 +16516,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 125 */
+/* 124 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -16670,7 +16588,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 126 */
+/* 125 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -16734,7 +16652,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 127 */
+/* 126 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -16848,7 +16766,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 128 */
+/* 127 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -16955,7 +16873,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 129 */
+/* 128 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -17062,39 +16980,39 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 130 */
+/* 129 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(131);
-module.exports = __webpack_require__(147);
+__webpack_require__(130);
+module.exports = __webpack_require__(146);
 
 
 /***/ }),
-/* 131 */
+/* 130 */
 /***/ (function(module, exports, __webpack_require__) {
 
 Nova.booting(function (Vue, router, store) {
     router.addRoutes([{
         name: 'dashboard',
         path: '/dashboard',
-        component: __webpack_require__(132)
+        component: __webpack_require__(131)
     }]);
 });
 
 /***/ }),
-/* 132 */
+/* 131 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(151)
+  __webpack_require__(132)
 }
-var normalizeComponent = __webpack_require__(2)
+var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(138)
+var __vue_script__ = __webpack_require__(137)
 /* template */
-var __vue_template__ = __webpack_require__(153)
+var __vue_template__ = __webpack_require__(145)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -17133,10 +17051,129 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 133 */,
-/* 134 */,
-/* 135 */,
-/* 136 */
+/* 132 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(133);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(135)("290c3e45", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-68ff5483\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Tool.vue", function() {
+     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-68ff5483\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Tool.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 133 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(134)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\ntable {\n    width: 100%;\n    border-collapse: collapse;\n}\ntable, th, td {\n    border: 1px solid #cacaca;\n}\n.hidden_text{\n    background: #fff;\n    position: absolute;\n    height: 15px;\n    width: 101px;\n    right: 8px;\n    bottom: 14px;\n}\n.dot_status {\n    width: 15px;\n    height: 15px;\n    background: #0bad00;\n    border-radius: 15px;\n    margin: 0 auto;\n    margin-top: 4px;\n    border: 0.7px solid #0000002e;\n}\n.dot_status_red {\n    background: red;\n}\n.dot_status_orange {\n    background: orangered;\n}\n.btn-primary {\n    color: #fff;\n    background-color: #5b86ff;\n    border-color: #007bff;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 134 */
+/***/ (function(module, exports) {
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+// css base code, injected by the css-loader
+module.exports = function(useSourceMap) {
+	var list = [];
+
+	// return the list of modules as css string
+	list.toString = function toString() {
+		return this.map(function (item) {
+			var content = cssWithMappingToString(item, useSourceMap);
+			if(item[2]) {
+				return "@media " + item[2] + "{" + content + "}";
+			} else {
+				return content;
+			}
+		}).join("");
+	};
+
+	// import a list of modules into the list
+	list.i = function(modules, mediaQuery) {
+		if(typeof modules === "string")
+			modules = [[null, modules, ""]];
+		var alreadyImportedModules = {};
+		for(var i = 0; i < this.length; i++) {
+			var id = this[i][0];
+			if(typeof id === "number")
+				alreadyImportedModules[id] = true;
+		}
+		for(i = 0; i < modules.length; i++) {
+			var item = modules[i];
+			// skip already imported module
+			// this implementation is not 100% perfect for weird media query combinations
+			//  when a module is imported multiple times with different media queries.
+			//  I hope this will never occur (Hey this way we have smaller bundles)
+			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
+				if(mediaQuery && !item[2]) {
+					item[2] = mediaQuery;
+				} else if(mediaQuery) {
+					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
+				}
+				list.push(item);
+			}
+		}
+	};
+	return list;
+};
+
+function cssWithMappingToString(item, useSourceMap) {
+	var content = item[1] || '';
+	var cssMapping = item[3];
+	if (!cssMapping) {
+		return content;
+	}
+
+	if (useSourceMap && typeof btoa === 'function') {
+		var sourceMapping = toComment(cssMapping);
+		var sourceURLs = cssMapping.sources.map(function (source) {
+			return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */'
+		});
+
+		return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
+	}
+
+	return [content].join('\n');
+}
+
+// Adapted from convert-source-map (MIT)
+function toComment(sourceMap) {
+	// eslint-disable-next-line no-undef
+	var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
+	var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
+
+	return '/*# ' + data + ' */';
+}
+
+
+/***/ }),
+/* 135 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -17155,7 +17192,7 @@ if (typeof DEBUG !== 'undefined' && DEBUG) {
   ) }
 }
 
-var listToStyles = __webpack_require__(137)
+var listToStyles = __webpack_require__(136)
 
 /*
 type StyleObject = {
@@ -17364,7 +17401,7 @@ function applyToTag (styleElement, obj) {
 
 
 /***/ }),
-/* 137 */
+/* 136 */
 /***/ (function(module, exports) {
 
 /**
@@ -17397,16 +17434,16 @@ module.exports = function listToStyles (parentId, list) {
 
 
 /***/ }),
-/* 138 */
+/* 137 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Card__ = __webpack_require__(139);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Card__ = __webpack_require__(138);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Card___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__Card__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_moment__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_moment__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_highcharts_vue__ = __webpack_require__(144);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_highcharts_vue__ = __webpack_require__(143);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_highcharts_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_highcharts_vue__);
 //
 //
@@ -17636,15 +17673,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 139 */
+/* 138 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(2)
+var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(140)
+var __vue_script__ = __webpack_require__(139)
 /* template */
-var __vue_template__ = __webpack_require__(141)
+var __vue_template__ = __webpack_require__(140)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -17683,7 +17720,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 140 */
+/* 139 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -17705,7 +17742,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 141 */
+/* 140 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -17744,7 +17781,7 @@ if (false) {
 }
 
 /***/ }),
-/* 142 */
+/* 141 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -17772,264 +17809,264 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 143 */
+/* 142 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"./af": 3,
-	"./af.js": 3,
-	"./ar": 4,
-	"./ar-dz": 5,
-	"./ar-dz.js": 5,
-	"./ar-kw": 6,
-	"./ar-kw.js": 6,
-	"./ar-ly": 7,
-	"./ar-ly.js": 7,
-	"./ar-ma": 8,
-	"./ar-ma.js": 8,
-	"./ar-sa": 9,
-	"./ar-sa.js": 9,
-	"./ar-tn": 10,
-	"./ar-tn.js": 10,
-	"./ar.js": 4,
-	"./az": 11,
-	"./az.js": 11,
-	"./be": 12,
-	"./be.js": 12,
-	"./bg": 13,
-	"./bg.js": 13,
-	"./bm": 14,
-	"./bm.js": 14,
-	"./bn": 15,
-	"./bn.js": 15,
-	"./bo": 16,
-	"./bo.js": 16,
-	"./br": 17,
-	"./br.js": 17,
-	"./bs": 18,
-	"./bs.js": 18,
-	"./ca": 19,
-	"./ca.js": 19,
-	"./cs": 20,
-	"./cs.js": 20,
-	"./cv": 21,
-	"./cv.js": 21,
-	"./cy": 22,
-	"./cy.js": 22,
-	"./da": 23,
-	"./da.js": 23,
-	"./de": 24,
-	"./de-at": 25,
-	"./de-at.js": 25,
-	"./de-ch": 26,
-	"./de-ch.js": 26,
-	"./de.js": 24,
-	"./dv": 27,
-	"./dv.js": 27,
-	"./el": 28,
-	"./el.js": 28,
-	"./en-SG": 29,
-	"./en-SG.js": 29,
-	"./en-au": 30,
-	"./en-au.js": 30,
-	"./en-ca": 31,
-	"./en-ca.js": 31,
-	"./en-gb": 32,
-	"./en-gb.js": 32,
-	"./en-ie": 33,
-	"./en-ie.js": 33,
-	"./en-il": 34,
-	"./en-il.js": 34,
-	"./en-nz": 35,
-	"./en-nz.js": 35,
-	"./eo": 36,
-	"./eo.js": 36,
-	"./es": 37,
-	"./es-do": 38,
-	"./es-do.js": 38,
-	"./es-us": 39,
-	"./es-us.js": 39,
-	"./es.js": 37,
-	"./et": 40,
-	"./et.js": 40,
-	"./eu": 41,
-	"./eu.js": 41,
-	"./fa": 42,
-	"./fa.js": 42,
-	"./fi": 43,
-	"./fi.js": 43,
-	"./fo": 44,
-	"./fo.js": 44,
-	"./fr": 45,
-	"./fr-ca": 46,
-	"./fr-ca.js": 46,
-	"./fr-ch": 47,
-	"./fr-ch.js": 47,
-	"./fr.js": 45,
-	"./fy": 48,
-	"./fy.js": 48,
-	"./ga": 49,
-	"./ga.js": 49,
-	"./gd": 50,
-	"./gd.js": 50,
-	"./gl": 51,
-	"./gl.js": 51,
-	"./gom-latn": 52,
-	"./gom-latn.js": 52,
-	"./gu": 53,
-	"./gu.js": 53,
-	"./he": 54,
-	"./he.js": 54,
-	"./hi": 55,
-	"./hi.js": 55,
-	"./hr": 56,
-	"./hr.js": 56,
-	"./hu": 57,
-	"./hu.js": 57,
-	"./hy-am": 58,
-	"./hy-am.js": 58,
-	"./id": 59,
-	"./id.js": 59,
-	"./is": 60,
-	"./is.js": 60,
-	"./it": 61,
-	"./it-ch": 62,
-	"./it-ch.js": 62,
-	"./it.js": 61,
-	"./ja": 63,
-	"./ja.js": 63,
-	"./jv": 64,
-	"./jv.js": 64,
-	"./ka": 65,
-	"./ka.js": 65,
-	"./kk": 66,
-	"./kk.js": 66,
-	"./km": 67,
-	"./km.js": 67,
-	"./kn": 68,
-	"./kn.js": 68,
-	"./ko": 69,
-	"./ko.js": 69,
-	"./ku": 70,
-	"./ku.js": 70,
-	"./ky": 71,
-	"./ky.js": 71,
-	"./lb": 72,
-	"./lb.js": 72,
-	"./lo": 73,
-	"./lo.js": 73,
-	"./lt": 74,
-	"./lt.js": 74,
-	"./lv": 75,
-	"./lv.js": 75,
-	"./me": 76,
-	"./me.js": 76,
-	"./mi": 77,
-	"./mi.js": 77,
-	"./mk": 78,
-	"./mk.js": 78,
-	"./ml": 79,
-	"./ml.js": 79,
-	"./mn": 80,
-	"./mn.js": 80,
-	"./mr": 81,
-	"./mr.js": 81,
-	"./ms": 82,
-	"./ms-my": 83,
-	"./ms-my.js": 83,
-	"./ms.js": 82,
-	"./mt": 84,
-	"./mt.js": 84,
-	"./my": 85,
-	"./my.js": 85,
-	"./nb": 86,
-	"./nb.js": 86,
-	"./ne": 87,
-	"./ne.js": 87,
-	"./nl": 88,
-	"./nl-be": 89,
-	"./nl-be.js": 89,
-	"./nl.js": 88,
-	"./nn": 90,
-	"./nn.js": 90,
-	"./pa-in": 91,
-	"./pa-in.js": 91,
-	"./pl": 92,
-	"./pl.js": 92,
-	"./pt": 93,
-	"./pt-br": 94,
-	"./pt-br.js": 94,
-	"./pt.js": 93,
-	"./ro": 95,
-	"./ro.js": 95,
-	"./ru": 96,
-	"./ru.js": 96,
-	"./sd": 97,
-	"./sd.js": 97,
-	"./se": 98,
-	"./se.js": 98,
-	"./si": 99,
-	"./si.js": 99,
-	"./sk": 100,
-	"./sk.js": 100,
-	"./sl": 101,
-	"./sl.js": 101,
-	"./sq": 102,
-	"./sq.js": 102,
-	"./sr": 103,
-	"./sr-cyrl": 104,
-	"./sr-cyrl.js": 104,
-	"./sr.js": 103,
-	"./ss": 105,
-	"./ss.js": 105,
-	"./sv": 106,
-	"./sv.js": 106,
-	"./sw": 107,
-	"./sw.js": 107,
-	"./ta": 108,
-	"./ta.js": 108,
-	"./te": 109,
-	"./te.js": 109,
-	"./tet": 110,
-	"./tet.js": 110,
-	"./tg": 111,
-	"./tg.js": 111,
-	"./th": 112,
-	"./th.js": 112,
-	"./tl-ph": 113,
-	"./tl-ph.js": 113,
-	"./tlh": 114,
-	"./tlh.js": 114,
-	"./tr": 115,
-	"./tr.js": 115,
-	"./tzl": 116,
-	"./tzl.js": 116,
-	"./tzm": 117,
-	"./tzm-latn": 118,
-	"./tzm-latn.js": 118,
-	"./tzm.js": 117,
-	"./ug-cn": 119,
-	"./ug-cn.js": 119,
-	"./uk": 120,
-	"./uk.js": 120,
-	"./ur": 121,
-	"./ur.js": 121,
-	"./uz": 122,
-	"./uz-latn": 123,
-	"./uz-latn.js": 123,
-	"./uz.js": 122,
-	"./vi": 124,
-	"./vi.js": 124,
-	"./x-pseudo": 125,
-	"./x-pseudo.js": 125,
-	"./yo": 126,
-	"./yo.js": 126,
-	"./zh-cn": 127,
-	"./zh-cn.js": 127,
-	"./zh-hk": 128,
-	"./zh-hk.js": 128,
-	"./zh-tw": 129,
-	"./zh-tw.js": 129
+	"./af": 2,
+	"./af.js": 2,
+	"./ar": 3,
+	"./ar-dz": 4,
+	"./ar-dz.js": 4,
+	"./ar-kw": 5,
+	"./ar-kw.js": 5,
+	"./ar-ly": 6,
+	"./ar-ly.js": 6,
+	"./ar-ma": 7,
+	"./ar-ma.js": 7,
+	"./ar-sa": 8,
+	"./ar-sa.js": 8,
+	"./ar-tn": 9,
+	"./ar-tn.js": 9,
+	"./ar.js": 3,
+	"./az": 10,
+	"./az.js": 10,
+	"./be": 11,
+	"./be.js": 11,
+	"./bg": 12,
+	"./bg.js": 12,
+	"./bm": 13,
+	"./bm.js": 13,
+	"./bn": 14,
+	"./bn.js": 14,
+	"./bo": 15,
+	"./bo.js": 15,
+	"./br": 16,
+	"./br.js": 16,
+	"./bs": 17,
+	"./bs.js": 17,
+	"./ca": 18,
+	"./ca.js": 18,
+	"./cs": 19,
+	"./cs.js": 19,
+	"./cv": 20,
+	"./cv.js": 20,
+	"./cy": 21,
+	"./cy.js": 21,
+	"./da": 22,
+	"./da.js": 22,
+	"./de": 23,
+	"./de-at": 24,
+	"./de-at.js": 24,
+	"./de-ch": 25,
+	"./de-ch.js": 25,
+	"./de.js": 23,
+	"./dv": 26,
+	"./dv.js": 26,
+	"./el": 27,
+	"./el.js": 27,
+	"./en-SG": 28,
+	"./en-SG.js": 28,
+	"./en-au": 29,
+	"./en-au.js": 29,
+	"./en-ca": 30,
+	"./en-ca.js": 30,
+	"./en-gb": 31,
+	"./en-gb.js": 31,
+	"./en-ie": 32,
+	"./en-ie.js": 32,
+	"./en-il": 33,
+	"./en-il.js": 33,
+	"./en-nz": 34,
+	"./en-nz.js": 34,
+	"./eo": 35,
+	"./eo.js": 35,
+	"./es": 36,
+	"./es-do": 37,
+	"./es-do.js": 37,
+	"./es-us": 38,
+	"./es-us.js": 38,
+	"./es.js": 36,
+	"./et": 39,
+	"./et.js": 39,
+	"./eu": 40,
+	"./eu.js": 40,
+	"./fa": 41,
+	"./fa.js": 41,
+	"./fi": 42,
+	"./fi.js": 42,
+	"./fo": 43,
+	"./fo.js": 43,
+	"./fr": 44,
+	"./fr-ca": 45,
+	"./fr-ca.js": 45,
+	"./fr-ch": 46,
+	"./fr-ch.js": 46,
+	"./fr.js": 44,
+	"./fy": 47,
+	"./fy.js": 47,
+	"./ga": 48,
+	"./ga.js": 48,
+	"./gd": 49,
+	"./gd.js": 49,
+	"./gl": 50,
+	"./gl.js": 50,
+	"./gom-latn": 51,
+	"./gom-latn.js": 51,
+	"./gu": 52,
+	"./gu.js": 52,
+	"./he": 53,
+	"./he.js": 53,
+	"./hi": 54,
+	"./hi.js": 54,
+	"./hr": 55,
+	"./hr.js": 55,
+	"./hu": 56,
+	"./hu.js": 56,
+	"./hy-am": 57,
+	"./hy-am.js": 57,
+	"./id": 58,
+	"./id.js": 58,
+	"./is": 59,
+	"./is.js": 59,
+	"./it": 60,
+	"./it-ch": 61,
+	"./it-ch.js": 61,
+	"./it.js": 60,
+	"./ja": 62,
+	"./ja.js": 62,
+	"./jv": 63,
+	"./jv.js": 63,
+	"./ka": 64,
+	"./ka.js": 64,
+	"./kk": 65,
+	"./kk.js": 65,
+	"./km": 66,
+	"./km.js": 66,
+	"./kn": 67,
+	"./kn.js": 67,
+	"./ko": 68,
+	"./ko.js": 68,
+	"./ku": 69,
+	"./ku.js": 69,
+	"./ky": 70,
+	"./ky.js": 70,
+	"./lb": 71,
+	"./lb.js": 71,
+	"./lo": 72,
+	"./lo.js": 72,
+	"./lt": 73,
+	"./lt.js": 73,
+	"./lv": 74,
+	"./lv.js": 74,
+	"./me": 75,
+	"./me.js": 75,
+	"./mi": 76,
+	"./mi.js": 76,
+	"./mk": 77,
+	"./mk.js": 77,
+	"./ml": 78,
+	"./ml.js": 78,
+	"./mn": 79,
+	"./mn.js": 79,
+	"./mr": 80,
+	"./mr.js": 80,
+	"./ms": 81,
+	"./ms-my": 82,
+	"./ms-my.js": 82,
+	"./ms.js": 81,
+	"./mt": 83,
+	"./mt.js": 83,
+	"./my": 84,
+	"./my.js": 84,
+	"./nb": 85,
+	"./nb.js": 85,
+	"./ne": 86,
+	"./ne.js": 86,
+	"./nl": 87,
+	"./nl-be": 88,
+	"./nl-be.js": 88,
+	"./nl.js": 87,
+	"./nn": 89,
+	"./nn.js": 89,
+	"./pa-in": 90,
+	"./pa-in.js": 90,
+	"./pl": 91,
+	"./pl.js": 91,
+	"./pt": 92,
+	"./pt-br": 93,
+	"./pt-br.js": 93,
+	"./pt.js": 92,
+	"./ro": 94,
+	"./ro.js": 94,
+	"./ru": 95,
+	"./ru.js": 95,
+	"./sd": 96,
+	"./sd.js": 96,
+	"./se": 97,
+	"./se.js": 97,
+	"./si": 98,
+	"./si.js": 98,
+	"./sk": 99,
+	"./sk.js": 99,
+	"./sl": 100,
+	"./sl.js": 100,
+	"./sq": 101,
+	"./sq.js": 101,
+	"./sr": 102,
+	"./sr-cyrl": 103,
+	"./sr-cyrl.js": 103,
+	"./sr.js": 102,
+	"./ss": 104,
+	"./ss.js": 104,
+	"./sv": 105,
+	"./sv.js": 105,
+	"./sw": 106,
+	"./sw.js": 106,
+	"./ta": 107,
+	"./ta.js": 107,
+	"./te": 108,
+	"./te.js": 108,
+	"./tet": 109,
+	"./tet.js": 109,
+	"./tg": 110,
+	"./tg.js": 110,
+	"./th": 111,
+	"./th.js": 111,
+	"./tl-ph": 112,
+	"./tl-ph.js": 112,
+	"./tlh": 113,
+	"./tlh.js": 113,
+	"./tr": 114,
+	"./tr.js": 114,
+	"./tzl": 115,
+	"./tzl.js": 115,
+	"./tzm": 116,
+	"./tzm-latn": 117,
+	"./tzm-latn.js": 117,
+	"./tzm.js": 116,
+	"./ug-cn": 118,
+	"./ug-cn.js": 118,
+	"./uk": 119,
+	"./uk.js": 119,
+	"./ur": 120,
+	"./ur.js": 120,
+	"./uz": 121,
+	"./uz-latn": 122,
+	"./uz-latn.js": 122,
+	"./uz.js": 121,
+	"./vi": 123,
+	"./vi.js": 123,
+	"./x-pseudo": 124,
+	"./x-pseudo.js": 124,
+	"./yo": 125,
+	"./yo.js": 125,
+	"./zh-cn": 126,
+	"./zh-cn.js": 126,
+	"./zh-hk": 127,
+	"./zh-hk.js": 127,
+	"./zh-tw": 128,
+	"./zh-tw.js": 128
 };
 function webpackContext(req) {
 	return __webpack_require__(webpackContextResolve(req));
@@ -18045,16 +18082,16 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 143;
+webpackContext.id = 142;
+
+/***/ }),
+/* 143 */
+/***/ (function(module, exports, __webpack_require__) {
+
+!function(t,e){ true?module.exports=e(__webpack_require__(144)):"function"==typeof define&&define.amd?define(["highcharts"],e):"object"==typeof exports?exports.HighchartsVue=e(require("highcharts")):t.HighchartsVue=e(t.Highcharts)}("undefined"!=typeof self?self:this,function(t){return function(t){function e(n){if(r[n])return r[n].exports;var o=r[n]={i:n,l:!1,exports:{}};return t[n].call(o.exports,o,o.exports,e),o.l=!0,o.exports}var r={};return e.m=t,e.c=r,e.d=function(t,r,n){e.o(t,r)||Object.defineProperty(t,r,{configurable:!1,enumerable:!0,get:n})},e.n=function(t){var r=t&&t.__esModule?function(){return t.default}:function(){return t};return e.d(r,"a",r),r},e.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},e.p="",e(e.s=1)}([function(e,r){e.exports=t},function(t,e,r){"use strict";function n(t){var e=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{};t.component(e.tagName||"highcharts",Object(o.a)(e.highcharts||i.a))}Object.defineProperty(e,"__esModule",{value:!0}),e.default=n,r.d(e,"Chart",function(){return a});var o=r(2),c=r(0),i=r.n(c),a=Object(o.a)(i.a)},function(t,e,r){"use strict";function n(t){return i(t)||c(t)||o()}function o(){throw new TypeError("Invalid attempt to spread non-iterable instance")}function c(t){if(Symbol.iterator in Object(t)||"[object Arguments]"===Object.prototype.toString.call(t))return Array.from(t)}function i(t){if(Array.isArray(t)){for(var e=0,r=new Array(t.length);e<t.length;e++)r[e]=t[e];return r}}var a=r(3),s=function(t){return{template:'<div ref="chart"></div>',render:function(t){return t("div",{ref:"chart"})},props:{constructorType:{type:String,default:"chart"},options:{type:Object,required:!0},callback:Function,updateArgs:{type:Array,default:function(){return[!0,!0]}},highcharts:{type:Object},deepCopyOnUpdate:{type:Boolean,default:!0}},watch:{options:{handler:function(t){var e;(e=this.chart).update.apply(e,[Object(a.a)(t,this.deepCopyOnUpdate)].concat(n(this.updateArgs)))},deep:!0}},mounted:function(){var e=this.highcharts||t;this.options&&e[this.constructorType]?this.chart=e[this.constructorType](this.$refs.chart,Object(a.a)(this.options,!0),this.callback?this.callback:null):this.options?console.warn("'".concat(this.constructorType,"' constructor-type is incorrect. Sometimes this error is caused by the fact, that the corresponding module wasn't imported.")):console.warn('The "options" parameter was not passed.')},beforeDestroy:function(){this.chart&&this.chart.destroy()}}};e.a=s},function(t,e,r){"use strict";function n(t,e,r){function o(o,i){!c.a.isObject(o,!r)||c.a.isClass(o)||c.a.isDOMElement(o)?t[i]=e[i]:t[i]=n(t[i]||c.a.isArray(o)?[]:{},o,r)}return c.a.isArray(e)?e.forEach(o):c.a.objectEach(e,o),t}r.d(e,"a",function(){return i});var o=r(0),c=r.n(o),i=function(t,e){return n({},t,e)}}])});
 
 /***/ }),
 /* 144 */
-/***/ (function(module, exports, __webpack_require__) {
-
-!function(t,e){ true?module.exports=e(__webpack_require__(145)):"function"==typeof define&&define.amd?define(["highcharts"],e):"object"==typeof exports?exports.HighchartsVue=e(require("highcharts")):t.HighchartsVue=e(t.Highcharts)}("undefined"!=typeof self?self:this,function(t){return function(t){function e(n){if(r[n])return r[n].exports;var o=r[n]={i:n,l:!1,exports:{}};return t[n].call(o.exports,o,o.exports,e),o.l=!0,o.exports}var r={};return e.m=t,e.c=r,e.d=function(t,r,n){e.o(t,r)||Object.defineProperty(t,r,{configurable:!1,enumerable:!0,get:n})},e.n=function(t){var r=t&&t.__esModule?function(){return t.default}:function(){return t};return e.d(r,"a",r),r},e.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},e.p="",e(e.s=1)}([function(e,r){e.exports=t},function(t,e,r){"use strict";function n(t){var e=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{};t.component(e.tagName||"highcharts",Object(o.a)(e.highcharts||i.a))}Object.defineProperty(e,"__esModule",{value:!0}),e.default=n,r.d(e,"Chart",function(){return a});var o=r(2),c=r(0),i=r.n(c),a=Object(o.a)(i.a)},function(t,e,r){"use strict";function n(t){return i(t)||c(t)||o()}function o(){throw new TypeError("Invalid attempt to spread non-iterable instance")}function c(t){if(Symbol.iterator in Object(t)||"[object Arguments]"===Object.prototype.toString.call(t))return Array.from(t)}function i(t){if(Array.isArray(t)){for(var e=0,r=new Array(t.length);e<t.length;e++)r[e]=t[e];return r}}var a=r(3),s=function(t){return{template:'<div ref="chart"></div>',render:function(t){return t("div",{ref:"chart"})},props:{constructorType:{type:String,default:"chart"},options:{type:Object,required:!0},callback:Function,updateArgs:{type:Array,default:function(){return[!0,!0]}},highcharts:{type:Object},deepCopyOnUpdate:{type:Boolean,default:!0}},watch:{options:{handler:function(t){var e;(e=this.chart).update.apply(e,[Object(a.a)(t,this.deepCopyOnUpdate)].concat(n(this.updateArgs)))},deep:!0}},mounted:function(){var e=this.highcharts||t;this.options&&e[this.constructorType]?this.chart=e[this.constructorType](this.$refs.chart,Object(a.a)(this.options,!0),this.callback?this.callback:null):this.options?console.warn("'".concat(this.constructorType,"' constructor-type is incorrect. Sometimes this error is caused by the fact, that the corresponding module wasn't imported.")):console.warn('The "options" parameter was not passed.')},beforeDestroy:function(){this.chart&&this.chart.destroy()}}};e.a=s},function(t,e,r){"use strict";function n(t,e,r){function o(o,i){!c.a.isObject(o,!r)||c.a.isClass(o)||c.a.isDOMElement(o)?t[i]=e[i]:t[i]=n(t[i]||c.a.isArray(o)?[]:{},o,r)}return c.a.isArray(e)?e.forEach(o):c.a.objectEach(e,o),t}r.d(e,"a",function(){return i});var o=r(0),c=r.n(o),i=function(t,e){return n({},t,e)}}])});
-
-/***/ }),
-/* 145 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_RESULT__;/*
@@ -18534,57 +18571,7 @@ defined:n.defined,erase:n.erase,isArray:n.isArray,isClass:n.isClass,isDOMElement
 //# sourceMappingURL=highcharts.js.map
 
 /***/ }),
-/* 146 */,
-/* 147 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 148 */,
-/* 149 */,
-/* 150 */,
-/* 151 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(152);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(136)("290c3e45", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-68ff5483\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Tool.vue", function() {
-     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-68ff5483\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Tool.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 152 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(1)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\ntable {\n    width: 100%;\n    border-collapse: collapse;\n}\ntable, th, td {\n    border: 1px solid #cacaca;\n}\n.hidden_text{\n    background: #fff;\n    position: absolute;\n    height: 15px;\n    width: 101px;\n    right: 8px;\n    bottom: 14px;\n}\n.dot_status {\n    width: 15px;\n    height: 15px;\n    background: #0bad00;\n    border-radius: 15px;\n    margin: 0 auto;\n    margin-top: 4px;\n    border: 0.7px solid #0000002e;\n}\n.dot_status_red {\n    background: red;\n}\n.dot_status_orange {\n    background: orangered;\n}\n.btn-primary {\n    color: #fff;\n    background-color: #5b86ff;\n    border-color: #007bff;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 153 */
+/* 145 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -18650,7 +18637,7 @@ var render = function() {
                   }
                 ],
                 staticClass:
-                  "bg-white  font-semibold py-2 px-4 border border-gray-400 rounded shadow mr-3",
+                  "bg-white font-semibold py-2 px-4 border border-gray-400 rounded shadow mr-3",
                 attrs: { type: "button" },
                 on: {
                   click: function($event) {
@@ -18676,7 +18663,7 @@ var render = function() {
                   }
                 ],
                 staticClass:
-                  "bg-white  font-semibold py-2 px-4 border border-gray-400 rounded shadow",
+                  "bg-white font-semibold py-2 px-4 border border-gray-400 rounded shadow",
                 attrs: { type: "button" },
                 on: {
                   click: function($event) {
@@ -18849,6 +18836,12 @@ if (false) {
     require("vue-hot-reload-api")      .rerender("data-v-68ff5483", module.exports)
   }
 }
+
+/***/ }),
+/* 146 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);

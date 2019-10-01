@@ -22,8 +22,8 @@
             </div>
             <div class="flex mb-4">
                 <div class="w-full p-2 text-right">
-                    <button type="button" @click="setType(1)" v-class="{'bg-blue-500':type==1, 'bg-white':type==2}" class="bg-white  font-semibold py-2 px-4 border border-gray-400 rounded shadow mr-3">TRANSPORTADORAS</button>
-                    <button type="button" @click="setType(2)" v-class="{'bg-blue-500':type==2, 'bg-white':type==1}" class="bg-white  font-semibold py-2 px-4 border border-gray-400 rounded shadow">CLIENTES</button>
+                    <button type="button" @click="setType(1)" v-class="{'bg-blue-500':type==1, 'bg-white':type==2}" class="bg-white font-semibold py-2 px-4 border border-gray-400 rounded shadow mr-3">TRANSPORTADORAS</button>
+                    <button type="button" @click="setType(2)" v-class="{'bg-blue-500':type==2, 'bg-white':type==1}" class="bg-white font-semibold py-2 px-4 border border-gray-400 rounded shadow">CLIENTES</button>
                     <button type="button" class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow" v-if="false">LOCALIZAÇÃO</button>
                 </div>
             </div>

@@ -26,8 +26,8 @@ class ToolServiceProvider extends ServiceProvider
         });
 
         Nova::serving(function (ServingNova $event) {
-            $delivered_count = Document::where('delivered_at','>=',Carbon::create(2019, 1, 1, 0, 0, 0)->toDateString())->where('delivered_at','<=',Carbon::now()->toDateString())->count();
-            $documents_count = Document::where('collected_at','>=',Carbon::create(2019, 1, 1, 0, 0, 0)->toDateString())->where('collected_at','<=',Carbon::now()->toDateString())->count();
+            $delivered_count = Document::where('delivered_at','>=',Carbon::now()->startOfYear()->toDateString())->where('delivered_at','<=',Carbon::now()->toDateString())->count();
+            $documents_count = Document::where('collected_at','>=',Carbon::now()->startOfYear()->toDateString())->where('collected_at','<=',Carbon::now()->toDateString())->count();
             Nova::provideToScript([
                 'delivered_count' => $delivered_count,
                 'general_performance' => (($delivered_count/$documents_count)*100)
