@@ -2,43 +2,47 @@
     <div>
         <heading class="mb-6">Embarques acumulados 2019</heading>
         <div class="">
-            <div class="row">
-                <div class="col-3 text-center">
+            <div class="flex ">
+                <div class="w-1/4 p-2 text-center">
                     <Card>
-                        <h3>35554</h3>
-                        ENTREGAS REALIZADAS
+                        <div class="pb-6 pt-6">
+                            <h3>{{delivered_count}}</h3>
+                            ENTREGAS REALIZADAS
+                        </div>
                     </Card>
                 </div>
-                <div class="col-3 text-center">
+                <div class="w-1/4 p-2 text-center">
                     <Card>
-                        <h3>35554</h3>
-                        PERFORMANCE GERAL
+                        <div class="pb-6 pt-6">
+                            <h3>{{general_performance}}%</h3>
+                            PERFORMANCE GERAL
+                        </div>
                     </Card>
                 </div>
             </div>
-            <div class="row mt-4">
-                <div class="col-12 text-right">
-                    <button type="button" class="btn btn-primary mr-3">TRANSPORTADORAS</button>
-                    <button type="button" class="btn btn-light">CLIENTES</button>
-                    <button type="button" class="btn btn-light" v-if="false">LOCALIZAÇÃO</button>
+            <div class="flex mb-4">
+                <div class="w-full p-2 text-right">
+                    <button type="button" @click="setType(1)" v-class="{'bg-blue-500':type==1, 'bg-white':type==2}" class="bg-white  font-semibold py-2 px-4 border border-gray-400 rounded shadow mr-3">TRANSPORTADORAS</button>
+                    <button type="button" @click="setType(2)" v-class="{'bg-blue-500':type==2, 'bg-white':type==1}" class="bg-white  font-semibold py-2 px-4 border border-gray-400 rounded shadow">CLIENTES</button>
+                    <button type="button" class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow" v-if="false">LOCALIZAÇÃO</button>
                 </div>
             </div>
-            <div class="row mt-4">
-                <div class="col-6" style="position:relative">
+            <div class="flex mb-4">
+                <div class="w-1/2 p-2 pr-3" style="position:relative">
                     <Card>
                         <highcharts  :options="chartDunet"></highcharts>
                         <div class="hidden_text"></div>
                     </Card>
                 </div>
-                <div class="col-6">
+                <div class="w-1/2 p-2 pl-3">
                     <Card>
                         <highcharts  :options="chartBar"></highcharts>
                         <div class="hidden_text"></div>
                     </Card>
                 </div>
             </div>
-            <div class="row mt-4">
-                <div class="col-12">
+            <div class="flex mb-4">
+                <div class="w-full p-2">
                     <Card>
                         <table class="table table-bordered table-striped text-center">
                             <thead>
@@ -105,12 +109,15 @@ export default {
     data() {
         return {
             loading:true,
+            type: 1, // 1 = transporter / 2 = customer
+            delivered_count: 0,
+            general_performance: 0,
             chartDunet: {
                 chart: {
                     type: 'pie'
                 },
                 title: {
-                    text: 'Entregas por Cliente'
+                    text: 'Entregas por Transportadora'
                 },
                 tooltip: {
                     pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -141,7 +148,7 @@ export default {
                     type: 'column'
                 },
                 title: {
-                    text: 'Performance Top 10 Clientes'
+                    text: 'Performance Top 10 Transportadoras'
                 },
                 xAxis: {
                     // type: 'category'
@@ -214,14 +221,22 @@ export default {
         }
     },
     created(){
-        //this.load();
+        this.delivered_count = Nova.config.delivered_count;
+        this.general_performance = Nova.config.general_performance.toFixed(2);
+        this.load();
     },
     methods:{
-        // load(){
-        //     this.$http.get('url').then(response=>{
-        //         this.loading = false
-        //     })
-        // },
+        load(){
+            Nova.request().get('/nova-vendor/dashboard/'+(this.type==1?'transporters':'customers')).then(response => {
+                console.log(response)
+            })
+        },
+        setType(tp){
+            if(tp != this.type){
+                this.type = tp;
+                this.load();
+            }
+        }
     },
     components:{
         Card,
@@ -230,15 +245,23 @@ export default {
 }
 </script>
 
-<style>
-    @import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
+<style >
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    table, th, td {
+        border: 1px solid #cacaca;
+    }
+
     .hidden_text{
         background: #fff;
         position: absolute;
         height: 15px;
         width: 101px;
-        right: 0px;
-        bottom: 33px;
+        right: 8px;
+        bottom: 14px;
     }
 
     .dot_status {
