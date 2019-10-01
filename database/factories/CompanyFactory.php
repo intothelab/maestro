@@ -2,11 +2,12 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Transporter;
+use App\Company;
+use App\Model;
 use Faker\Generator as Faker;
 use Illuminate\Support\Str;
 
-$factory->define(Transporter::class, function (Faker $faker) {
+$factory->define(Company::class, function (Faker $faker) {
     return [
         "code" => Str::random(6),
         "name" => $faker->company,

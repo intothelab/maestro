@@ -22,10 +22,11 @@
   </head>
   <body>
     <div id="redoc_container"></div>
-    <script src="https://cdn.jsdelivr.net/npm/redoc@2.0.0-rc.14/bundles/redoc.standalone.js"></script>
+    <script src="{{ asset('js/documentation.js') }}"></script>
+    <script src="{{ asset('js/console.redocpro.min.js') }}"></script>
     <script>
 
-      Redoc.init("{{config('idoc.output') . "/openapi.json"}}", {
+        RedocPro.init("{{config('idoc.output') . "/openapi.json"}}", {
         unstable_ignoreMimeParameters: true,
         pathInMiddlePanel: true,
         showConsole:true,
@@ -62,6 +63,7 @@
 
           menu: {
             backgroundColor: "#f4f6f9",
+              width: '300px'
           },
           rightPanel: {
             backgroundColor: '#2e2f3e',

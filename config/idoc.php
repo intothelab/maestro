@@ -113,7 +113,7 @@ return [
 
     'servers' => [
         [
-            'url' => config('app.url'),
+            'url' => 'http://staging-maestro.v-labs.co',
             'description' => 'Maestro Staging',
         ],
         [
@@ -254,7 +254,7 @@ return [
                     'headers' => [
                         'Content-Type' => 'application/json',
                         'Accept' => 'application/json',
-                        // 'key' => 'value',
+                        'Authorization' => 'Bearer: {token}',
                     ],
 
                     /*

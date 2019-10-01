@@ -16,6 +16,8 @@ class SupplierController extends Controller
 {
 
     /**
+     * List Suppliers
+     * @responseFactory App\Supplier collection
      * @return \Illuminate\Http\JsonResponse
      */
     public function index()
@@ -24,6 +26,10 @@ class SupplierController extends Controller
     }
 
     /**
+     * Creates a Supplier
+     *
+     * @authenticated
+     * @responseFactory App\Supplier
      * @param  Request  $request
      * @param  Supplier  $supplier
      * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
@@ -73,6 +79,13 @@ class SupplierController extends Controller
     }
 
     /**
+     * Show one Supplier
+     *
+     * @queryParam id integer required
+     * The id of the supplier.
+     *
+     * @authenticated
+     * @responseFactory App\Supplier
      * @param  Supplier  $supplier
      * @return \Illuminate\Http\JsonResponse
      */
@@ -82,6 +95,13 @@ class SupplierController extends Controller
     }
 
     /**
+     * Updates a Supplier
+     *
+     * @queryParam id integer required
+     * The id of the supplier.
+     *
+     * @authenticated
+     * @responseFactory App\Supplier
      * @param  Request  $request
      * @param  Supplier  $supplier
      * @return \Illuminate\Http\JsonResponse
@@ -112,6 +132,13 @@ class SupplierController extends Controller
     }
 
     /**
+     * Deletes a Suplier
+     *
+     * @queryParam id integer required
+     * The id of the supplier.
+     *
+     * @authenticated
+     * @responseFactory App\Supplier
      * @param  Supplier  $supplier
      * @return \Illuminate\Http\JsonResponse
      * @throws \Exception

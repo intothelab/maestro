@@ -18,14 +18,15 @@ Route::post('/auth', 'MainController@auth');
 Route::get('/', 'MainController@index');
 
 Route::middleware(['client', 'api'])->group(function(){
-    Route::post('/edi', 'MainController@edi');
-    Route::post('/nfe', 'MainController@nfe');
-
     Route::resource('/suppliers', 'SupplierController');
     Route::resource('/companies', 'CompanyController');
     Route::resource('/customers', 'CustomerController');
-    Route::resource('/events', 'EventController');
+    Route::resource('/orders','OrderController');
+
+    Route::post('/documents/edi', 'MainController@edi');
+    Route::post('/documents/nfe', 'MainController@nfe');
     Route::resource('/documents', 'DocumentController');
+
     Route::resource('/transporters', 'TransporterController');
 });
 
