@@ -15,4 +15,4 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/transporters', '\Maestro\Dashboard\Http\Controllers\DashboardController@transporters');
-Route::get('/customers', '\Maestro\Dashboard\Http\Controllers\DashboardController@customers');
+Route::get('/companies', '\Maestro\Dashboard\Http\Controllers\DashboardController@companies');

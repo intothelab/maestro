@@ -70,7 +70,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     public function tools()
     {
         return [
-            //new Dashboard,
+            new Dashboard,
             new NovaGrid,
             new NovaSidebarIcons,
         ];

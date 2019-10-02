@@ -1,6 +1,6 @@
 <template>
     <div>
-        <heading class="mb-6">Embarques acumulados 2019</heading>
+        <heading class="mb-6">Embarques acumulados {{year}}</heading>
         <div class="">
             <div class="flex ">
                 <div class="w-1/4 p-2 text-center">
@@ -22,14 +22,14 @@
             </div>
             <div class="flex mb-4">
                 <div class="w-full p-2 text-right">
-                    <button type="button" @click="setType(1)" v-class="{'bg-blue-500':type==1, 'bg-white':type==2}" class="bg-white font-semibold py-2 px-4 border border-gray-400 rounded shadow mr-3">TRANSPORTADORAS</button>
-                    <button type="button" @click="setType(2)" v-class="{'bg-blue-500':type==2, 'bg-white':type==1}" class="bg-white font-semibold py-2 px-4 border border-gray-400 rounded shadow">CLIENTES</button>
+                    <button type="button" @click="setType(1)" v-bind:class="{'bg-blue-500':type==1, 'bg-white':type==2}" class="bg-white font-semibold py-2 px-4 border border-gray-400 rounded shadow mr-3">TRANSPORTADORAS</button>
+                    <button type="button" @click="setType(2)" v-bind:class="{'bg-blue-500':type==2, 'bg-white':type==1}" class="bg-white font-semibold py-2 px-4 border border-gray-400 rounded shadow">CLIENTES</button>
                     <button type="button" class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow" v-if="false">LOCALIZAÇÃO</button>
                 </div>
             </div>
             <div class="flex mb-4">
                 <div class="w-1/2 p-2 pr-3" style="position:relative">
-                    <Card>
+                    <Card style="padding-bottom: 19px;">
                         <highcharts  :options="chartDunet"></highcharts>
                         <div class="hidden_text"></div>
                     </Card>
@@ -38,6 +38,10 @@
                     <Card>
                         <highcharts  :options="chartBar"></highcharts>
                         <div class="hidden_text"></div>
+                        <div class="text-center">
+                            <Radio v-model="order" label="desc"  @change="sortData('desc')">Melhores</Radio>
+                            <Radio v-model="order" label="asc"  @change="sortData('asc')">Piores</Radio>
+                        </div>
                     </Card>
                 </div>
             </div>
@@ -48,7 +52,10 @@
                             <thead>
                                 <tr>
                                     <th>Status</th>
-                                    <th>Transportadora</th>
+                                    <th>
+                                        <span v-if="type==2">Cliente</span>
+                                        <span v-if="type==1">Transportadora</span>
+                                    </th>
                                     <th>Número de Entregas</th>
                                     <th>Número de Atrasos</th>
                                     <th>Último Més</th>
@@ -57,38 +64,16 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
+                                <tr v-for="reg in data" :key="reg.cnpj">
                                     <td>
-                                        <div class="dot_status"></div>
+                                        <div class="dot_status" v-bind:class="{'dot_status_red':reg.delivered_average<80,'dot_status_yellow':reg.delivered_average>=80&&reg.delivered_average<=90}"></div>
                                     </td>
-                                    <td>Casas Bahia</td>
-                                    <td>343</td>
-                                    <td>34323</td>
-                                    <td>98%</td>
-                                    <td>56%</td>
-                                    <td>2%</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="dot_status dot_status_red"></div>
-                                    </td>
-                                    <td>Casas Bahia</td>
-                                    <td>343</td>
-                                    <td>34323</td>
-                                    <td>98%</td>
-                                    <td>56%</td>
-                                    <td>2%</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="dot_status dot_status_orange"></div>
-                                    </td>
-                                    <td>Casas Bahia</td>
-                                    <td>343</td>
-                                    <td>34323</td>
-                                    <td>98%</td>
-                                    <td>56%</td>
-                                    <td>2%</td>
+                                    <td>{{reg.name}}</td>
+                                    <td>{{reg.delivered_count}}</td>
+                                    <td>{{reg.delivered_late_count}}</td>
+                                    <td>{{reg.previous_month_average}}</td>
+                                    <td>{{reg.delivered_average}}%</td>
+                                    <td>{{reg.trend}}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -104,14 +89,20 @@
 import Card from './Card'
 import moment from 'moment'
 import {Chart} from 'highcharts-vue'
+import _ from 'lodash'
+import {Radio} from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
 
 export default {
     data() {
         return {
             loading:true,
-            type: 1, // 1 = transporter / 2 = customer
+            type: 1, // 1 = transporter / 2 = companies
+            year: Nova.config.year,
             delivered_count: 0,
             general_performance: 0,
+            order: 'desc',
+            data: [],
             chartDunet: {
                 chart: {
                     type: 'pie'
@@ -120,27 +111,17 @@ export default {
                     text: 'Entregas por Transportadora'
                 },
                 tooltip: {
-                    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                    pointFormat: '{series.name}: <b>{point.percentage:.1f}</b>'
                 },
                 plotOptions: {
                     pie: {
-                        innerSize: 100,
-                        depth: 45
+                        innerSize: 200,
+                        depth: 1
                     }
                 },
                 series: [{
-                    name: 'Delivered amount',
-                    data: [
-                        ['Bananas', 8],
-                        ['Kiwi', 3],
-                        ['Mixed nuts', 1],
-                        ['Oranges', 6],
-                        ['Apples', 8],
-                        ['Pears', 4],
-                        ['Clementines', 4],
-                        ['Reddish (bag)', 1],
-                        ['Grapes (bunch)', 1]
-                    ]
+                    name: 'Entregas',
+                    data: []
                 }]
             },
             chartBar: {
@@ -151,7 +132,7 @@ export default {
                     text: 'Performance Top 10 Transportadoras'
                 },
                 xAxis: {
-                    // type: 'category'
+                     type: 'category'
                 },
                 yAxis: {
                     title: {
@@ -166,55 +147,16 @@ export default {
                         borderWidth: 0,
                         dataLabels: {
                             enabled: true,
-                            format: '{point.y:.1f}%'
                         }
                     }
                 },
-                tooltip: {
-                    pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
-                },
-
+                // tooltip: {
+                //     pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b>'
+                // },
                 series: [
                     {
-                        name: "Browsers",
                         colorByPoint: true,
-                        data: [
-                            {
-                                name: "Chrome",
-                                y: 62.74,
-                                drilldown: "Chrome"
-                            },
-                            {
-                                name: "Firefox",
-                                y: 10.57,
-                                drilldown: "Firefox"
-                            },
-                            {
-                                name: "Internet Explorer",
-                                y: 7.23,
-                                drilldown: "Internet Explorer"
-                            },
-                            {
-                                name: "Safari",
-                                y: 5.58,
-                                drilldown: "Safari"
-                            },
-                            {
-                                name: "Edge",
-                                y: 4.02,
-                                drilldown: "Edge"
-                            },
-                            {
-                                name: "Opera",
-                                y: 1.92,
-                                drilldown: "Opera"
-                            },
-                            {
-                                name: "Other",
-                                y: 7.62,
-                                drilldown: null
-                            }
-                        ]
+                        data: []
                     }
                 ],
             }
@@ -227,9 +169,69 @@ export default {
     },
     methods:{
         load(){
-            Nova.request().get('/nova-vendor/dashboard/'+(this.type==1?'transporters':'customers')).then(response => {
-                console.log(response)
+            this.raw = [];
+            this.data = [];
+            this.order = 'desc';
+            Nova.request().get('/nova-vendor/dashboard/'+(this.type==1?'transporters':'companies')).then(response => {
+                this.raw = response.data
+                this.sortData('desc');
             })
+        },
+        sortData(order){
+            console.log(order)
+            let ChartData = [];
+            this.data = this.raw.sort(order=='desc'?function(a, b){return b.delivered_count - a.delivered_count }:function(a, b){return a.delivered_count - b.delivered_count });
+            ChartData = _.take(this.data,10);
+            ChartData = ChartData;
+            ChartData.push(_.reduce(_.slice(this.data, 10), function(result, value, key) {
+                result.delivered_count += value.delivered_count
+                return result;
+            }, {
+                name:'Outros',
+                delivered_count: 0
+            }))
+
+            if(this.type==1){
+                this.chartDunet.title.text = 'Entregas por Transportadora'
+                this.chartDunet.series = [{
+                    name: 'Entregas',
+                    data: ChartData.map(r=>{
+                        return {
+                            name: r.name,
+                            y: r.delivered_count,
+                        }
+                    })
+                }]
+                this.chartBar.title.text = 'Performance Top 10 Transportadoras'
+                this.chartBar.series = [{
+                    name: 'Entregas',
+                    data: ChartData.map(r=>{
+                        return {
+                            name: r.name,
+                            y: r.delivered_count,
+                        }
+                    })
+                }]
+            }else{
+                this.chartDunet.title.text = 'Entregas por Cliente'
+                this.chartDunet.series = [{
+                    name: 'Entregas',
+                    data: ChartData.map(r=>{
+                        return [r.name, r.delivered_count]
+                    })
+                }]
+                this.chartBar.title.text = 'Performance Top 10 Clientes'
+                this.chartBar.series = [{
+                    name: 'Entregas',
+                    data: ChartData.map(r=>{
+                        return {
+                            name: r.name,
+                            y: r.delivered_count,
+                            drilldown: r.name
+                        }
+                    })
+                }]
+            }
         },
         setType(tp){
             if(tp != this.type){
@@ -240,12 +242,13 @@ export default {
     },
     components:{
         Card,
-        highcharts: Chart
+        highcharts: Chart,
+        Radio
     }
 }
 </script>
 
-<style >
+<style scoped>
     table {
         width: 100%;
         border-collapse: collapse;
@@ -261,7 +264,7 @@ export default {
         height: 15px;
         width: 101px;
         right: 8px;
-        bottom: 14px;
+        bottom: 32px;
     }
 
     .dot_status {
@@ -278,8 +281,8 @@ export default {
         background: red;
     }
 
-    .dot_status_orange {
-        background: orangered;
+    .dot_status_yellow {
+        background: #ffeb00;
     }
 
     .btn-primary {
