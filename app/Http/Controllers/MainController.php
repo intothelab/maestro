@@ -29,7 +29,7 @@ class MainController extends Controller
      * Issue an Access Token
      *
      *
-     * @bodyParam grant_tupe string required
+     * @bodyParam grant_type string required
      * The oAuth2 Grant Type. Should be always `client_credentials`. Example: client_credentials
      *
      * @bodyParam client_id integer required
