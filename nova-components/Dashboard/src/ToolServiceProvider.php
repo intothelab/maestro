@@ -2,6 +2,8 @@
 
 namespace Maestro\Dashboard;
 
+use App\Document;
+use Carbon\Carbon;
 use Laravel\Nova\Nova;
 use Laravel\Nova\Events\ServingNova;
 use Illuminate\Support\Facades\Route;
@@ -24,7 +26,12 @@ class ToolServiceProvider extends ServiceProvider
         });
 
         Nova::serving(function (ServingNova $event) {
-            //
+            $delivered_count = Document::where('delivered_at','>=',Carbon::create(2019, 1, 1, 0, 0, 0)->toDateString())->where('delivered_at','<=',Carbon::now()->toDateString())->count();
+            $documents_count = Document::where('collected_at','>=',Carbon::create(2019, 1, 1, 0, 0, 0)->toDateString())->where('collected_at','<=',Carbon::now()->toDateString())->count();
+            Nova::provideToScript([
+                'delivered_count' => $delivered_count,
+                'general_performance' => (($delivered_count/$documents_count)*100)
+            ]);
         });
     }
 

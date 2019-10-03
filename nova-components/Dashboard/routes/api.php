@@ -14,6 +14,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/endpoint', function (Request $request) {
-//     //
-// });
+Route::get('/transporters', '\Maestro\Dashboard\Http\Controllers\DashboardController@transporters');
+Route::get('/customers', '\Maestro\Dashboard\Http\Controllers\DashboardController@customers');
