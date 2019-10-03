@@ -26,6 +26,10 @@ class ToolServiceProvider extends ServiceProvider
         });
 
         Nova::serving(function (ServingNova $event) {
+            $divergence = Document::whereNull('expected_at')
+                ->orWhere('collected_at', NULL)
+                ->count();
+
             $delivered = Document::where('delivered_at','>=',Carbon::now()->startOfYear()->toDateString())
                 ->where('delivered_at','<=',Carbon::now()->toDateString())
                 ->whereNotNull('expected_at')
@@ -42,7 +46,8 @@ class ToolServiceProvider extends ServiceProvider
             Nova::provideToScript([
                 'year' => Carbon::now()->year,
                 'delivered_count' => count($delivered),
-                'general_performance' => ($delivered_expected_count*100)/count($delivered)
+                'general_performance' => ($delivered_expected_count*100)/count($delivered),
+                'divergence' => $divergence
             ]);
         });
     }
