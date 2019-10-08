@@ -175,7 +175,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\NovaServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        App\Providers\ThemeServiceProvider::class
+        App\Providers\ThemeServiceProvider::class,
+        geekcom\ValidatorDocs\ValidatorProvider::class
     ],
 
     /*

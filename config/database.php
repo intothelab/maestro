@@ -45,7 +45,7 @@ return [
 
         'mongodb' => [
             'driver'   => 'mongodb',
-            'host'     => env('MONGO_HOST', 'mongo'),
+            'host'     => env('MONGO_HOST', 'mongodb'),
             'port'     => env('MONGO_PORT', 27017),
             'database' => env('MONGO_DB', 'maestro'),
             'username' => env('MONGO_USER', 'maestro'),
