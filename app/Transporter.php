@@ -25,6 +25,11 @@ class Transporter extends Model
         'deleted_at'
     ];
 
+    public function documents()
+    {
+        return $this->hasMany(Document::class, 'transporter_cnpj', 'cnpj');
+    }
+
     public function vehicle()
     {
         return $this->hasMany(Vehicle::class);

@@ -26,11 +26,28 @@ class ToolServiceProvider extends ServiceProvider
         });
 
         Nova::serving(function (ServingNova $event) {
-            $delivered_count = Document::where('delivered_at','>=',Carbon::create(2019, 1, 1, 0, 0, 0)->toDateString())->where('delivered_at','<=',Carbon::now()->toDateString())->count();
-            $documents_count = Document::where('collected_at','>=',Carbon::create(2019, 1, 1, 0, 0, 0)->toDateString())->where('collected_at','<=',Carbon::now()->toDateString())->count();
+            $divergence = Document::whereNull('expected_at')
+                ->orWhere('collected_at', NULL)
+                ->count();
+
+            $delivered = Document::where('delivered_at','>=',Carbon::now()->startOfYear()->toDateString())
+                ->where('delivered_at','<=',Carbon::now()->toDateString())
+                ->whereNotNull('expected_at')
+                ->get();
+
+            collect($delivered)
+                ->map(function ($item) {
+                    $item->later = !Carbon::createFromFormat('Y-m-d H:i:s', $item->delivered_at)->lessThanOrEqualTo(Carbon::createFromFormat('Y-m-d H:i:s', $item->expected_at));
+                    return $item;
+                })->all();
+
+            $delivered_expected_count = collect($delivered)->where('later', true)->count();
+
             Nova::provideToScript([
-                'delivered_count' => $delivered_count,
-                'general_performance' => (($delivered_count/$documents_count)*100)
+                'year' => Carbon::now()->year,
+                'delivered_count' => count($delivered),
+                'general_performance' => ($delivered_expected_count*100)/count($delivered),
+                'divergence' => $divergence
             ]);
         });
     }
