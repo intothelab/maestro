@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Company;
 use Geocoder\Laravel\Facades\Geocoder;
 use Geocoder\Provider\Here\Model\HereAddress;
+use Grimzy\LaravelMysqlSpatial\Types\Point;
 use Illuminate\Http\Request;
 
 /**
@@ -89,8 +90,11 @@ class CompanyController extends Controller
             ->first();
 
 
-        $company->latitude = $geocoded->getCoordinates()->getLatitude();
-        $company->longitude = $geocoded->getCoordinates()->getLongitude();
+        $company->location = new Point(
+            $geocoded->getCoordinates()->getLatitude(),
+            $geocoded->getCoordinates()->getLongitude()
+        );
+
         $company->number = $geocoded->getStreetNumber();
         $company->address = $geocoded->getStreetName();
         $company->postal_code = $geocoded->getPostalCode();

@@ -28,8 +28,7 @@ class CreateSuppliersTable extends Migration
             $table->string('postal_code');
             $table->string('state');
             $table->string('city');
-            $table->string('latitude');
-            $table->string('longitude');
+            $table->point('location')->nullable();
             $table->timestamps();
         });
     }

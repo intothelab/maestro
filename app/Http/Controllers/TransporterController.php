@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Transporter;
 use Geocoder\Laravel\Facades\Geocoder;
 use Geocoder\Provider\Here\Model\HereAddress;
+use Grimzy\LaravelMysqlSpatial\Types\Point;
 use Illuminate\Http\Request;
 
 /**
@@ -64,8 +65,11 @@ class TransporterController extends Controller
             ->first();
 
 
-        $transporter->latitude = $geocoded->getCoordinates()->getLatitude();
-        $transporter->longitude = $geocoded->getCoordinates()->getLongitude();
+        $transporter->location = new Point(
+            $geocoded->getCoordinates()->getLatitude(),
+            $geocoded->getCoordinates()->getLongitude()
+        );
+
         $transporter->number = $geocoded->getStreetNumber();
         $transporter->address = $geocoded->getStreetName();
         $transporter->postal_code = $geocoded->getPostalCode();

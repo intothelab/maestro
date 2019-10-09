@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Customer;
 use Geocoder\Laravel\Facades\Geocoder;
 use Geocoder\Provider\Here\Model\HereAddress;
+use Grimzy\LaravelMysqlSpatial\Types\Point;
 use Illuminate\Http\Request;
 
 /**
@@ -88,8 +89,11 @@ class CustomerController extends Controller
             ->first();
 
 
-        $customer->latitude = $geocoded->getCoordinates()->getLatitude();
-        $customer->longitude = $geocoded->getCoordinates()->getLongitude();
+        $customer->location = new Point(
+            $geocoded->getCoordinates()->getLatitude(),
+            $geocoded->getCoordinates()->getLongitude()
+        );
+
         $customer->number = $geocoded->getStreetNumber();
         $customer->address = $geocoded->getStreetName();
         $customer->postal_code = $geocoded->getPostalCode();

@@ -6,6 +6,7 @@ use App\Supplier;
 use App\Transporter;
 use Geocoder\Laravel\Facades\Geocoder;
 use Geocoder\Provider\Here\Model\HereAddress;
+use Grimzy\LaravelMysqlSpatial\Types\Point;
 use Illuminate\Http\Request;
 
 /**
@@ -89,8 +90,11 @@ class SupplierController extends Controller
             ->first();
 
 
-        $supplier->latitude = $geocoded->getCoordinates()->getLatitude();
-        $supplier->longitude = $geocoded->getCoordinates()->getLongitude();
+        $supplier->location = new Point(
+            $geocoded->getCoordinates()->getLatitude(),
+            $geocoded->getCoordinates()->getLongitude()
+        );
+
         $supplier->number = $geocoded->getStreetNumber();
         $supplier->address = $geocoded->getStreetName();
         $supplier->postal_code = $geocoded->getPostalCode();
