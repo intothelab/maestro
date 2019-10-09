@@ -48,7 +48,7 @@ class CustomerController extends Controller
      * Number and Extra, if applied. Example: 1715, Loja B
      *
      * @bodyParam postal_code string required
-     * Zip (CEP). Must be a valid number (without formatting). Example: 30441123
+     * Zip (CEP). Must be a valid number (without formatting). Example: 91150170
      *
      * @responseFactory App\Customer
      *
@@ -145,7 +145,7 @@ class CustomerController extends Controller
      * Number and Extra, if applied. Example: 1715, Loja B
      *
      * @bodyParam postal_code string required
-     * Zip (CEP). Must be a valid number (without formatting). Example: 30441123
+     * Zip (CEP). Must be a valid number (without formatting). Example: 91150170
      *
      * @responseFactory App\Customer
      * @authenticated
