@@ -166,7 +166,8 @@ class CustomerController extends Controller
     {
 
         $customer = Customer::where('code', $ref)
-            ->orWhere('id', $ref);
+            ->orWhere('id', $ref)
+            ->first();
 
         $this->validate($request, [
             'name' => 'required',
