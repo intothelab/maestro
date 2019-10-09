@@ -209,6 +209,7 @@ class CustomerController extends Controller
             ->first();
 
         $customer->delete();
+
         return response()->json($customer);
     }
 }
