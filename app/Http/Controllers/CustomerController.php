@@ -30,6 +30,9 @@ class CustomerController extends Controller
     /**
      * Creates a Customer
      *
+     * @bodyParam code string required
+     * External Reference of the Customer (Totvs or SAP, for example). Example: 1234
+     *
      * @bodyParam name string required
      * Name of the Customer. Example: dCasa Ferragens LTDA
      *
@@ -62,6 +65,7 @@ class CustomerController extends Controller
     public function store(Request $request, Customer $customer)
     {
         $this->validate($request, [
+            'code' => 'required|unique:customers',
             'name' => 'required',
             'email' => 'required|email',
             'phone' => 'required',
