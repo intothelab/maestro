@@ -7,6 +7,7 @@ use Geocoder\Laravel\Facades\Geocoder;
 use Geocoder\Provider\Here\Model\HereAddress;
 use Grimzy\LaravelMysqlSpatial\Types\Point;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
 
 /**
  * @group Transporters
@@ -64,6 +65,9 @@ class TransporterController extends Controller
             ->get()
             ->first();
 
+        if($geocoded === null){
+            throw new UnprocessableEntityHttpException('Address and Post Code combination does not result in a valid geocode');
+        }
 
         $transporter->location = new Point(
             $geocoded->getCoordinates()->getLatitude(),
