@@ -18,7 +18,9 @@ $factory->define(\App\Supplier::class, function (Faker $faker) {
         "postal_code" => $faker->numerify('########'),
         "state" => $faker->randomElement(['MG','RS', 'SP', 'RJ', 'BA', 'PR']),
         "city" => $faker->city,
-        "latitude" => $faker->latitude,
-        "longitude" => $faker->longitude
+        "location" => new \Grimzy\LaravelMysqlSpatial\Types\Point(
+            $faker->latitude,
+            $faker->longitude
+        )
     ];
 });

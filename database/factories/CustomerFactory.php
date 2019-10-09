@@ -2,8 +2,8 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Model;
 use Faker\Generator as Faker;
+use Grimzy\LaravelMysqlSpatial\Types\Point;
 use Illuminate\Support\Str;
 
 $factory->define(\App\Customer::class, function (Faker $faker) {
@@ -18,7 +18,9 @@ $factory->define(\App\Customer::class, function (Faker $faker) {
         "postal_code" => $faker->numerify('########'),
         "state" => $faker->randomElement(['MG','RS', 'SP', 'RJ', 'BA', 'PR']),
         "city" => $faker->city,
-        "latitude" => $faker->latitude,
-        "longitude" => $faker->longitude
+        "location" => new Point(
+            $faker->latitude,
+            $faker->longitude
+        )
     ];
 });

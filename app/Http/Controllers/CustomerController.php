@@ -131,8 +131,8 @@ class CustomerController extends Controller
     /**
      * Updates a Customer
      *
-     * @queryParam id integer required
-     * The id of the customer.
+     * @queryParam ref string required
+     * The id or code of the customer.
      *
      * @bodyParam name string required
      * Name of the Customer. Example: dCasa Ferragens LTDA
@@ -193,8 +193,8 @@ class CustomerController extends Controller
     /**
      * Deletes a Customer
      *
-     * @queryParam id integer required
-     * The id of the customer.
+     * @queryParam ref string required
+     * The id or code of the customer.
      *
      * @responseFactory App\Customer
      *
