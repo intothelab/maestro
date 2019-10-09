@@ -24,8 +24,8 @@ class CreateCustomersTable extends Migration
             $table->string('address', 150);
             $table->string('number')->nullable();
             $table->string('postal_code')->nullable();
-            $table->integer('city')->nullable();
-            $table->integer('state')->nullable();
+            $table->string('city')->nullable();
+            $table->string('state')->nullable();
             $table->point('location')->nullable();
             $table->double('extra_tax')->nullable();
             $table->set('receiving_days', ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'])->nullable();
