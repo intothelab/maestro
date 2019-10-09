@@ -162,8 +162,12 @@ class CustomerController extends Controller
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function update(Request $request, Customer $customer)
+    public function update(Request $request, $ref)
     {
+
+        $customer = Customer::where('code', $ref)
+            ->orWhere('id', $ref);
+
         $this->validate($request, [
             'name' => 'required',
             'email' => 'required|email',
@@ -174,7 +178,6 @@ class CustomerController extends Controller
         ]);
 
         $customer->update([
-            'code' => $request->code,
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,
@@ -199,8 +202,11 @@ class CustomerController extends Controller
      * @return \Illuminate\Http\JsonResponse
      * @throws \Exception
      */
-    public function destroy(Customer $customer)
+    public function destroy($ref)
     {
+        $customer = Customer::where('code', $ref)
+            ->orWhere('id', $ref);
+
         $customer->delete();
         return response()->json($customer);
     }
