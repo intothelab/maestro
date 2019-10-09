@@ -205,7 +205,8 @@ class CustomerController extends Controller
     public function destroy($ref)
     {
         $customer = Customer::where('code', $ref)
-            ->orWhere('id', $ref);
+            ->orWhere('id', $ref)
+            ->first();
 
         $customer->delete();
         return response()->json($customer);
