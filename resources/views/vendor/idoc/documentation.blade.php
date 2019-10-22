@@ -31,8 +31,8 @@
         pathInMiddlePanel: true,
         showConsole:true,
         disableSearch:true,
-        hideDownloadButton: true,
-        noAutoAuth:true,
+        hideDownloadButton: false,
+        noAutoAuth:false,
         unstable_externalDescription: '{{route('idoc.info')}}',
         theme: {
           colors: {

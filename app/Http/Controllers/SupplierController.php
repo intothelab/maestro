@@ -20,6 +20,9 @@ class SupplierController extends Controller
     /**
      * List Suppliers
      * @responseFactory App\Supplier collection
+     *
+     * @authenticated
+     *
      * @return \Illuminate\Http\JsonResponse
      */
     public function index()

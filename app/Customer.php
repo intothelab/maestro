@@ -13,6 +13,22 @@ class Customer extends Model
 
     protected $table = 'customers';
 
+    protected $fillable = [
+        'name',
+        'phone',
+        'email',
+        'zip',
+        'address',
+        'number',
+        'postal_code',
+        'city',
+        'state',
+        'location',
+        'extra_tax',
+        'receiving_days',
+        'receiving_hours'
+    ];
+
     protected $spatialFields = [
         'location',
     ];
