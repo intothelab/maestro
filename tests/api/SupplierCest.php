@@ -52,7 +52,7 @@ class SupplierCest
         //$I->seeInDatabase('suppliers', $data);
 
     }
-    
+
     public function testCanListSuppliers(ApiTester $I)
     {
         $supplier = factory(\App\Supplier::class)->create();

@@ -30,6 +30,29 @@ class TransporterController extends Controller
      * Creates a Transporter
      *
      * @authenticated
+     *
+     * @bodyParam name string required
+     * Name of the Factory/Company (origin of the shipments). Example: Soprano
+     *
+     * @bodyParam email string
+     * Business E-mail, not required. Example: outbound@soprano.com.br
+     *
+     * @bodyParam phone string required
+     * Landline for specified company. Example: (51) 3214-4321
+     *
+     * @bodyParam cnpj string required
+     * CNPJ of the transporter (without formatting). Example: 04256826000177
+     *
+     * @bodyParam address string required
+     * Street address. Example: Av. Plínio Kroeff
+     *
+     * @bodyParam number string required
+     * Number and Extra, if applied. Example: 1715, Loja B
+     *
+     * @bodyParam postal_code string required
+     * Zip (CEP). Must be a valid number (without formatting). Example: 91150170
+     *
+     * @responseFactory App\Transporter
      * @param  Request  $request
      * @param  Transporter  $transporter
      * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
@@ -87,7 +110,32 @@ class TransporterController extends Controller
     /**
      * Shows a Transporter
      *
+     * @queryParam id integer required
+     * The id of the transporter.
+     *
+     * @bodyParam name string required
+     * Name of the Factory/Company (origin of the shipments). Example: Soprano
+     *
+     * @bodyParam email string
+     * Business E-mail, not required. Example: outbound@soprano.com.br
+     *
+     * @bodyParam phone string required
+     * Landline for specified company. Example: (51) 3214-4321
+     *
+     * @bodyParam cnpj string required
+     * CNPJ of the transporter (without formatting). Example: 04256826000177
+     *
+     * @bodyParam address string required
+     * Street address. Example: Av. Plínio Kroeff
+     *
+     * @bodyParam number string required
+     * Number and Extra, if applied. Example: 1715, Loja B
+     *
+     * @bodyParam postal_code string required
+     * Zip (CEP). Must be a valid number (without formatting). Example: 91150170
+     *
      * @authenticated
+     * @responseFactory App\Transporter
      * @param  Transporter  $transporter
      * @return \Illuminate\Http\JsonResponse
      */
@@ -99,7 +147,32 @@ class TransporterController extends Controller
     /**
      * Updates a Transporter
      *
+     * @queryParam id integer required
+     * The id of the transporter.
+     *
+     * @bodyParam name string required
+     * Name of the Factory/Company (origin of the shipments). Example: Soprano
+     *
+     * @bodyParam email string
+     * Business E-mail, not required. Example: outbound@soprano.com.br
+     *
+     * @bodyParam phone string required
+     * Landline for specified company. Example: (51) 3214-4321
+     *
+     * @bodyParam cnpj string required
+     * CNPJ of the transporter (without formatting). Example: 04256826000177
+     *
+     * @bodyParam address string required
+     * Street address. Example: Av. Plínio Kroeff
+     *
+     * @bodyParam number string required
+     * Number and Extra, if applied. Example: 1715, Loja B
+     *
+     * @bodyParam postal_code string required
+     * Zip (CEP). Must be a valid number (without formatting). Example: 91150170
+     *
      * @authenticated
+     * @responseFactory App\Transporter
      * @param  Request  $request
      * @param  Transporter  $transporter
      * @return \Illuminate\Http\JsonResponse
