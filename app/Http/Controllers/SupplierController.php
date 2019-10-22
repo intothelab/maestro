@@ -70,7 +70,7 @@ class SupplierController extends Controller
             'name' => 'required',
             'email' => 'required|email',
             'phone' => 'required',
-            'cnpj' => 'required|unique:transporters|cnpj',
+            'cnpj' => 'required|unique:suppliers,cnpj|cnpj',
             'address' => 'required',
             'number' => 'required',
             'postal_code' => 'required',
@@ -81,6 +81,9 @@ class SupplierController extends Controller
         $supplier->phone = $request->phone;
         $supplier->cnpj = $request->cnpj;
         $supplier->code = $request->code;
+
+        $supplier->number = $request->number;
+        $supplier->address = $request->address;
 
         //Geocoding Address
         $geocodedString = implode(', ', $request->only([
@@ -95,7 +98,9 @@ class SupplierController extends Controller
             ->first();
 
         if($geocoded === null){
-            throw new UnprocessableEntityHttpException('Address and Post Code combination does not result in a valid geocode');
+            throw new UnprocessableEntityHttpException(
+                'Address and Post Code combination does not result in a valid geocode'
+            );
         }
 
         $supplier->location = new Point(
@@ -103,9 +108,7 @@ class SupplierController extends Controller
             $geocoded->getCoordinates()->getLongitude()
         );
 
-        $supplier->number = $geocoded->getStreetNumber();
-        $supplier->address = $geocoded->getStreetName();
-        $supplier->postal_code = $geocoded->getPostalCode();
+        $supplier->postal_code = str_replace('-', '', $geocoded->getPostalCode());
         $supplier->city = $geocoded->getLocality();
         $supplier->state = $geocoded->getAdditionalData()['StateName'];
         $supplier->save();

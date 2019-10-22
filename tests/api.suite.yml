@@ -1,0 +1,14 @@
+class_name: ApiTester
+modules:
+  enabled:
+    - REST:
+        url: /api
+        depends: Laravel5
+    - \Helper\Api
+    - Db:
+        dsn: 'sqlite:database/testing.sqlite'
+        user: ''
+        password: ''
+  config:
+    - Laravel5:
+        environment_file: .env.example

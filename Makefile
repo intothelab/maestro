@@ -1,11 +1,5 @@
 up:
-	docker-compose up -d && sleep 2
-	docker-compose exec web composer install
-	docker-compose exec web php artisan config:clear
-	docker-compose exec web php artisan migrate
-	docker-compose exec web php artisan cache:clear
-	docker-compose exec web php artisan view:clear
-	$(MAKE) passport
+	docker-compose up
 
 down:
 	docker-compose stop
@@ -33,7 +27,7 @@ integration:
 	docker-compose run --rm --entrypoint=vendor/bin/phpunit artisan --testsuite=integration
 
 test:
-	docker-compose run --rm --entrypoint=vendor/bin/phpunit artisan
+	docker-compose run --rm web ./vendor/bin/codecept run
 
 logs:
 	docker-compose logs -f
