@@ -81,6 +81,8 @@ class DocumentController extends Controller
      * @bodyParam data string required
      * EDI file contents. Example: 000CD SUL                             CD SUL                             246001 ...
      *
+     * @response {"id":"asuo3ins0m33lks"}
+     *
      * @param  Request  $request
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Validation\ValidationException
@@ -141,6 +143,7 @@ class DocumentController extends Controller
      * @queryParam id integer required
      * The id of the document.
      *
+     *
      * @param  Document  $document
      * @return \Illuminate\Http\JsonResponse
      */
@@ -174,6 +177,8 @@ class DocumentController extends Controller
      * Date of the delivery. Example: 2019-09-26 09:38:52
      *
      * @authenticated
+     *
+     *
      * @param  Request  $request
      * @param  Document  $document
      * @return \Illuminate\Http\JsonResponse

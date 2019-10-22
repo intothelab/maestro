@@ -210,7 +210,7 @@ class TransporterController extends Controller
      *
      * @responseFactory App\Transporter
      * @authenticated
-     * 
+     *
      * @param  Transporter  $transporter
      * @return \Illuminate\Http\JsonResponse
      * @throws \Exception

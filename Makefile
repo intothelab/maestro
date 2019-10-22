@@ -32,6 +32,9 @@ test:
 logs:
 	docker-compose logs -f
 
+docs:
+	docker-compose run --rm web php artisan idoc:generate
+
 refresh:
 	docker-compose run web php artisan migrate:refresh --force --seed -v
 
