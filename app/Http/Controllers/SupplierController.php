@@ -27,7 +27,8 @@ class SupplierController extends Controller
      */
     public function index()
     {
-        return response()->json(Transporter::all());
+        $suppliers = Supplier::all();
+        return response()->json($suppliers);
     }
 
     /**
