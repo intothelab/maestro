@@ -205,7 +205,12 @@ class TransporterController extends Controller
     /**
      * Deletes a Transporter
      *
+     * @queryParam id integer required
+     * The id of the transporter.
+     *
+     * @responseFactory App\Transporter
      * @authenticated
+     * 
      * @param  Transporter  $transporter
      * @return \Illuminate\Http\JsonResponse
      * @throws \Exception
