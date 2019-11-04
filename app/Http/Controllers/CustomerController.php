@@ -65,11 +65,11 @@ class CustomerController extends Controller
     public function store(Request $request, Customer $customer)
     {
         $this->validate($request, [
-            'code' => 'required|unique:customers',
+            'code' => 'required|unique:customers,code',
             'name' => 'required',
             'email' => 'required|email',
             'phone' => 'required',
-            'cnpj' => 'required|unique:customers|cnpj',
+            'cnpj' => 'required|unique:customers,cnpj|cnpj',
             'address' => 'required',
             'number' => 'required',
             'postal_code' => 'required',

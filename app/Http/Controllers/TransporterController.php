@@ -97,9 +97,9 @@ class TransporterController extends Controller
             $geocoded->getCoordinates()->getLongitude()
         );
 
-        $transporter->number = $geocoded->getStreetNumber();
+        $transporter->number = $request->number;
         $transporter->address = $geocoded->getStreetName();
-        $transporter->postal_code = $geocoded->getPostalCode();
+        $transporter->postal_code = $request->postal_code;
         $transporter->city = $geocoded->getLocality();
         $transporter->state = $geocoded->getAdditionalData()['StateName'];
         $transporter->save();

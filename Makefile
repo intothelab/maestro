@@ -1,50 +1,35 @@
 up:
-	docker-compose up
+	docker-compose up -d
 
 down:
-	docker-compose stop
+	docker-compose down
+
+setup:
+	docker-compose exec web composer install
+	docker-compose exec web cp .env.example .env
+	docker-compose exec web php artisan key:generate
 
 migrate:
 	docker-compose exec web php artisan migrate
 
-clean:
-	$(MAKE) down
-	docker-compose rm -fv
+test:
+	docker-compose exec web ./vendor/bin/codecept run
 
-pull:
-	docker-compose pull
+lint:
+	docker-compose exec web ./vendor/bin/php-cs-fixer fix
+
+build:
+	docker-compose exec web ./vendor/bin/codecept build
 
 cache:
 	docker-compose run --rm web php artisan cache:clear
 
-passport:
-	docker-compose run --rm web php artisan passport:install
-
-unit:
-	docker-compose run --rm --entrypoint=vendor/bin/phpunit artisan --testsuite=unit
-
-integration:
-	docker-compose run --rm --entrypoint=vendor/bin/phpunit artisan --testsuite=integration
-
-test:
-	docker-compose run --rm web ./vendor/bin/codecept run
-
-logs:
-	docker-compose logs -f
-
-docs:
-	docker-compose run --rm web php artisan idoc:generate
-
-refresh:
-	docker-compose run web php artisan migrate:refresh --force --seed -v
-
 reset:
 	docker-compose run --rm web php artisan cache:clear
 	docker-compose run --rm web php artisan migrate:fresh --force --seed -v
-	docker-compose run --rm web php artisan passport:install --force
 
 composer:
-	docker-compose run web composer $(filter-out $@,$(MAKECMDGOALS))
+	docker-compose exec web composer $(filter-out $@,$(MAKECMDGOALS))
 
 bash:
 	docker-compose exec web bash

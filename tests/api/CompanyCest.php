@@ -1,6 +1,6 @@
 <?php
 
-class SupplierCest
+class CompanyCest
 {
     public function _before(ApiTester $I)
     {
@@ -9,13 +9,13 @@ class SupplierCest
     }
 
 
-    public function testCantCreateSupplierWithInvalidData(ApiTester $I)
+    public function testCantCreateCompanyWithInvalidData(ApiTester $I)
     {
-        $I->sendPOST('/suppliers', []);
+        $I->sendPOST('/companies', []);
         $I->seeResponseCodeIs(422);
     }
 
-    public function testCantCreateSupplierWithSameCNPJ(ApiTester $I)
+    public function testCantCreateCompanyWithSameCNPJ(ApiTester $I)
     {
         $data = [
             "name" =>  "Soprano",
@@ -27,13 +27,13 @@ class SupplierCest
             "postal_code" =>  "91150170",
         ];
 
-        factory(\App\Supplier::class)->create($data);
+        factory(\App\Company::class)->create($data);
 
-        $I->sendPOST('/suppliers', $data);
+        $I->sendPOST('/companies', $data);
         $I->seeResponseCodeIs(422);
     }
 
-    public function testCanCreateSupplier(ApiTester $I)
+    public function testCanCreateCompany(ApiTester $I)
     {
         $data = [
             "name" =>  "Soprano",
@@ -45,32 +45,32 @@ class SupplierCest
             "postal_code" =>  "91150170",
         ];
 
-        $I->sendPOST('/suppliers', $data);
+        $I->sendPOST('/companies', $data);
 
         $I->seeResponseCodeIs(201);
         $I->seeResponseContainsJson($data);
-        //$I->seeInDatabase('suppliers', $data);
+        //$I->seeInDatabase('companies', $data);
 
     }
 
-    public function testCanListSuppliers(ApiTester $I)
+    public function testCanListCompanies(ApiTester $I)
     {
-        $supplier = factory(\App\Supplier::class)->create();
+        $company = factory(\App\Company::class)->create();
 
-        $I->sendGET('/suppliers');
+        $I->sendGET('/companies');
 
         $I->seeResponseCodeIs(200);
         $I->canSeeResponseIsJson();
-        $I->seeResponseContainsJson(json_decode(json_encode($supplier->toArray()), true));
+        $I->seeResponseContainsJson(json_decode(json_encode($company->toArray()), true));
     }
 
-    public function testCanSeeSupplierById(ApiTester $I)
+    public function testCanSeeCompany(ApiTester $I)
     {
-        $supplier = factory(\App\Supplier::class)->create();
+        $company = factory(\App\Company::class)->create();
 
-        $I->sendGET('/suppliers/'.$supplier->id);
+        $I->sendGET('/companies/'.$company->id);
         $I->seeResponseCodeIs(200);
         $I->seeResponseIsJson();
-        $I->seeResponseContainsJson(json_decode(json_encode($supplier->toArray()), true));
+        $I->seeResponseContainsJson(json_decode(json_encode($company->toArray()), true));
     }
 }

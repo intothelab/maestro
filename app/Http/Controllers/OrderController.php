@@ -55,11 +55,9 @@ class OrderController extends Controller
     public function store(Request $request, Order $order){
 
         $this->validate($request, [
-            'company_cnpj' => 'required|exists:companies,cnpj|cnpj',
-            'customer_cnpj' => 'required|exists:customer_cnpj|cnpj',
-            'code' => 'unique:orders',
-            'value' => 'double',
-            'weight' => 'number'
+            'company_cnpj' => 'required|exists:companies,cnpj',
+            'customer_cnpj' => 'required|exists:customers,cnpj',
+            'code' => 'unique:orders'
         ]);
 
         $order->company_cnpj = $request->company_cnpj;
@@ -114,8 +112,13 @@ class OrderController extends Controller
      * @param  Order  $order
      * @return \Illuminate\Http\JsonResponse
      */
-    public function update(Request $request, Order $order)
+    public function update(Request $request, $ref)
     {
+
+        $order = Order::where('code', $ref)
+            ->orWhere('id', $ref)
+            ->firstOrFail();
+
         $order->update($request->all());
         return response()->json($order);
     }
@@ -127,12 +130,16 @@ class OrderController extends Controller
      *
      * @authenticated
      * @responseFactory App\Order
-     * @param  Order  $order
+     * @param  mixed $ref Order ID or External Code
      * @return \Illuminate\Http\JsonResponse
      * @throws \Exception
      */
-    public function destroy(Order $order)
+    public function destroy($ref)
     {
+        $order = Order::where('code', $ref)
+            ->orWhere('id', $ref)
+            ->firstOrFail();
+
         $order->delete();
 
         return response()->json($order);

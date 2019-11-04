@@ -100,9 +100,9 @@ class CompanyController extends Controller
             $geocoded->getCoordinates()->getLongitude()
         );
 
-        $company->number = $geocoded->getStreetNumber();
-        $company->address = $geocoded->getStreetName();
-        $company->postal_code = $geocoded->getPostalCode();
+        $company->number = $request->number;
+        $company->address = $request->address;
+        $company->postal_code = $request->postal_code;
         $company->city = $geocoded->getLocality();
         $company->state = $geocoded->getAdditionalData()['StateName'];
         $company->save();
@@ -119,7 +119,7 @@ class CompanyController extends Controller
      * @authenticated
      * @responseFactory App\Company
      *
-     * @param  Company  $company
+     * @param Company $company
      * @return \Illuminate\Http\JsonResponse
      */
     public function show(Company $company)
@@ -155,7 +155,7 @@ class CompanyController extends Controller
      * @responseFactory App\Company
      *
      * @param  Request  $request
-     * @param  Company  $company
+     * @param  mixed  $companyIdOrCNPJ
      *
      * @authenticated
      * @return \Illuminate\Http\JsonResponse
