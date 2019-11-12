@@ -115,7 +115,7 @@ class CustomerController extends Controller
     /**
      * Shows a Customer
      *
-     * @queryParam id integer required The id of the customer.
+     * @queryParam ref mixed required The id or code of the customer.
      *
      * @responseFactory App\Customer
      *
@@ -123,8 +123,12 @@ class CustomerController extends Controller
      * @param  Customer  $customer
      * @return \Illuminate\Http\JsonResponse
      */
-    public function show(Customer $customer)
+    public function show($ref)
     {
+        $customer = Customer::where('code', $ref)
+            ->orWhere('id', $ref)
+            ->first();
+
         return response()->json($customer);
     }
 
@@ -164,7 +168,6 @@ class CustomerController extends Controller
      */
     public function update(Request $request, $ref)
     {
-
         $customer = Customer::where('code', $ref)
             ->orWhere('id', $ref)
             ->first();

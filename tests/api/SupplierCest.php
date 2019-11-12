@@ -33,6 +33,20 @@ class SupplierCest
         $I->seeResponseCodeIs(422);
     }
 
+    public function testCantCreateSupplierWithSameCode(ApiTester $I)
+    {
+        factory(\App\Supplier::class)->create([
+            'code' => 'guaja.cc'
+        ]);
+
+        $data = factory(\App\Supplier::class)->make([
+            'code' => 'guaja.cc'
+        ]);
+
+        $I->sendPOST('/suppliers', $data);
+        $I->seeResponseCodeIs(422);
+    }
+
     public function testCanCreateSupplier(ApiTester $I)
     {
         $data = [
@@ -69,6 +83,16 @@ class SupplierCest
         $supplier = factory(\App\Supplier::class)->create();
 
         $I->sendGET('/suppliers/'.$supplier->id);
+        $I->seeResponseCodeIs(200);
+        $I->seeResponseIsJson();
+        $I->seeResponseContainsJson(json_decode(json_encode($supplier->toArray()), true));
+    }
+
+    public function testCanSeeSupplierByCode(ApiTester $I)
+    {
+        $supplier = factory(\App\Supplier::class)->create();
+
+        $I->sendGET('/suppliers/'.$supplier->code);
         $I->seeResponseCodeIs(200);
         $I->seeResponseIsJson();
         $I->seeResponseContainsJson(json_decode(json_encode($supplier->toArray()), true));

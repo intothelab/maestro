@@ -33,6 +33,20 @@ class CompanyCest
         $I->seeResponseCodeIs(422);
     }
 
+    public function testCantCreateCompanyWithSameCode(ApiTester $I)
+    {
+        factory(\App\Company::class)->create([
+            'code' => 'guaja.cc'
+        ]);
+
+        $data = factory(\App\Company::class)->make([
+            'code' => 'guaja.cc'
+        ]);
+
+        $I->sendPOST('/companies', $data);
+        $I->seeResponseCodeIs(422);
+    }
+
     public function testCanCreateCompany(ApiTester $I)
     {
         $data = [
@@ -64,11 +78,21 @@ class CompanyCest
         $I->seeResponseContainsJson(json_decode(json_encode($company->toArray()), true));
     }
 
-    public function testCanSeeCompany(ApiTester $I)
+    public function testCanSeeCompanyById(ApiTester $I)
     {
         $company = factory(\App\Company::class)->create();
 
         $I->sendGET('/companies/'.$company->id);
+        $I->seeResponseCodeIs(200);
+        $I->seeResponseIsJson();
+        $I->seeResponseContainsJson(json_decode(json_encode($company->toArray()), true));
+    }
+
+    public function testCanSeeCompanyByCode(ApiTester $I)
+    {
+        $company = factory(\App\Company::class)->create();
+
+        $I->sendGET('/companies/'.$company->code);
         $I->seeResponseCodeIs(200);
         $I->seeResponseIsJson();
         $I->seeResponseContainsJson(json_decode(json_encode($company->toArray()), true));

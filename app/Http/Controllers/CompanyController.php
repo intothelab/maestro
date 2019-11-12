@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Company;
+use App\Customer;
 use Geocoder\Laravel\Facades\Geocoder;
 use Geocoder\Provider\Here\Model\HereAddress;
 use Grimzy\LaravelMysqlSpatial\Types\Point;
@@ -15,7 +16,6 @@ use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
  */
 class CompanyController extends Controller
 {
-
     /**
      * List all Companies
      *
@@ -70,6 +70,7 @@ class CompanyController extends Controller
             'address' => 'required',
             'number' => 'required',
             'postal_code' => 'required',
+            'company' => 'unique:company'
         ]);
 
         $company->name = $request->name;
@@ -113,8 +114,8 @@ class CompanyController extends Controller
     /**
      * Shows a specified Company
      *
-     * @queryParam id integer required
-     * The id of the company. Example: 1
+     * @queryParam id mixed required
+     * The id or code of the company. Example: 1
      *
      * @authenticated
      * @responseFactory App\Company
@@ -122,16 +123,20 @@ class CompanyController extends Controller
      * @param Company $company
      * @return \Illuminate\Http\JsonResponse
      */
-    public function show(Company $company)
+    public function show($ref)
     {
+        $company = Company::where('code', $ref)
+            ->orWhere('id', $ref)
+            ->first();
+
         return response()->json($company);
     }
 
     /**
      * Updates a Company
      *
-     * @queryParam id integer required
-     * The id of the company. Example: 1
+     * @queryParam id mixed required
+     * The id or code of the company. Example: 1
      *
      * @bodyParam name string required
      * Name of the Factory/Company (origin of the shipments). Example: Soprano
@@ -161,8 +166,12 @@ class CompanyController extends Controller
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function update(Request $request, Company $company)
+    public function update(Request $request, $ref)
     {
+        $company = Company::where('code', $ref)
+            ->orWhere('id', $ref)
+            ->first();
+
         $this->validate($request, [
             'name' => 'required',
             'email' => 'required|email',
@@ -170,6 +179,7 @@ class CompanyController extends Controller
             'address' => 'required',
             'number' => 'required',
             'postal_code' => 'required',
+            'code' => 'unique:companies'
         ]);
 
         $company->update([
@@ -188,8 +198,8 @@ class CompanyController extends Controller
     /**
      * Deletes a Company
      *
-     * @queryParam id integer required
-     * The id of the company.
+     * @queryParam id mixed required
+     * The id or code of the company. Example: 1
      *
      * @responseFactory App\Company
      * @authenticated
@@ -197,8 +207,12 @@ class CompanyController extends Controller
      * @return \Illuminate\Http\JsonResponse
      * @throws \Exception
      */
-    public function destroy(Company $company)
+    public function destroy($ref)
     {
+        $company = Company::where('code', $ref)
+            ->orWhere('id', $ref)
+            ->first();
+
         $company->delete();
         return response()->json($company);
     }

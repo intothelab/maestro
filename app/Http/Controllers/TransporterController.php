@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Supplier;
 use App\Transporter;
 use Geocoder\Laravel\Facades\Geocoder;
 use Geocoder\Provider\Here\Model\HereAddress;
@@ -68,6 +69,7 @@ class TransporterController extends Controller
             'address' => 'required',
             'number' => 'required',
             'postal_code' => 'required',
+            'code' => 'unique:transporters,code'
         ]);
 
         $transporter->name = $request->name;
@@ -110,8 +112,8 @@ class TransporterController extends Controller
     /**
      * Shows a Transporter
      *
-     * @queryParam id integer required
-     * The id of the transporter.
+     * @queryParam ref mixed required
+     * The id or code of the transporter.
      *
      * @bodyParam name string required
      * Name of the Factory/Company (origin of the shipments). Example: Soprano
@@ -139,16 +141,21 @@ class TransporterController extends Controller
      * @param  Transporter  $transporter
      * @return \Illuminate\Http\JsonResponse
      */
-    public function show(Transporter $transporter)
+    public function show($ref)
     {
+
+        $transporter = Transporter::where('code', $ref)
+            ->orWhere('id', $ref)
+            ->first();
+
         return response()->json($transporter);
     }
 
     /**
      * Updates a Transporter
      *
-     * @queryParam id integer required
-     * The id of the transporter.
+     * @queryParam ref mixed required
+     * The id or code of the transporter.
      *
      * @bodyParam name string required
      * Name of the Factory/Company (origin of the shipments). Example: Soprano
@@ -178,15 +185,20 @@ class TransporterController extends Controller
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function update(Request $request, Transporter $transporter)
+    public function update(Request $request, $ref)
     {
+
+        $transporter = Transporter::where('code', $ref)
+            ->orWhere('id', $ref)
+            ->first();
+
         $this->validate($request, [
             'name' => 'required',
             'email' => 'required|email',
             'phone' => 'required',
             'address' => 'required',
             'number' => 'required',
-            'postal_code' => 'required',
+            'postal_code' => 'required'
         ]);
 
         $transporter->update([
@@ -205,8 +217,8 @@ class TransporterController extends Controller
     /**
      * Deletes a Transporter
      *
-     * @queryParam id integer required
-     * The id of the transporter.
+     * @queryParam ref mixed required
+     * The id or code of the transporter.
      *
      * @responseFactory App\Transporter
      * @authenticated
@@ -215,8 +227,13 @@ class TransporterController extends Controller
      * @return \Illuminate\Http\JsonResponse
      * @throws \Exception
      */
-    public function destroy(Transporter $transporter)
+    public function destroy($ref)
     {
+
+        $transporter = Transporter::where('code', $ref)
+            ->orWhere('id', $ref)
+            ->first();
+
         $transporter->delete();
         return response()->json($transporter);
     }

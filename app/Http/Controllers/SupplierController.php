@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Supplier;
-use App\Transporter;
 use Geocoder\Laravel\Facades\Geocoder;
 use Geocoder\Provider\Here\Model\HereAddress;
 use Grimzy\LaravelMysqlSpatial\Types\Point;
@@ -74,6 +73,7 @@ class SupplierController extends Controller
             'address' => 'required',
             'number' => 'required',
             'postal_code' => 'required',
+            'code' => 'unique:suppliers'
         ]);
 
         $supplier->name = $request->name;
@@ -119,7 +119,7 @@ class SupplierController extends Controller
     /**
      * Show one Supplier
      *
-     * @queryParam id integer required
+     * @queryParam ref mixed required Id or Code
      * The id of the supplier.
      *
      * @authenticated
@@ -128,16 +128,21 @@ class SupplierController extends Controller
      * @param  Supplier  $supplier
      * @return \Illuminate\Http\JsonResponse
      */
-    public function show(Supplier $supplier)
+    public function show($ref)
     {
+
+        $supplier = Supplier::where('code', $ref)
+            ->orWhere('id', $ref)
+            ->first();
+
         return response()->json($supplier);
     }
 
     /**
      * Updates a Supplier
      *
-     * @queryParam id integer required
-     * The id of the supplier.
+     * @queryParam ref mixed required
+     * Id or Code of the supplier.
      *
      * @bodyParam name string required
      * Name of the Factory/Company (origin of the shipments). Example: Soprano
@@ -165,15 +170,20 @@ class SupplierController extends Controller
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function update(Request $request, Supplier $supplier)
+    public function update(Request $request, $ref)
     {
+
+        $supplier = Supplier::where('code', $ref)
+            ->orWhere('id', $ref)
+            ->first();
+
         $this->validate($request, [
             'name' => 'required',
             'email' => 'required|email',
             'phone' => 'required',
             'address' => 'required',
             'number' => 'required',
-            'postal_code' => 'required',
+            'postal_code' => 'required'
         ]);
 
         $supplier->update([
@@ -192,8 +202,8 @@ class SupplierController extends Controller
     /**
      * Deletes a Suplier
      *
-     * @queryParam id integer required
-     * The id of the supplier.
+     * @queryParam ref mixed required
+     * Id or Code of the supplier.
      *
      * @authenticated
      * @responseFactory App\Supplier
@@ -202,8 +212,12 @@ class SupplierController extends Controller
      * @return \Illuminate\Http\JsonResponse
      * @throws \Exception
      */
-    public function destroy(Supplier $supplier)
+    public function destroy($ref)
     {
+        $supplier = Supplier::where('code', $ref)
+            ->orWhere('id', $ref)
+            ->first();
+
         $supplier->delete();
         return response()->json($supplier);
     }

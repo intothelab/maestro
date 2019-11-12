@@ -25,6 +25,7 @@ class TransporterCest
             "address" =>  "Avenida Plínio Kroeff",
             "number" =>  "1715, Loja B",
             "postal_code" =>  "91150170",
+            "code" => 'ameixa'
         ];
 
         factory(\App\Transporter::class)->create($data);
@@ -43,6 +44,7 @@ class TransporterCest
             "address" =>  "Avenida Plínio Kroeff",
             "number" =>  "1715, Loja B",
             "postal_code" =>  "91150170",
+            "code" => 'batatinha'
         ];
 
         $I->sendPOST('/transporters', $data);
@@ -64,11 +66,22 @@ class TransporterCest
         $I->seeResponseContainsJson(json_decode(json_encode($transporter->toArray()), true));
     }
 
-    public function testCanSeeTransporter(ApiTester $I)
+    public function testCanSeeTransporterById(ApiTester $I)
     {
         $transporter = factory(\App\Transporter::class)->create();
 
         $I->sendGET('/transporters/'.$transporter->id);
+        $I->seeResponseCodeIs(200);
+        $I->seeResponseIsJson();
+        $I->seeResponseContainsJson(json_decode(json_encode($transporter->toArray()), true));
+    }
+
+
+    public function testCanSeeTransporterByCode(ApiTester $I)
+    {
+        $transporter = factory(\App\Transporter::class)->create();
+
+        $I->sendGET('/transporters/'.$transporter->code);
         $I->seeResponseCodeIs(200);
         $I->seeResponseIsJson();
         $I->seeResponseContainsJson(json_decode(json_encode($transporter->toArray()), true));
