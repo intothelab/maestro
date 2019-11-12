@@ -133,7 +133,7 @@ class SupplierController extends Controller
 
         $supplier = Supplier::where('code', $ref)
             ->orWhere('id', $ref)
-            ->first();
+            ->firstOrFail();
 
         return response()->json($supplier);
     }
@@ -175,7 +175,7 @@ class SupplierController extends Controller
 
         $supplier = Supplier::where('code', $ref)
             ->orWhere('id', $ref)
-            ->first();
+            ->firstOrFail();
 
         $this->validate($request, [
             'name' => 'required',
@@ -216,7 +216,7 @@ class SupplierController extends Controller
     {
         $supplier = Supplier::where('code', $ref)
             ->orWhere('id', $ref)
-            ->first();
+            ->firstOrFail();
 
         $supplier->delete();
         return response()->json($supplier);

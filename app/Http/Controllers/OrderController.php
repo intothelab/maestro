@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Company;
 use App\Order;
 use Illuminate\Http\Request;
 
@@ -73,8 +74,8 @@ class OrderController extends Controller
     /**
      * Shows an Order
      *
-     * @queryParam id integer required
-     * The id of the order.
+     * @queryParam ref mixed required
+     * The id or code of the order.
      *
      * @authenticated
      * @responseFactory App\Order
@@ -82,8 +83,12 @@ class OrderController extends Controller
      * @param  Order  $order
      * @return \Illuminate\Http\JsonResponse
      */
-    public function show(Order $order)
+    public function show($ref)
     {
+        $order = Order::where('code', $ref)
+            ->orWhere('id', $ref)
+            ->firstOrFail();
+
         return response()->json($order);
     }
 

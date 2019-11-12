@@ -87,6 +87,16 @@ class OrderCest
         $I->seeResponseContainsJson(json_decode(json_encode($order->toArray()), true));
     }
 
+    public function testCanSeeOrderByCode(ApiTester $I)
+    {
+        $order = factory(\App\Order::class)->create();
+
+        $I->sendGET('/orders/'.$order->code);
+        $I->seeResponseCodeIs(200);
+        $I->seeResponseIsJson();
+        $I->seeResponseContainsJson(json_decode(json_encode($order->toArray()), true));
+    }
+
     public function tryToLoadUnexistentOrder(ApiTester $I)
     {
         $I->sendGET('/orders/12312');

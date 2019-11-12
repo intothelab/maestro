@@ -127,7 +127,7 @@ class CompanyController extends Controller
     {
         $company = Company::where('code', $ref)
             ->orWhere('id', $ref)
-            ->first();
+            ->firstOrFail();
 
         return response()->json($company);
     }
@@ -170,7 +170,7 @@ class CompanyController extends Controller
     {
         $company = Company::where('code', $ref)
             ->orWhere('id', $ref)
-            ->first();
+            ->firstOrFail();
 
         $this->validate($request, [
             'name' => 'required',
@@ -211,7 +211,7 @@ class CompanyController extends Controller
     {
         $company = Company::where('code', $ref)
             ->orWhere('id', $ref)
-            ->first();
+            ->firstOrFail();
 
         $company->delete();
         return response()->json($company);
