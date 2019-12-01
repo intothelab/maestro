@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Events\CustomerCreated;
 use App\Traits\CompanyScoped;
 use Grimzy\LaravelMysqlSpatial\Eloquent\SpatialTrait;
 use Illuminate\Database\Eloquent\Model;
@@ -10,6 +11,10 @@ class Customer extends Model
 {
 
     use SpatialTrait;
+
+    protected $dispatchesEvents = [
+        'created' => CustomerCreated::class
+    ];
 
     protected $table = 'customers';
 
@@ -26,7 +31,8 @@ class Customer extends Model
         'location',
         'extra_tax',
         'receiving_days',
-        'receiving_hours'
+        'receiving_hours',
+        'adr_id'
     ];
 
     protected $spatialFields = [

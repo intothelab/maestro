@@ -2,16 +2,22 @@
 
 namespace App;
 
+use App\Events\OrderCreated;
 use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
 
+    protected $dispatchesEvents = [
+        'created' => OrderCreated::class
+    ];
+
     protected $fillable = [
         'company_cnpj',
         'customer_cnpj',
         'value',
-        'weight'
+        'weight',
+        'adr_id'
     ];
 
     public function customer() {
