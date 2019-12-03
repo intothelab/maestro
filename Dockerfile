@@ -73,7 +73,6 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 # Install composer dependencies
 COPY composer.json ./
 COPY composer.lock ./
-COPY .composer ./
 
 RUN composer install \
     --no-dev \
