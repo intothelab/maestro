@@ -16,9 +16,9 @@ services:
     depends_on:
       - mysql
       - mongo
-#      - redis
+      - redis
   mysql:
-    image: mysql:5.7
+    image: mysql:8
     container_name: maestro-mysql
     volumes:
       - maestro-mysql-data:/var/lib/mysql
@@ -29,12 +29,12 @@ services:
       - MYSQL_DATABASE=maestro
       - MYSQL_USER=maestro
       - MYSQL_PASSWORD=maestro
-#  redis:
-#    container_name: maestro-redis
-#    image: 'redis:4-alpine'
-#    command: redis-server --requirepass maestro
-#    ports:
-#      - "6379:6379"
+  redis:
+    container_name: maestro-redis
+    image: 'redis:4-alpine'
+    command: redis-server --requirepass maestro
+    ports:
+      - "6379:6379"
   mongo:
     container_name: maestro-mongo
     image: mongo
