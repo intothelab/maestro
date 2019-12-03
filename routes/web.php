@@ -11,8 +11,3 @@
 |
 */
 
-Route::get('/', function(){
-    return "silence is golden.";
-});
-
-
