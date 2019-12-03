@@ -104,9 +104,6 @@ RUN chmod -R 777 /var/www/storage
 RUN chmod -R 777 /var/www/bootstrap/cache
 RUN chmod +x /var/www/docker/sh/start
 
-# Autoload
-RUN composer dump-autoload --optimize
-
 # Cron setup
 COPY ./docker/cron/schedule-cron /etc/cron.d/schedule-cron
 RUN chmod 0644 /etc/cron.d/schedule-cron
