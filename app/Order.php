@@ -20,10 +20,6 @@ class Order extends Model
         'adr_id'
     ];
 
-    protected $hidden = [
-        'adr_id'
-    ];
-
     public function customer() {
         return $this->belongsTo(Customer::class, 'cnpj', 'customer_cnpj');
     }

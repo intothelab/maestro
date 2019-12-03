@@ -2,6 +2,8 @@
 
 namespace App\Events;
 
+use App\Company;
+use App\Customer;
 use App\Order;
 use Carbon\Carbon;
 use GuzzleHttp\Client;
@@ -26,6 +28,8 @@ class OrderCreated
      */
     public function __construct(Order $order)
     {
+        $order->load('customer');
+
         /** @var Client $client */
         $client = resolve('AdrClient');
 
@@ -37,24 +41,27 @@ class OrderCreated
         ]);
 
         if($adrCompanyQuery->getStatusCode() === 404){
+            $company = Company::where('cnpj', $order->company_cnpj)->first();
+
             $adrCompanyQuery = $client->post('/enterprise/create', [
                 'form_params' => [
-                    'Enterprise[enterprise_name]' => $order->company->name,
-                    'Enterprise[enterprise_cnpj]' => $order->company->cnpj,
-                    'Enterprise[enterprise_address]' => $order->company->address,
+                    'Enterprise[enterprise_name]' => $company->name,
+                    'Enterprise[enterprise_cnpj]' => $company->cnpj,
+                    'Enterprise[enterprise_address]' => $company->address,
+                    'Enterprise[enterprise_code]' => $company->id,
                 ]
             ]);
         }
 
-        $adrCompanyID = json_decode($adrCompanyQuery->getBody()->getContents())->enterprise_id;
-        $adrCustomerID = $order->customer->adr_id;
+        $adrEnterpriseID = json_decode($adrCompanyQuery->getBody()->getContents())->enterprise_id;
+        $adrCustomerID = Customer::where('cnpj', $order->customer_cnpj)->firstOrFail()->adr_id;
 
         try {
             $adrRemittance = $client->post('/remittance/create', [
                 'form_params' => [
                     'Remittance[customer_id]' => $adrCustomerID,
-                    'Remittance[company_id]' => $adrCompanyID,
-                    'Remittance[remittance_code]' => $order->code,
+                    'Remittance[enterprise_id]' => $adrEnterpriseID,
+                    'Remittance[remittance_code]' => $order->code ?? $order->id,
                     'Remittance[remittance_date]' => Carbon::parse($order->created_at)->format('Y-m-d'),
                     'Remittance[remittance_standalone]' => 0,
                     'Remittance[remittance_status]' => 'open',
@@ -66,13 +73,19 @@ class OrderCreated
                     ])
                 ]
             ]);
+
+
+
         } catch (RequestException $exception){
             Log::error('Failed to save order into ADR.', [
                 'id' => $order->id
             ]);
+
+            throw $exception;
         }
 
         $order->adr_id = json_decode($adrRemittance->getBody()->getContents())->remittance_id;
+        $order->save();
     }
 
     /**
