@@ -31,13 +31,5 @@ Route::middleware(['client', 'api'])->group(function(){
 });
 
 
-Route::fallback(function () {
-    return response()->json([
-        'error' => '404 Not Found',
-        'message' => 'We apparently could not find what you are looking for.'
-    ], 404);
-});
-
-
 
 
