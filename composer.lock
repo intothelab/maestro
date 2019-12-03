@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0c622eb83be36f1103c17942d8561d9b",
+    "content-hash": "04b330322ed2c2ff8e33793647090214",
     "packages": [
         {
             "name": "anaseqal/nova-sidebar-icons",
@@ -1968,47 +1968,6 @@
             "time": "2015-09-27T15:35:21+00:00"
         },
         {
-            "name": "jobcerto/nova-grid",
-            "version": "1.0.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/jobcerto/nova-grid.git",
-                "reference": "e7928802cf2a5925d850519e82a721c8b057b008"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/jobcerto/nova-grid/zipball/e7928802cf2a5925d850519e82a721c8b057b008",
-                "reference": "e7928802cf2a5925d850519e82a721c8b057b008",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=7.1.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Jobcerto\\NovaGrid\\ToolServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Jobcerto\\NovaGrid\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "description": "Add coluns to create and Update resources",
-            "keywords": [
-                "laravel",
-                "nova"
-            ],
-            "time": "2019-07-29T16:16:03+00:00"
-        },
-        {
             "name": "laravel/framework",
             "version": "v6.0.4",
             "source": {
@@ -2933,6 +2892,50 @@
                 "time"
             ],
             "time": "2019-11-20T06:59:06+00:00"
+        },
+        {
+            "name": "nibri10/nova-grid",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nibri10/nova-grid.git",
+                "reference": "612594765be3742fd759b31aee66dcdd7a494132"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nibri10/nova-grid/zipball/612594765be3742fd759b31aee66dcdd7a494132",
+                "reference": "612594765be3742fd759b31aee66dcdd7a494132",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "require-dev": {
+                "nibri10/nova-grid": "dev-master"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Nibri10\\NovaGrid\\ToolServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Nibri10\\NovaGrid\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Add coluns to create and Update resources",
+            "keywords": [
+                "laravel",
+                "nova"
+            ],
+            "time": "2019-11-04T16:36:54+00:00"
         },
         {
             "name": "nikic/php-parser",
@@ -6613,16 +6616,16 @@
     "packages-dev": [
         {
             "name": "barryvdh/laravel-ide-helper",
-            "version": "v2.6.5",
+            "version": "v2.6.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/barryvdh/laravel-ide-helper.git",
-                "reference": "8740a9a158d3dd5cfc706a9d4cc1bf7a518f99f3"
+                "reference": "b91b959364d97af658f268c733c75dccdbff197e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/barryvdh/laravel-ide-helper/zipball/8740a9a158d3dd5cfc706a9d4cc1bf7a518f99f3",
-                "reference": "8740a9a158d3dd5cfc706a9d4cc1bf7a518f99f3",
+                "url": "https://api.github.com/repos/barryvdh/laravel-ide-helper/zipball/b91b959364d97af658f268c733c75dccdbff197e",
+                "reference": "b91b959364d97af658f268c733c75dccdbff197e",
                 "shasum": ""
             },
             "require": {
@@ -6680,7 +6683,7 @@
                 "phpstorm",
                 "sublime"
             ],
-            "time": "2019-09-08T09:56:38+00:00"
+            "time": "2019-10-30T20:53:27+00:00"
         },
         {
             "name": "barryvdh/reflection-docblock",
