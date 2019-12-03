@@ -64,6 +64,9 @@ RUN docker-php-ext-install \
     sockets \
     zip
 
+RUN pecl install mongodb \
+    && docker-php-ext-enable mongodb
+
 RUN pecl install redis \
     && docker-php-ext-enable redis
 
