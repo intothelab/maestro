@@ -46,7 +46,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 COPY composer.json ./
 COPY composer.lock ./
 
-RUN composer install --no-interaction --no-scripts --no-autoloader
+RUN composer install --no-interaction --no-scripts
 
 # Copy app source code
 COPY . .
@@ -65,9 +65,6 @@ RUN useradd -u 1000 -ms /bin/bash -g www www
 # Update permissions
 RUN chmod 777 ./start
 RUN chmod -R 777 ./storage
-
-# Autoload
-RUN composer dump-autoload --optimize
 
 # Cron setup
 COPY ./deploy/cron /etc/cron.d/schedule-cron
