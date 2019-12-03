@@ -35,6 +35,10 @@ class Customer extends Model
         'adr_id'
     ];
 
+    protected $hidden = [
+        'adr_id'
+    ];
+
     protected $spatialFields = [
         'location',
     ];

@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use GuzzleHttp\Client;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -23,6 +24,15 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        $this->app->singleton('AdrClient', function(){
+            return new Client([
+                'base_uri' => config('services.adr.url'),
+                'timeout'  => 120,
+                'auth' => [
+                    config('services.adr.username'),
+                    config('services.adr.password')
+                ]
+            ]);
+        });
     }
 }

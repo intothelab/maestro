@@ -69,7 +69,7 @@ class CustomerController extends Controller
             'name' => 'required',
             'email' => 'required|email',
             'phone' => 'required',
-            'cnpj' => 'required|unique:customers,cnpj|cnpj',
+            'cnpj' => 'required|unique:customers,cnpj|cnpj|digits:14',
             'address' => 'required',
             'number' => 'required',
             'postal_code' => 'required',

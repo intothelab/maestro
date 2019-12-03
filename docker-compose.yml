@@ -12,11 +12,11 @@ services:
     volumes:
       - .:/var/www/app
     ports:
-      - "8000:8080"
+      - "8080:8080"
     depends_on:
       - mysql
       - mongo
-      - redis
+#      - redis
   mysql:
     image: mysql:5.7
     container_name: maestro-mysql
@@ -29,12 +29,12 @@ services:
       - MYSQL_DATABASE=maestro
       - MYSQL_USER=maestro
       - MYSQL_PASSWORD=maestro
-  redis:
-    container_name: maestro-redis
-    image: 'redis:4-alpine'
-    command: redis-server --requirepass maestro
-    ports:
-      - "6379:6379"
+#  redis:
+#    container_name: maestro-redis
+#    image: 'redis:4-alpine'
+#    command: redis-server --requirepass maestro
+#    ports:
+#      - "6379:6379"
   mongo:
     container_name: maestro-mongo
     image: mongo
@@ -54,7 +54,7 @@ services:
     depends_on:
       - mysql
     ports:
-      - 8080:80
+      - 8081:80
     environment:
       - PMA_HOST=mysql
       - MYSQL_ROOT_PASSWORD=maestro

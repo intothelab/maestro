@@ -44,4 +44,10 @@ return [
         ],
     ],
 
+    'adr' => [
+        'url' => env('ADR_URL', 'http://localhost:8000/'),
+        'username' => env('ADR_USERNAME', 'maestro'),
+        'password' => env('ADR_PASSWORD', '1234')
+    ]
+
 ];

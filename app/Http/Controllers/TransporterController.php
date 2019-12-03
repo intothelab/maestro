@@ -65,7 +65,7 @@ class TransporterController extends Controller
             'name' => 'required',
             'email' => 'required|email',
             'phone' => 'required',
-            'cnpj' => 'required|unique:transporters|cnpj',
+            'cnpj' => 'required|unique:transporters|cnpj|digits:14',
             'address' => 'required',
             'number' => 'required',
             'postal_code' => 'required',
