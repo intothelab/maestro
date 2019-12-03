@@ -1,0 +1,6 @@
+#!/bin/bash
+
+php /var/www/artisan migrate
+php /var/www/artisan config:cache
+php /var/www/artisan route:cache
+php /var/www/artisan queue:work --tries=3 --delay=10 & php-fpm & cron & nginx -g "daemon off;"
