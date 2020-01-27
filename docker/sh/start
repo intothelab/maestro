@@ -1,5 +1,4 @@
 #!/bin/bash
-composer dump-autoload --optimize
 php /var/www/artisan migrate --force
 php /var/www/app/artisan optimize
 php /var/www/artisan queue:work --tries=3 --delay=10 & php-fpm & cron & nginx -g "daemon off;"
