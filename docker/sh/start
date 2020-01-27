@@ -2,4 +2,4 @@
 composer dump-autoload --optimize
 php /var/www/artisan migrate --force
 php /var/www/app/artisan optimize
-php-fpm & cron & nginx -g "daemon off;"
+php-fpm & nginx
