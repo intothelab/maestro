@@ -1,5 +1,9 @@
 FROM ambientum/php:7.3-nginx
 
+# Copy composer files
+COPY composer.json ./
+COPY composer.lock ./
+
 # Install composer dependencies
 RUN composer install \
     --no-dev \
