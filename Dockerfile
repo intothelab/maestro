@@ -28,9 +28,6 @@ RUN sudo chmod -R 777 /var/www/app/storage
 RUN sudo chmod -R 777 /var/www/app/bootstrap/cache
 RUN sudo chmod +x /var/www/app/docker/sh/start
 
-# Autoload
-RUN composer dump-autoload --optimize
-
 # Expose port
 EXPOSE 8080
 
