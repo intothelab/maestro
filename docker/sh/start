@@ -1,5 +1,7 @@
 #!/bin/bash
 composer dump-autoload --optimize
 php /var/www/artisan migrate --force
+php /var/www/app/artisan passport:keys --force
 php /var/www/app/artisan optimize
+
 php-fpm & nginx
