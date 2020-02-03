@@ -19,7 +19,7 @@ class CreateSuppliersTable extends Migration
             $table->string('code')->nullable();
             $table->string('cnpj', 30)->unique()->index();
             $table->string('email', 100);
-            $table->string('phone', 30);
+            $table->string('phone', 30)->nullable();
             $table->string('contact_name', 70)->nullable();
             $table->string('contact_phone', 30)->nullable();
             $table->text('description')->nullable();
