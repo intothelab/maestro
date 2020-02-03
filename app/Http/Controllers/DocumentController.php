@@ -198,7 +198,6 @@ class DocumentController extends Controller
     public function update(Request $request, Document $document)
     {
         $this->validate($request, [
-            'number' => 'required',
             'transporter_cnpj' => 'exists:transporters,cnpj|cnpj',
             'company_cnpj' => 'required|exists:companies,cnpj|cnpj',
             'collected_at' => 'date|before:delivered_at',
