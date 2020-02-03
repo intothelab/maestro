@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Document;
 use App\EDI;
 use App\Jobs\ParseEDI;
+use App\Order;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -56,7 +57,8 @@ class DocumentController extends Controller
     public function store(Request $request, Document $document)
     {
         $this->validate($request, [
-            'order_id' => 'required|exists:orders,id',
+            'order_id' => 'exists:orders,id',
+            'order_code' => 'exists:order,code',
             'number' => 'required|unique:documents,number',
             'transporter_cnpj' => 'exists:transporters,cnpj|cnpj',
             'company_cnpj' => 'required|exists:companies,cnpj|cnpj',
@@ -64,10 +66,19 @@ class DocumentController extends Controller
             'delivered_at' => 'date|after:collected_at'
         ]);
 
+        if($request->has('order_id')) {
+            $document->order_id = $request->order_id;
+        }
+
+        if($request->has('order_code')) {
+            $order = Order::where('code', $request->input('code'))->firstOrFail();
+            $document->order_id = $order->id;
+        }
+
         $document->number = $request->number;
         $document->transporter_cnpj = $request->transporter_cnpj;
         $document->company_cnpj = $request->company_cnpj;
-        $document->order_id = $request->order_id;
+
         $document->collected_at = $request->collected_at;
         $document->delivered_at = $request->delivered_at;
         $document->save();
@@ -124,7 +135,7 @@ class DocumentController extends Controller
         $xml = simplexml_load_string($request->data);
         $array = json_decode(json_encode($xml->NFe), TRUE);
 
-        list($key, $version) = array_values($array['infNFe']['@attributes']);
+        [$key, $version] = array_values($array['infNFe']['@attributes']);
         unset($array['infNFe']['@attributes']);
 
         $nfe = new \App\NFE();
@@ -193,7 +204,8 @@ class DocumentController extends Controller
             'delivered_at' => 'date|after:collected_at'
         ]);
 
-        $document->update($request->all());
+
+        $document->update([]);
 
         return response()->json($document);
     }
