@@ -48,8 +48,8 @@ return [
             'host'     => env('MONGO_HOST', 'mongodb'),
             'port'     => env('MONGO_PORT', 27017),
             'database' => env('MONGO_DB', 'maestro'),
-            'username' => env('MONGO_USER', 'maestro'),
-            'password' => env('DB_PASSWORD', 'maestro'),
+            'username' => env('MONGO_USERNAME', 'maestro'),
+            'password' => env('MONGO_PASSWORD', 'maestro'),
             'options'  => [
                 'database' => 'admin'
             ]
