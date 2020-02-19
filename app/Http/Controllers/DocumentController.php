@@ -38,8 +38,8 @@ class DocumentController extends Controller
      * @bodyParam company_cnpj string required
      * CNPJ of the company (without formatting). Example: 04256826000177
      *
-     * @bodyParam phone string required
-     * Landline for specified company. Example: (51) 3214-4321
+     * @bodyParam number string required
+     * Number for the document
      *
      * @bodyParam collected_at timestamp
      * Date of the pickup. Example: 2019-09-26 09:38:52
@@ -179,7 +179,7 @@ class DocumentController extends Controller
      * CNPJ of the company (without formatting). Example: 04256826000177
      *
      * @bodyParam phone string required
-     * Landline for specified company. Example: (51) 3214-4321
+     *
      *
      * @bodyParam collected_at timestamp
      * Date of the pickup. Example: 2019-09-26 09:38:52

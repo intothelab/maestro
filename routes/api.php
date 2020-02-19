@@ -23,8 +23,8 @@ Route::middleware(['client', 'api'])->group(function(){
     Route::resource('/customers', 'CustomerController');
     Route::resource('/orders','OrderController');
 
-    Route::post('/documents/edi', 'MainController@edi');
-    Route::post('/documents/nfe', 'MainController@nfe');
+    Route::post('/documents/edi', 'DocumentController@edi');
+    Route::post('/documents/nfe', 'DocumentController@nfe');
     Route::resource('/documents', 'DocumentController');
 
     Route::resource('/transporters', 'TransporterController');

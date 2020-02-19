@@ -68,7 +68,6 @@ class SupplierController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'email' => 'required|email',
-            'phone' => 'required',
             'cnpj' => 'required|unique:suppliers,cnpj|cnpj|digits:14',
             'address' => 'required',
             'number' => 'required',
