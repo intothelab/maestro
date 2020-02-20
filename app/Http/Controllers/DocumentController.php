@@ -62,8 +62,8 @@ class DocumentController extends Controller
             'number' => 'required|unique:documents,number',
             'transporter_cnpj' => 'exists:transporters,cnpj|cnpj',
             'company_cnpj' => 'required|exists:companies,cnpj|cnpj',
-            'collected_at' => 'date|before:delivered_at',
-            'delivered_at' => 'date|after:collected_at'
+            'collected_at' => 'date_format:Y-m-d H:i|before:delivered_at',
+            'delivered_at' => 'date_format:Y-m-d H:i|after:collected_at'
         ]);
 
         if($request->has('order_id')) {
@@ -79,8 +79,8 @@ class DocumentController extends Controller
         $document->transporter_cnpj = $request->transporter_cnpj;
         $document->company_cnpj = $request->company_cnpj;
 
-        $document->collected_at = $request->collected_at;
-        $document->delivered_at = $request->delivered_at;
+        $document->collected_at = Carbon::createFromFormat('Y-m-d H:i', $request->collected_at);
+        $document->delivered_at = Carbon::createFromFormat('Y-m-d H:i', $request->delivered_at);
         $document->save();
 
         return response()->json($document, 201);
