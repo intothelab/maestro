@@ -65,7 +65,6 @@ class CompanyController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'email' => 'email',
-            'phone' => 'required',
             'cnpj' => 'required|unique:companies|cnpj|digits:14',
             'address' => 'required',
             'number' => 'required',
@@ -174,7 +173,7 @@ class CompanyController extends Controller
 
         $this->validate($request, [
             'name' => 'required',
-            'email' => 'required|email',
+            'email' => 'email',
             'address' => 'required',
             'number' => 'required',
             'postal_code' => 'required',

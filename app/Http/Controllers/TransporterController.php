@@ -63,7 +63,7 @@ class TransporterController extends Controller
     {
         $this->validate($request, [
             'name' => 'required',
-            'email' => 'required|email',
+            'email' => 'email',
             'cnpj' => 'required|unique:transporters|cnpj|digits:14',
             'address' => 'required',
             'number' => 'required',
@@ -193,8 +193,7 @@ class TransporterController extends Controller
 
         $this->validate($request, [
             'name' => 'required',
-            'email' => 'required|email',
-            'phone' => 'required',
+            'email' => 'email',
             'address' => 'required',
             'number' => 'required',
             'postal_code' => 'required'

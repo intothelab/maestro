@@ -67,7 +67,7 @@ class SupplierController extends Controller
     {
         $this->validate($request, [
             'name' => 'required',
-            'email' => 'required|email',
+            'email' => 'email',
             'cnpj' => 'required|unique:suppliers,cnpj|cnpj|digits:14',
             'address' => 'required',
             'number' => 'required',
@@ -178,8 +178,7 @@ class SupplierController extends Controller
 
         $this->validate($request, [
             'name' => 'required',
-            'email' => 'required|email',
-            'phone' => 'required',
+            'email' => 'email',
             'address' => 'required',
             'number' => 'required',
             'postal_code' => 'required'
