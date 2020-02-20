@@ -64,8 +64,8 @@ class OrderController extends Controller
         $order->company_cnpj = $request->company_cnpj;
         $order->customer_cnpj = $request->customer_cnpj;
         $order->code = $request->code;
-        $order->value = $request->value;
-        $order->weight = $request->weight;
+        $order->value = str_replace($request->value, ',', '.');
+        $order->weight = str_replace($request->weight, ',', '.');
         $order->save();
 
         return response()->json($order, 201);
@@ -124,7 +124,13 @@ class OrderController extends Controller
             ->orWhere('id', $ref)
             ->firstOrFail();
 
-        $order->update($request->all());
+        $order->company_cnpj = $request->company_cnpj;
+        $order->customer_cnpj = $request->customer_cnpj;
+        $order->code = $request->code;
+        $order->value = str_replace($request->value, ',', '.');
+        $order->weight = str_replace($request->weight, ',', '.');
+        $order->save();
+
         return response()->json($order);
     }
 
