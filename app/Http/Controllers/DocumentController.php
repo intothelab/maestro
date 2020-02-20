@@ -71,7 +71,7 @@ class DocumentController extends Controller
         }
 
         if($request->has('order_code')) {
-            $order = Order::where('code', $request->input('code'))->firstOrFail();
+            $order = Order::where('code', $request->input('order_code'))->firstOrFail();
             $document->order_id = $order->id;
         }
 
