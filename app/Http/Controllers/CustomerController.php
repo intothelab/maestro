@@ -101,8 +101,8 @@ class CustomerController extends Controller
             $geocoded->getCoordinates()->getLongitude()
         );
 
-        $customer->number = $geocoded->getStreetNumber();
-        $customer->address = $geocoded->getStreetName();
+        $customer->number = $request->input('number');
+        $customer->address = $geocoded->getStreetName() ?? $request->input('address');
         $customer->postal_code = $geocoded->getPostalCode();
         $customer->city = $geocoded->getLocality();
         $customer->state = $geocoded->getAdditionalData()['StateName'];

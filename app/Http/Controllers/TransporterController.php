@@ -99,7 +99,7 @@ class TransporterController extends Controller
         );
 
         $transporter->number = $request->number;
-        $transporter->address = $geocoded->getStreetName();
+        $transporter->address = $geocoded->getStreetName() ?? $request->input('address');
         $transporter->postal_code = $request->postal_code;
         $transporter->city = $geocoded->getLocality();
         $transporter->state = $geocoded->getAdditionalData()['StateName'];

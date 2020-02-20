@@ -102,7 +102,7 @@ class CompanyController extends Controller
         );
 
         $company->number = $request->number;
-        $company->address = $request->address;
+        $company->address = $geocoded->getStreetName() ?? $request->input('address');
         $company->postal_code = $request->postal_code;
         $company->city = $geocoded->getLocality();
         $company->state = $geocoded->getAdditionalData()['StateName'];

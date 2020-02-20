@@ -10,9 +10,10 @@ services:
     image: ambientum/php:7.3-nginx
     container_name: maestro-web
     volumes:
-      - .:/var/www/app
+      - .:/var/www/app:delegated
+      - ~/.composer/docker-cache/:/root/.composer:cached
     ports:
-      - "8080:8080"
+      - 8000:8080
     depends_on:
       - mysql
       - mongo
@@ -30,11 +31,12 @@ services:
       - MYSQL_USER=maestro
       - MYSQL_PASSWORD=maestro
   redis:
-    container_name: maestro-redis
-    image: 'redis:4-alpine'
-    command: redis-server --requirepass maestro
+    image: redis:latest
+    container_name: idez-redis
+    restart: always
+    tty: true
     ports:
-      - "6379:6379"
+      - 6379:6379
   mongo:
     container_name: maestro-mongo
     image: mongo
