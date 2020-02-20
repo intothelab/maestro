@@ -60,6 +60,7 @@ class DocumentController extends Controller
             'order_id' => 'exists:orders,id',
             'order_code' => 'exists:orders,code',
             'number' => 'required|unique:documents,number',
+            'series' => 'required',
             'transporter_cnpj' => 'exists:transporters,cnpj|cnpj',
             'company_cnpj' => 'required|exists:companies,cnpj|cnpj',
             'collected_at' => 'date_format:Y-m-d H:i',
