@@ -62,8 +62,8 @@ class DocumentController extends Controller
             'number' => 'required|unique:documents,number',
             'transporter_cnpj' => 'exists:transporters,cnpj|cnpj',
             'company_cnpj' => 'required|exists:companies,cnpj|cnpj',
-            'collected_at' => 'date_format:Y-m-d H:i|before:delivered_at',
-            'delivered_at' => 'date_format:Y-m-d H:i|after:collected_at'
+            'collected_at' => 'date_format:Y-m-d H:i',
+            'delivered_at' => 'date_format:Y-m-d H:i'
         ]);
 
         if($request->has('order_id')) {
