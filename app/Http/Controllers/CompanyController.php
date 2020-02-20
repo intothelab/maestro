@@ -176,12 +176,10 @@ class CompanyController extends Controller
             'email' => 'email',
             'address' => 'required',
             'number' => 'required',
-            'postal_code' => 'required',
-            'code' => 'unique:companies'
+            'postal_code' => 'required'
         ]);
 
         $company->update([
-            'code' => $request->code,
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,
