@@ -70,4 +70,16 @@ class Company extends Model
         'location',
     ];
 
+
+    protected $fillable = [
+        'name',
+        'phone',
+        'email',
+        'address',
+        'number',
+        'postal_code',
+        'city',
+        'state',
+        'location'
+    ];
 }
