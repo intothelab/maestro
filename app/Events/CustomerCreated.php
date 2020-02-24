@@ -63,7 +63,13 @@ class CustomerCreated
 
             $adrCity = json_decode($adrCityRequest->getBody()->getContents());
 
+
+
             try {
+
+                /** @todo Must change this. It's an issue on the package (spatie doesn't come mutated when it's an eloquent event. */
+                /** @var Point $customerLocation */
+                $customerLocation = Point::fromWKT($customer->location->getSpatialValue());
 
                 $adrCustomer = $client->post('/customer/create', [
                     'form_params' => [
@@ -76,8 +82,8 @@ class CustomerCreated
                         'Customer[state_id]' => $adrCity->state_id,
                         'Customer[city_id]' => $adrCity->city_id,
                         'Customer[customer_cep]' => $customer->postal_code,
-                        'Customer[customer_lat]' => $customer->location->getLat(),
-                        'Customer[customer_lon]' => $customer->location->getLng(),
+                        'Customer[customer_lat]' => $customerLocation->getLat(),
+                        'Customer[customer_lon]' => $customerLocation->getLng(),
                     ]
                 ]);
 
