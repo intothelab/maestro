@@ -58,9 +58,6 @@ class CustomerCreated
 
             try {
 
-                /** @todo Must change this. Maybe it's an issue on the package. */
-                $customerLocation = Point::fromWKT($customer->location->getSpatialValue());
-
                 $adrCustomer = $client->post('/customer/create', [
                     'form_params' => [
                         'Customer[customer_name]' => $customer->name,
@@ -72,8 +69,8 @@ class CustomerCreated
                         'Customer[state_id]' => $adrCity->state_id,
                         'Customer[city_id]' => $adrCity->city_id,
                         'Customer[customer_cep]' => $customer->postal_code,
-                        'Customer[customer_lat]' => $customerLocation->getLat(),
-                        'Customer[customer_lon]' => $customerLocation->getLng(),
+                        'Customer[customer_lat]' => $customer->location->getLat(),
+                        'Customer[customer_lon]' => $customer->location->getLng(),
                     ]
                 ]);
 
