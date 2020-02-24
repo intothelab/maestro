@@ -69,7 +69,9 @@ class OrderCreated
                     'Remittance[remittance_value]' => $order->value,
                     'Remittance[remittance_desc]' => json_encode([
                         'maestro_order_id' => $order->id,
-                        'maestro_imported_at' => Carbon::now()
+                        'maestro_imported_at' => Carbon::now(),
+                        'cubic_weight' => $order->cubic_weight,
+                        'unit' => $order->branch
                     ])
                 ]
             ]);

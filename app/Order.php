@@ -12,8 +12,10 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $company_cnpj
  * @property string $customer_cnpj
  * @property string|null $code
+ * @property string|null branch
  * @property float $value
  * @property float $weight
+ * @property float $cubic_weight
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property int|null $adr_id
@@ -49,6 +51,7 @@ class Order extends Model
         'customer_cnpj',
         'value',
         'weight',
+        'cubic_weight',
         'adr_id'
     ];
 
