@@ -71,6 +71,7 @@ class OrderController extends Controller
             $order->code = $request->code;
             $order->value = str_replace(',', '.', $request->value);
             $order->weight = str_replace(',', '.', $request->weight);
+            $order->cubic_weight = str_replace(',', '.', $request->weight);
             $order->save();
         } catch (\Exception $e){
             DB::rollBack();
