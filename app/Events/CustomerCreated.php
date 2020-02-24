@@ -41,14 +41,14 @@ class CustomerCreated
             try {
                 $adrCityRequest = $client->post('/city/search', [
                     'json' => [
-                        'city_name' => $customer->city
+                        'city_name' => str_replace("'","", $customer->city)
                     ],
                     'http_errors' => false
                 ]);
 
                 if($adrCityRequest->getStatusCode() === 404){
                     throw new \Exception('City not fount: '.$customer->city);
-                } 
+                }
 
 
             } catch (RequestException $exception){
