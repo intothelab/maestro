@@ -78,20 +78,7 @@ class TransporterController extends Controller
         $transporter->code = $request->code;
 
         //Geocoding Address
-        $geocodedString = implode(', ', $request->only([
-            'address',
-            'number',
-            'postal_code'
-        ]));
-
-        /** @var HereAddress $geocoded */
-        $geocoded = Geocoder::geocode($geocodedString)
-            ->get()
-            ->first();
-
-        if($geocoded === null){
-            throw new UnprocessableEntityHttpException('Address and Post Code combination does not result in a valid geocode');
-        }
+        $geocoded = $this->getCoordinates($request);
 
         $transporter->location = new Point(
             $geocoded->getCoordinates()->getLatitude(),

@@ -81,20 +81,7 @@ class CustomerController extends Controller
         $customer->code = $request->code;
 
         //Geocoding Address
-        $geocodedString = implode(', ', $request->only([
-            'address',
-            'number',
-            'postal_code'
-        ]));
-
-        /** @var HereAddress $geocoded */
-        $geocoded = Geocoder::geocode($geocodedString)
-            ->get()
-            ->first();
-
-        if($geocoded === null){
-            throw new UnprocessableEntityHttpException('Address and Post Code combination does not result in a valid geocode');
-        }
+        $geocoded = $this->getCoordinates($request);
 
         $customer->location = new Point(
             $geocoded->getCoordinates()->getLatitude(),

@@ -78,22 +78,7 @@ class CompanyController extends Controller
         $company->cnpj = $request->cnpj;
         $company->code = $request->code;
 
-        //Geocoding Address
-        $geocodedString = implode(', ', $request->only([
-            'address',
-            'number',
-            'postal_code'
-        ]));
-
-        /** @var HereAddress $geocoded */
-        $geocoded = Geocoder::geocode($geocodedString)
-            ->get()
-            ->first();
-
-        if($geocoded === null){
-            throw new UnprocessableEntityHttpException('Address and Post Code combination does not result in a valid geocode');
-        }
-
+        $geocoded = $this->getCoordinates($request);
 
         $company->location = new Point(
             $geocoded->getCoordinates()->getLatitude(),
