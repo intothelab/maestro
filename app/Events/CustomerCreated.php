@@ -48,7 +48,7 @@ class CustomerCreated
 
                 if($adrCityRequest->getStatusCode() === 404){
                     throw new \Exception('City not fount: '.$customer->city);
-                }
+                } 
 
 
             } catch (RequestException $exception){
