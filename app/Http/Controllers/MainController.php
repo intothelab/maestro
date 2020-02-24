@@ -21,20 +21,6 @@ class MainController extends Controller
      */
     public function index()
     {
-
-        $customersWithoutAdr = Customer::whereNull('adr_id')->get();
-        foreach($customersWithoutAdr as $customer){
-            try{
-                new CustomerCreated($customer);
-                echo $customer->name.'<br>';
-            } catch (\Exception $e)
-            {
-                echo $e->getMessage()."<br>";
-            }
-
-
-        }
-
         return response()->json([
             'version' => '1',
             'message' => Inspiring::quote(),
