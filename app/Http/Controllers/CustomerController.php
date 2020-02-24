@@ -7,6 +7,7 @@ use Geocoder\Laravel\Facades\Geocoder;
 use Geocoder\Provider\Here\Model\HereAddress;
 use Grimzy\LaravelMysqlSpatial\Types\Point;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
 
 /**
@@ -74,26 +75,34 @@ class CustomerController extends Controller
             'postal_code' => 'required',
         ]);
 
-        $customer->name = $request->name;
-        $customer->email = strtolower($request->email);
-        $customer->phone = $request->phone;
-        $customer->cnpj = $request->cnpj;
-        $customer->code = $request->code;
+        DB::beginTransaction();
 
-        //Geocoding Address
-        $geocoded = $this->getCoordinates($request);
+        try {
+            $customer->name = $request->name;
+            $customer->email = strtolower($request->email);
+            $customer->phone = $request->phone;
+            $customer->cnpj = $request->cnpj;
+            $customer->code = $request->code;
 
-        $customer->location = new Point(
-            $geocoded->getCoordinates()->getLatitude(),
-            $geocoded->getCoordinates()->getLongitude()
-        );
+            //Geocoding Address
+            $geocoded = $this->getCoordinates($request);
 
-        $customer->number = $request->input('number');
-        $customer->address = $geocoded->getStreetName() ?? $request->input('address');
-        $customer->postal_code = $geocoded->getPostalCode();
-        $customer->city = $geocoded->getLocality();
-        $customer->state = $geocoded->getAdditionalData()['StateName'];
-        $customer->save();
+            $customer->location = new Point(
+                $geocoded->getCoordinates()->getLatitude(),
+                $geocoded->getCoordinates()->getLongitude()
+            );
+
+            $customer->number = $request->input('number');
+            $customer->address = $geocoded->getStreetName() ?? $request->input('address');
+            $customer->postal_code = $geocoded->getPostalCode();
+            $customer->city = $geocoded->getLocality();
+            $customer->state = $geocoded->getAdditionalData()['StateName'];
+            $customer->save();
+        } catch (\Exception $e){
+            DB::rollBack();
+        }
+
+        DB::commit();
 
         return response($customer, 201)->send();
     }
