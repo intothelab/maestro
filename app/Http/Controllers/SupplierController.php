@@ -70,7 +70,6 @@ class SupplierController extends Controller
             'email' => 'email',
             'cnpj' => 'required|unique:suppliers,cnpj|cnpj|digits:14',
             'address' => 'required',
-            'number' => 'required',
             'postal_code' => 'required',
             'code' => 'unique:suppliers'
         ]);

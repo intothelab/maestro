@@ -67,7 +67,6 @@ class CompanyController extends Controller
             'email' => 'email',
             'cnpj' => 'required|unique:companies|cnpj|digits:14',
             'address' => 'required',
-            'number' => 'required',
             'postal_code' => 'required',
             'company' => 'unique:company'
         ]);
