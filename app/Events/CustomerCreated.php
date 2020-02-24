@@ -43,7 +43,7 @@ class CustomerCreated
                     'json' => [
                         'city_name' => $customer->city
                     ],
-                    'http_errors'
+                    'http_errors' => false
                 ]);
 
                 if($adrCityRequest->getStatusCode() === 404){
