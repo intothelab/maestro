@@ -51,7 +51,7 @@ class CustomerCreated
                 ]);
 
                 if($adrCityRequest->getStatusCode() === 404){
-                    throw new \Exception('City not fount: '.$customer->city);
+                    throw new \Exception('City not found: '.$city);
                 }
 
 

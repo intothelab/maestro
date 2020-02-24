@@ -24,8 +24,15 @@ class MainController extends Controller
 
         $customersWithoutAdr = Customer::whereNull('adr_id')->get();
         foreach($customersWithoutAdr as $customer){
-            new CustomerCreated($customer);
-            echo $customer->name.'<br>';
+            try{
+                new CustomerCreated($customer);
+                echo $customer->name.'<br>';
+            } catch (\Exception $e)
+            {
+                echo $e->getMessage()."<br>";
+            }
+
+
         }
 
         return response()->json([
