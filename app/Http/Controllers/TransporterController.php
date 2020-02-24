@@ -193,7 +193,6 @@ class TransporterController extends Controller
 
         $this->validate($request, [
             'name' => 'required',
-            'email' => 'email',
             'address' => 'required',
             'number' => 'required',
             'postal_code' => 'required'
