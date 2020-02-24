@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Company;
 use App\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 /**
  * @group Orders
@@ -53,7 +54,7 @@ class OrderController extends Controller
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(Request $request, Order $order){
+    public function store(Request $request){
 
         $this->validate($request, [
             'company_cnpj' => 'required|exists:companies,cnpj',
@@ -61,12 +62,22 @@ class OrderController extends Controller
             'code' => 'unique:orders'
         ]);
 
-        $order->company_cnpj = $request->company_cnpj;
-        $order->customer_cnpj = $request->customer_cnpj;
-        $order->code = $request->code;
-        $order->value = str_replace(',', '.', $request->value);
-        $order->weight = str_replace(',', '.', $request->weight);
-        $order->save();
+        DB::beginTransaction();
+
+        try {
+            $order = new Order();
+            $order->company_cnpj = $request->company_cnpj;
+            $order->customer_cnpj = $request->customer_cnpj;
+            $order->code = $request->code;
+            $order->value = str_replace(',', '.', $request->value);
+            $order->weight = str_replace(',', '.', $request->weight);
+            $order->save();
+        } catch (\Exception $e){
+            DB::rollBack();
+            throw $e;
+        }
+
+        DB::commit();
 
         return response()->json($order, 201);
     }
