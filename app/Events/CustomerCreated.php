@@ -39,9 +39,13 @@ class CustomerCreated
             Log::info('Customer not found in ADR. Saving it.');
 
             try {
+
+                $city = str_replace("'","", $customer->city);
+                $city = str_replace("-"," ", $city);
+
                 $adrCityRequest = $client->post('/city/search', [
                     'json' => [
-                        'city_name' => str_replace("'","", $customer->city)
+                        'city_name' => $city
                     ],
                     'http_errors' => false
                 ]);
