@@ -59,7 +59,7 @@ class DocumentController extends Controller
         $this->validate($request, [
             'order_id' => 'exists:orders,id',
             'order_code' => 'exists:orders,code',
-            'number' => 'required|unique:documents,number',
+            'number' => 'required',
             'series' => 'required',
             'transporter_cnpj' => 'exists:transporters,cnpj|cnpj',
             'company_cnpj' => 'required|exists:companies,cnpj|cnpj',
